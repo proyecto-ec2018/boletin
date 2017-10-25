@@ -1,4 +1,4 @@
 # boletin
-Proyecto de ingenieria 2017
+Proyecto de ingeniería de software 2017-2
 
 
