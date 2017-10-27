@@ -14,7 +14,6 @@ module.exports = {
     var db = mysql.createConnection(config)
     db.connect();
     console.log('connected to database to register')
-    var sql2 = db.query('SELECT * FROM usuarios WHERE username = ?')
     var sql = db.query('INSERT INTO usuarios SET ?', usuario ,function(err){
   			if (err) throw err
   			console.log("1 record inserted")
