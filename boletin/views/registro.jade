@@ -1,0 +1,145 @@
+doctype html
+head
+    meta(charset='UTF-8')
+
+    title Registro
+
+    style.
+      bod, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,
+      pre, form, fieldset, input, textarea, p, blockquote, th, td {
+      padding:0;
+      margin:0;}
+      body,
+      input,
+      textarea,
+      select {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      color: #4c4c4c;
+      }
+      p {
+      font-size: 12px;
+      width: 150px;
+      display: inline-block;
+      margin-left: 18px;
+      }
+      h1 {
+      font-size: 32px;
+      font-weight: 300;
+      color: #4c4c4c;
+      text-align: center;
+      padding-top: 10px;
+      margin-bottom: 10px;
+      }
+      .testbox {
+      margin: 20px auto;
+      width: 343px;
+      height: 520px;
+      -webkit-border-radius: 8px/7px;
+      -moz-border-radius: 8px/7px;
+      border-radius: 8px/7px;
+      background-color: #ebebeb;
+      -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+      -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+      box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+      border: solid 1px #cbc9c9;
+      }
+      form{
+      margin: 35px;
+      }
+      input[type=text],input[type=password]{
+      width: 200px;
+      height: 39px;
+      -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+      -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
+      border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+      background-color: #fff;
+      -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+      -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+      border: solid 1px #cbc9c9;
+      margin-left: -5px;
+      margin-top: 13px;
+      padding-left: 10px;
+      }
+      #boton-pass{
+      height:10px;
+      }
+      #email{
+      width:199px;
+      height:40px;
+      }
+      #state{
+      top: -30px;
+      right:10px;
+      color:red;
+      }
+    |  &lt;
+  body
+    html
+      head
+        meta(charset='UTF-8')
+
+        title registro
+
+      body
+        link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600', rel='stylesheet', type='text/css')
+        link(href='//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css', rel='stylesheet')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+        .container-fluid
+          .testbox
+            h1 Registro
+
+            form(action='http://localhost:3000/newuser' method='post' name='form')
+              .accounttype
+
+              .form-group(align='center')
+                label(for='email') Nombre de usuario:
+
+                input#texto(type='text', name='usrName', placeholder='', required='')
+
+              .form-group(align='center')
+                label(for='email') Correo electronico:
+
+                input#email.form-control(type='email', name='email', placeholder='correo@ejemplo.com', required='')
+
+              .form-group(align='center')
+                label(for='email') Contrase&ntilde;a:
+
+                input#pass1.form-control(type='password', onkeyup='validar(this)', name='usrPass', placeholder='Mayor a 6 caracteres', required='')
+
+              .form-group(align='center')
+                label Confirmar contrase&ntilde;a:
+
+
+                input#pass2.form-control(type='password', onkeyup='validar(this)', name='usrPassVer', required='')
+
+
+                span#state.glyphicon.glyphicon-alert.pull-right
+
+              div(align='center')
+                button(type="submit" class='btn btn-default')  Registrarse
+
+
+
+
+    script.
+      function validar(form){
+      var pass1 = $("#pass1").val();
+      var pass2 = $("#pass2").val();
+      if(pass1.length <=6 || pass2 <=6 || pass1.length != pass2.length  ){
+      var element= document.getElementById("state");
+      element.style.color = "red";
+      $("#state").attr("class", "glyphicon glyphicon-alert pull-right");
+      $("#but-registro").attr("class","btn btn-default disabled" );
+      document.getElementById("but-registro").setAttribute("style", "cursor:default");
+      document.getElementById("but-registro").setAttribute("disabled", "disabled");
+      }else if(pass1 == pass2){
+      var element= document.getElementById("state");
+      element.style.color = "green";
+      $("#state").attr("class", "glyphicon glyphicon-ok-sign pull-right");
+      $("#but-registro").attr("class","btn btn-primary");
+      document.getElementById("but-registro").removeAttribute("disabled")
+      }
+      }
