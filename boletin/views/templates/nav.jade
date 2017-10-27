@@ -1,0 +1,140 @@
+doctype html
+html
+  head
+    style.
+      .jumbotron h1,p{
+      padding-left: 60px;
+      }
+      .jumbotron{
+      padding-right: 60px;
+      }
+      .footer{
+      height: 200px;
+      background-color: black;
+      }
+      .footer h1{
+      color: white;
+      text-align: center;
+      }
+    | &#x9;
+    meta(charset='utf-8')
+    | &#x9;
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // <link rel="stylesheet" type="text/css" href="index.css">
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    | &#x9;
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    | &#x9;
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    | &#x9;
+    title P&aacute;gina del bolet&iacute;n
+  body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='#') Bolet&iacute;n
+        | &#x9;&#x9;&#x9;
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href='http://localhost:3000/registro' method='get')
+              span.glyphicon.glyphicon-user
+              |  Sign Up
+          | &#x9;&#x9;&#x9;      &#x9;
+          li
+            a(href='http://localhost:3000/login' method='get')
+              span.glyphicon.glyphicon-log-in
+              |  Login
+
+    | &#x9;&#x9;
+    .jumbotron
+      h1 Art&iacute;culo destacado
+      | &#x9;&#x9;&#x9;
+      p Mostrar un preview de alg&uacute;n art&iacute;culo que se destaque
+      | &#x9;&#x9;&#x9;
+      a.btn.btn-primary.pull-right(href='') Leer m&aacute;s
+    | &#x9;&#x9;
+    | &#x9;&#x9;
+    .container
+      .row
+        .col-md-4
+          .thumbnail
+            img(src='/images/thumb.jpg', width='304', height='236')
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            .caption
+              a(href='')
+                h3 T&iacute;tulo Art&iacute;culo
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              p
+                | Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo
+        | &#x9;&#x9;&#x9;&#x9;
+        .col-md-4
+          .thumbnail
+            img(src='/images/rh.jpg', width='304', height='236')
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            .caption
+              a(href='')
+                h3 T&iacute;tulo Art&iacute;culo
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              p
+                | Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo
+        | &#x9;&#x9;&#x9;&#x9;
+        .col-md-4
+          .thumbnail
+            img(src='/images/fear.jpg', width='304', height='236')
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            .caption
+              a(href='')
+                h3 T&iacute;tulo Art&iacute;culo
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              p
+                | Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo Resumen breve sobre algun art&iacute;culo
+    | &#x9;&#x9;
+    .container
+      #accordion.panel-group
+        .panel.panel-default
+          .panel-heading
+            h4.panel-title
+              a(data-toggle='collapse', data-parent='#accordion', href='#collapse1')  Bolet&iacute;n &apos;nombreBolet&iacute;n&apos;
+          | &#x9;&#x9;&#x9;&#x9;
+          #collapse1.panel-collapse.collapse.in
+            .panel-body
+              a(href='#') Art&iacute;culo 1
+            | &#x9;&#x9;&#x9;&#x9;      &#x9;
+            .panel-body
+              a(href='#') Art&iacute;culo 2
+        | &#x9;&#x9;&#x9;&#x9;
+        .panel.panel-default
+          .panel-heading
+            h4.panel-title
+              a(data-toggle='collapse', data-parent='#accordion', href='#collapse2')  Bolet&iacute;n &apos;nombreBolet&iacute;n&apos;
+          | &#x9;&#x9;&#x9;&#x9;
+          #collapse2.panel-collapse.collapse
+            .panel-body
+              a(href='#') Art&iacute;culo 1
+            | &#x9;&#x9;&#x9;&#x9;      &#x9;
+            .panel-body
+              a(href='#') Art&iacute;culo 2
+        | &#x9;&#x9;&#x9;&#x9;
+        .panel.panel-default
+          .panel-heading
+            h4.panel-title
+              a(data-toggle='collapse', data-parent='#accordion', href='#collapse3')  Bolet&iacute;n &apos;nombreBolet&iacute;n&apos;
+          | &#x9;&#x9;&#x9;&#x9;
+          #collapse3.panel-collapse.collapse
+            .panel-body
+              a(href='#') Art&iacute;culo 1
+            | &#x9;&#x9;&#x9;&#x9;      &#x9;
+            .panel-body
+              a(href='#') Art&iacute;culo 2
+    | &#x9;&#x9;
+    .footer
+      .row
+        .col-sm-4
+          h1 Footer
+        | &#x9;&#x9;&#x9;&#x9;
+        .col-sm-4
+          h1 Footer
+        | &#x9;&#x9;&#x9;&#x9;
+        | &#x9;&#x9;&#x9;&#x9;
+        .col-sm-4
+          h1 Footer
