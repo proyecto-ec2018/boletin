@@ -14,26 +14,29 @@ html
     title P&aacute;gina del bolet&iacute;n
 
   body
-    .navbar.navbar-default
-      .container
-        .navbar-header
-          a.navbar-brand.vinculo(href='#') Bolet&iacute;n
+    if isAuthenticated
+      include navUserAuth
+    else
+      .navbar.navbar-default
+        .container
+          .navbar-header
+            a.navbar-brand.vinculo(href='#') Bolet&iacute;n
 
-        ul.nav.navbar-nav
-          li
-            a.vinculo(href='#') Gu&iacute;a para autores
+          ul.nav.navbar-nav
+            li
+              a.vinculo(href='#') Gu&iacute;a para autores
 
 
-        ul.nav.navbar-nav.navbar-right
-          li
-            a(href='/login')
-              span.glyphicon.glyphicon-user
-              | Ingresar
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/login')
+                span.glyphicon.glyphicon-user
+                | Ingresar
 
-          li
-            a(href='/registro')
-              span.glyphicon.glyphicon-log-in
-              | Registro
+            li
+              a(href='/registro')
+                span.glyphicon.glyphicon-log-in
+                | Registro
 
 
     .jumbotron

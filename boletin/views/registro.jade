@@ -76,6 +76,8 @@ head
       }
     |  &lt;
   body
+    if isAuthenticated
+      include navUserAuth
     html
       head
         meta(charset='UTF-8')

@@ -28,8 +28,8 @@ module.exports = function(passport){
               password : user.password
             })
           }
-          return done(null,false,req.flash('authmessage','Username o contrasena incorrectos'))
         }
+        return done(null,false,req.flash('authmessage','Username o contrasena incorrectos'))
   	})
   }))
 
