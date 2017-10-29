@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 27-10-2017 a las 20:37:15
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 29-10-2017 a las 02:41:27
+-- Versión del servidor: 5.7.19
+-- Versión de PHP: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,13 +25,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `boletines`
+--
+
+DROP TABLE IF EXISTS `boletines`;
+CREATE TABLE IF NOT EXISTS `boletines` (
+  `id_boletin` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_boletin` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `descripcion_boletin` text COLLATE utf8_unicode_ci NOT NULL,
+  `creador_boletin` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha_creacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `es_actual` bit(1) NOT NULL,
+  PRIMARY KEY (`id_boletin`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_usuario`
 --
 
-CREATE TABLE `tipo_usuario` (
-  `tipo` int(11) NOT NULL,
-  `description` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tipo_usuario`;
+CREATE TABLE IF NOT EXISTS `tipo_usuario` (
+  `tipo` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(20) NOT NULL,
+  PRIMARY KEY (`tipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tipo_usuario`
@@ -46,12 +65,15 @@ INSERT INTO `tipo_usuario` (`tipo`, `description`) VALUES
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
   `userName` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `tipo` int(11) DEFAULT '1'
+  `tipo` int(11) DEFAULT '1',
+  PRIMARY KEY (`userName`),
+  KEY `tipo` (`tipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -60,33 +82,6 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`userName`, `email`, `password`, `fecha_registro`, `tipo`) VALUES
 ('Victor Noriega', 'victornoriega7@gmail.com', 'c500080b8f612d20946914fcea81dc5a', '2017-10-25 02:05:26', 1);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `tipo_usuario`
---
-ALTER TABLE `tipo_usuario`
-  ADD PRIMARY KEY (`tipo`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`userName`),
-  ADD KEY `tipo` (`tipo`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `tipo_usuario`
---
-ALTER TABLE `tipo_usuario`
-  MODIFY `tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
