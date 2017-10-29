@@ -1,0 +1,52 @@
+html
+  head
+    meta(charset='UTF-8')
+    title registro
+    link(rel='stylesheet', href='css/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Lobster', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600', rel='stylesheet', type='text/css')
+    link(href='//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css', rel='stylesheet')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  style.
+    html {
+    background: #123456;
+    }
+    #titulo_caja {
+    text-align: center;
+    background-color: #123456;
+    color: #FE0C61;
+    font-family: Lobster, Arial, Helvetica;
+    }
+    #renglon_boton {
+    text-align: center;
+    background-color: #123456;
+    color: #FE0C61;
+    font-family: Lobster, Arial, Helvetica;
+    }
+    #bloque_externo{
+    background-color: #10728C;
+    }
+    #boton_crear {
+    color: #123456;
+    font-family: Helvetica, Arial;
+    }
+  body
+    #bloque_externo.container-fluid
+      .row
+        #titulo_caja.col-sm-12
+          h1 Nuevo Boletín
+      #bloque_interno.container
+        .form-group
+          label(for='usr')
+            br
+            | Nombre del boletín:
+          br
+          input#nombre_boletin(type='text', name='nombre_boletin', placeholder='', required='')
+        .form-group
+          label(for='comment') Descripción:
+          textarea#descripcion.form-control(rows='5', required='')
+      .row
+        #renglon_boton.col-sm-12
+          br
+          button#boton_crear.btn.btn-primary Crear
