@@ -16,11 +16,14 @@ module.exports = {
     console.log('connected to database to register')
     var sql = db.query('SELECT * FROM usuarios WHERE username = ?', usuario.userName ,function(err,rows,fields){
       if (err) throw err
-      db.end()
       if(rows.length > 0 ){
         req.flash('userNotAvailable','Este usuario no esta disponible. Intenta uno nuevo.')
         return res.redirect('/userNotAvailable')
       }else{
+        db.query('INSERT INTO usuarios SET ?', usuario, function(err){
+          if(err) throw err
+          db.end()
+        })
         req.flash('afterSignUp','Gracias por registrarte. Inicia sesion para continuar')
         return res.redirect('/login')
       }
