@@ -7,7 +7,12 @@ module.exports = {
     })
   },
   showSignUpForm : function(req,res,next){
-    res.render('registro',{title: ' Registro'})
+    res.render('registro',{title: ' Registro',
+      notAvailable : req.flash('userNotAvailable')})
+  },
 
+  logout : function(req,res,next){
+    req.logout()
+    res.redirect('/')
   }
 }

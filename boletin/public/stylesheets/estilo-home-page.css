@@ -1,0 +1,54 @@
+.navbar-default{
+    background-color: darkslategray;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    border-color: darkslategray;
+}
+
+.navbar-default .container a{
+    color: white;
+}
+.navbar-default .container a:hover{
+    color: white;
+}
+
+.navbar-default .container .navbar-right a{
+    color: white;
+}
+.navbar-default .container .navbar-right a:hover{
+    color: #a0afaf;
+}
+
+.navbar-default .container .navbar-nav a{
+    color: white;
+}
+.navbar-default .container .navbar-nav a:hover{
+    color: #a0afaf;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------- */
+
+.jumbotron{
+    background-color: black;
+    margin-bottom: 35px;
+}
+
+.jumbotron .container h1{
+    color: white;
+}
+
+.jumbotron .container p{
+    color: white;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------- */
+
+.thumb-section{
+    margin-bottom: 50px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------- */
+
+.footer{
+    background-color: black;
+}

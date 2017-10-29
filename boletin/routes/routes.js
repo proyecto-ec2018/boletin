@@ -15,4 +15,6 @@ router.post('/auth-login',passport.authenticate('local',{
   failureFlash : true
 }))
 
+router.get('/auth-logout', controllers.homecontroller.logout)
+router.get('/userNotAvailable', controllers.dbcontroller.verifyUserName)
 module.exports = router;

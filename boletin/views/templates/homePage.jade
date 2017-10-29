@@ -1,0 +1,202 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    // <meta name="viewport" content="width=device-width, initial-scale=1">
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+
+    link(rel='stylesheet', href='/stylesheets/estilo-home-page.css')
+
+    title P&aacute;gina del bolet&iacute;n
+
+  body
+    .navbar.navbar-default
+      .container
+        .navbar-header
+          a.navbar-brand.vinculo(href='#') Bolet&iacute;n
+
+        ul.nav.navbar-nav
+          li
+            a.vinculo(href='#') Gu&iacute;a para autores
+
+
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href='/login')
+              span.glyphicon.glyphicon-user
+              | Ingresar
+
+          li
+            a(href='/registro')
+              span.glyphicon.glyphicon-log-in
+              | Registro
+
+
+    .jumbotron
+      .container
+        h1.display-3 Bienvenido al sitio
+
+        p.lead
+          | En el siguiente sitio podr&aacute;s encontrar informaci&oacute;n sobre diversos temas. Prop&oacute;sito del sitio explicado brevemente. Tratar de fijar una altura m&aacute;xima para esta cosa pues var&iacute;a seg&uacute;n el contenido.
+
+
+        p.lead
+          a.btn.btn-primary.btn-lg(href='#', role='button') Conocer m&aacute;s
+
+
+    .container.thumb-section
+      .row
+        .col-md-4
+          .thumbnail
+            img(src='images/fear.jpg')
+
+          .caption
+            h3 Art&iacute;culo destacado 1
+
+            p
+              | Breve resumen sobre el contenido del art&iacute;culo hacer que los usuarios nos envien un resumen sobre su art&iacute;culo para ponerlo aqu&iacute;
+
+            p
+              a.btn.btn-primary(href='#') Leer m&aacute;s
+
+        .col-md-4
+          .thumbnail
+            img(src='images/rh.jpg')
+
+          .caption
+            h3 Art&iacute;culo destacado 2
+
+            p
+              | Breve resumen sobre el contenido del art&iacute;culo hacer que los usuarios nos envien un resumen sobre su art&iacute;culo para ponerlo aqu&iacute;
+
+            p
+              a.btn.btn-primary(href='#') Leer m&aacute;s
+
+        .col-md-4
+          .thumbnail
+            img(src='images/thumb.jpg')
+
+          .caption
+            h3 Art&iacute;culo destacado 3
+
+            p
+              | Breve resumen sobre el contenido del art&iacute;culo hacer que los usuarios nos envien un resumen sobre su art&iacute;culo para ponerlo aqu&iacute;
+
+            p
+              a.btn.btn-primary(href='#') Leer m&aacute;s
+
+
+    #accordion.container
+      .panel.panel-default
+        .panel-heading
+          h4.panel-title
+            a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')
+              | Bolet&iacute;n en turno
+
+        #collapseOne.panel-collpse.collapse.in
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#')  Art&iacute;culo 1
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#')  Art&iacute;culo
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#')  Art&iacute;culo
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#')  Art&iacute;culo
+
+
+      .panel.panel-default
+        .panel-heading
+          h4.panel-title
+            a(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo')
+              | Bolet&iacute;n anterior
+
+        #collapseTwo.panel-collapse.collapse
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#') Art&iacute;culo
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#') Art&iacute;culo
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#') Art&iacute;culo
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#') Art&iacute;culo
+
+
+      .panel.panel-default
+        .panel-heading
+          h4.panel-title
+            a(data-toggle='collapse', data-parent='#accordion', href='#collapseThree')
+              | Bolet&iacute;n anterior
+
+        #collapseThree.panel-collapse.collapse
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#') Art&iacute;culo
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#') Art&iacute;culo
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#') Art&iacute;culo
+
+          .panel-body
+            a(href='$')
+              span.glyphicon.glyphicon-download-alt
+
+            a(href='#') Art&iacute;culo
+
+
+
+    .footer
+      .container
+        h3 Informaci&oacute;n de contacto
+
+        ul
+          li Correo electr&oacute;nico:
+
+          li Redes sociales:
+
+        p Derechos reservados etc
+
+        p M&aacute;s informaci&oacute;n

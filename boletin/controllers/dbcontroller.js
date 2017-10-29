@@ -14,18 +14,28 @@ module.exports = {
     var db = mysql.createConnection(config)
     db.connect();
     console.log('connected to database to register')
-    var sql = db.query('INSERT INTO usuarios SET ?', usuario ,function(err){
-  			if (err) throw err
-  			console.log("1 record inserted")
-        db.end()
-  	})
-    req.flash('afterSignUp','Gracias por registrarte. Inicia sesion para continuar')
-    return res.redirect('/login')
+    var sql = db.query('SELECT * FROM usuarios WHERE username = ?', usuario.userName ,function(err,rows,fields){
+      if (err) throw err
+      db.end()
+      if(rows.length > 0 ){
+        req.flash('userNotAvailable','Este usuario no esta disponible. Intenta uno nuevo.')
+        return res.redirect('/userNotAvailable')
+      }else{
+        req.flash('afterSignUp','Gracias por registrarte. Inicia sesion para continuar')
+        return res.redirect('/login')
+      }
+    })
   },
 
   getSignIn : function(req,res,next){
     return res.render('login',{ message: req.flash('afterSignUp'), authmessage : req.flash('authmessage')})
+  },
+
+  verifyUserName : function(req,res,next){
+    return res.render('registro', { userNotAvailable: req.flash('userNotAvailable')})
   }
+
+
 
 /*  getSignIn : function(req,res,next){
     //req.flash('info','Gracias por registrarte. Inicia sesion para continuar')
