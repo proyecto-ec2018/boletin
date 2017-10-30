@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 29-10-2017 a las 02:41:27
+-- Tiempo de generación: 30-10-2017 a las 04:07:50
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -50,14 +50,17 @@ CREATE TABLE IF NOT EXISTS `tipo_usuario` (
   `tipo` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(20) NOT NULL,
   PRIMARY KEY (`tipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tipo_usuario`
 --
 
 INSERT INTO `tipo_usuario` (`tipo`, `description`) VALUES
-(1, 'usrRegistrado');
+(1, 'user_regist'),
+(2, 'autor_contenido'),
+(3, 'editor'),
+(4, 'administrador');
 
 -- --------------------------------------------------------
 
