@@ -15,17 +15,25 @@ module.exports = {
     req.logout()
     res.redirect('/')
   },
-<<<<<<< HEAD
   
   mostrarGuia : function(req, res, next){
-    res.render('templates/guia_autores');
-=======
-
+    res.render('templates/guia_autores',{title : 'Boletin - Guia de autores',
+      isAuthenticated : req.isAuthenticated(),
+      user: req.user                                
+    });
+  },
+  
   nuevoBoletin : function(req,res,next){
     res.render('nuevo_boletin',{title: 'Nuevo boletin',
       isAuthenticated : req.isAuthenticated(),
       user: req.user
     })
->>>>>>> d5dd7ae06505d0cd88e01b888a87f3745ab69bfd
+  },
+  
+  eliminarBoletin : function(req,res,next){
+    res.render('eliminar_boletin',{title : 'Boletin - Eliminar boletin',
+      isAuthenticated : req.isAuthenticated(),
+      user: req.user                 
+    });
   }
 }

@@ -20,4 +20,5 @@ router.post('/auth-login',passport.authenticate('local',{
 router.get('/auth-logout',AuthMiddleware.isLogged, controllers.homecontroller.logout)
 router.get('/userNotAvailable', controllers.dbcontroller.verifyUserName)
 router.get('/nuevo-boletin',AuthMiddleware.isLogged, controllers.homecontroller.nuevoBoletin)
+router.get('/eliminar_boletin',AuthMiddleware.isLogged, controllers.homecontroller.eliminarBoletin)
 module.exports = router;

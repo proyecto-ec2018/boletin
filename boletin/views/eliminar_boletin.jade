@@ -1,0 +1,33 @@
+extends templates/estilos
+
+link(rel="stylesheet" href="/../stylesheets/eliminar_boletin.css")
+
+block content
+  include templates/navUserAuth
+  
+  div(class="" id="" style="background-color: darkslategray;")
+      div(class="container")
+        nav(class="navbar navbar-default" style="margin-bottom: 0px; background-color: darkslategray; border-color: darkslategray;")
+          div(class="container-fluid")
+            div(class="navbar-header" style="color: white;")
+              h3 Eliminación de boletines
+            form(class="navbar-form navbar-left" method="" action="") 
+              div(class="form-group")
+                input(type="text" class="form-control" placeholder="Buscar boletín")
+              button(type="submit" class="btn btn-default") Buscar
+    
+    div(class="container")
+      div(class="row")
+        div(class="col-md-4 col-md-offset-4")
+          div(class="panel-boletin")
+            h3(class="text-center" style="margin-bottom: 25px;") Nombre del boletin
+            h4() Creador del boletín: 
+            p Creador
+            br
+            h4(class="") Fecha de creación: 
+            p Fecha
+            br
+            h4(class="") Artículos incluidos: 
+            ul
+              li Artículo
+            button(type="submit" class="btn btn-danger center-block" style="margin-top: 25px;") Eliminar
