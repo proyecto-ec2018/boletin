@@ -1,24 +1,30 @@
-nav(class="navbar navbar-default")
-  div(class="container-fluid")
-    div(class="navbar-header")
-      button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
-        span(class="sr-only")= 'Toggle navigation'
-        span(class="icon-bar")
-        span(class="icon-bar")
-        span(class="icon-bar")
-      a(class="navbar-brand" href="http://localhost:3000/")= 'Boletin'
+div(class='' id='' style='background-color: darkslategray;')
+  div(class='container')
+    nav(class="navbar navbar-default"  style='background-color: darkslategray; margin-bottom: 0px; border-color: darkslategray;')
+      div(class="container-fluid")
+        div(class="navbar-header")
+          button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+            span(class="sr-only")= 'Toggle navigation'
+            span(class="icon-bar")
+            span(class="icon-bar")
+            span(class="icon-bar")
+          a(class="navbar-brand" href="http://localhost:3000/" style="color:white;")= 'Boletin'
 
-    div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
-      ul(class="nav navbar-nav navbar-right")
-        if !isAuthenticated
-          li
-            a(href="http://localhost:3000/registro")= 'Registrarse'
-          li
-            a(href="http://localhost:3000/login")= 'Ingresar'
-        if isAuthenticated
-          li(class="dropdown")
-            a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")= user.userName
-              span(class="caret")
-            ul(class="dropdown-menu")
+        div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="color:white;")
+          ul(class="nav navbar-nav navbar-right" )
+            if !isAuthenticated
               li
-                a(href="http://localhost:3000/auth-logout")= 'Cerrar Sesion'
+              li
+                a(href="http://localhost:3000/registro" style="color:white;")='Registro '
+                  i(class='glyphicon glyphicon-plus-sign')
+              li
+                a(href="http://localhost:3000/login" style="color:white;")='Ingresar '
+                  i(class='glyphicon glyphicon-log-in')
+            if isAuthenticated
+              li(class="dropdown" style='color: white;')
+                a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:white;')= user.nombre
+                  span(class="caret")
+                ul(class="dropdown-menu" style='background-color:darkslategray; color:white;')
+                  li
+                    a(href="http://localhost:3000/auth-logout" style='background-color:darkslategray; color:white;')= 'Cerrar Sesion '
+                      span(class='glyphicon glyphicon-log-out')
