@@ -22,9 +22,12 @@ div(class='' id='' style='background-color: darkslategray;')
                   i(class='glyphicon glyphicon-log-in')
             if isAuthenticated
               li(class="dropdown" style='color: white;')
-                a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:white;')= user.nombre
+                a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:white')= user.nombre
                   span(class="caret")
                 ul(class="dropdown-menu" style='background-color:darkslategray; color:white;')
                   li
                     a(href="http://localhost:3000/auth-logout" style='background-color:darkslategray; color:white;')= 'Cerrar Sesion '
                       span(class='glyphicon glyphicon-log-out')
+                  li
+                    a(href="http://localhost:3000/nuevo-boletin" style='background-color:darkslategray; color:white;')= 'Nuevo boletin '
+                      span(class='glyphicon glyphicon-book')

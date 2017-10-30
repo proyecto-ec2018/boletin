@@ -14,5 +14,12 @@ module.exports = {
   logout : function(req,res,next){
     req.logout()
     res.redirect('/')
+  },
+
+  nuevoBoletin : function(req,res,next){
+    res.render('nuevo_boletin',{title: 'Nuevo boletin',
+      isAuthenticated : req.isAuthenticated(),
+      user: req.user
+    })
   }
 }
