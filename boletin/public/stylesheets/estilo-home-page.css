@@ -1,4 +1,4 @@
-.navbar-default{
+/*.navbar-default{
     background-color: darkslategray;
     border-radius: 0px;
     margin-bottom: 0px;
@@ -24,13 +24,13 @@
 }
 .navbar-default .container .navbar-nav a:hover{
     color: #a0afaf;
-}
+}*/
 
 /* ----------------------------------------------------------------------------------------------------------------------------- */
 
 .jumbotron{
     background-color: black;
-    margin-bottom: 35px;
+    margin-bottom: 70px;
 }
 
 .jumbotron .container h1{
