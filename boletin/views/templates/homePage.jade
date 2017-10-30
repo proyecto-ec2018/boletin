@@ -14,9 +14,10 @@ html
     title P&aacute;gina del bolet&iacute;n
 
   body
-    if isAuthenticated
+    include navUserAuth
+    //if isAuthenticated
       include navUserAuth
-    else
+    //else
       .navbar.navbar-default
         .container
           .navbar-header
@@ -55,7 +56,7 @@ html
       .row
         .col-md-4
           .thumbnail
-            img(src='images/fear.jpg')
+            img(src='images/fear.jpg' style='width : 230px; height : 200px;')
 
           .caption
             h3 Art&iacute;culo destacado 1
@@ -68,7 +69,7 @@ html
 
         .col-md-4
           .thumbnail
-            img(src='images/rh.jpg')
+            img(src='images/rh.jpg' style='width : 230px; height : 200px;')
 
           .caption
             h3 Art&iacute;culo destacado 2
@@ -81,7 +82,7 @@ html
 
         .col-md-4
           .thumbnail
-            img(src='images/thumb.jpg')
+            img(src='images/thumb.jpg' style='width : 230px; height : 200px;')
 
           .caption
             h3 Art&iacute;culo destacado 3
