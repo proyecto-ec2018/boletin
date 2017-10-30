@@ -14,5 +14,9 @@ module.exports = {
   logout : function(req,res,next){
     req.logout()
     res.redirect('/')
+  },
+  
+  mostrarGuia : function(req, res, next){
+    res.render('templates/guia_autores');
   }
 }

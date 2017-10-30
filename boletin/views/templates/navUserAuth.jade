@@ -9,7 +9,9 @@ div(class='' id='' style='background-color: darkslategray;')
             span(class="icon-bar")
             span(class="icon-bar")
           a(class="navbar-brand" href="http://localhost:3000/" style="color:white;")= 'Boletin'
-
+          ul(class="nav navbar-nav")
+            li
+              a(class="" href="http://localhost:3000/guia_autores" style="color:white;") Guía para autores
         div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="color:white;")
           ul(class="nav navbar-nav navbar-right" )
             if !isAuthenticated

@@ -5,6 +5,7 @@ var controllers = require('.././controllers')
 
 /* GET home page. */
 router.get('/', controllers.homecontroller.index)
+router.get('/guia_autores', controllers.homecontroller.mostrarGuia)
 router.get('/registro', controllers.homecontroller.showSignUpForm)
 router.post('/newuser',controllers.dbcontroller.postRegistrarUsuario)
 router.get('/login',controllers.dbcontroller.getSignIn)
