@@ -25,18 +25,22 @@ module.exports = {
   },
 
   nuevoBoletin : function(req,res,next){
-    res.render('nuevo_boletin',{title: 'Nuevo boletin',
-      isAuthenticated : req.isAuthenticated(),
-      user: req.user,
-      tipo : req.tipo
-    })
+    if(req.isAuthenticated() && req.user.tipo >=3){
+      res.render('nuevo_boletin',{title: 'Nuevo boletin',
+        isAuthenticated : req.isAuthenticated(),
+        user: req.user,
+        tipo : req.user.tipo
+      })
+    }else{
+      res.redirect('/');
+    }
   },
 
   eliminarBoletin : function(req,res,next){
     res.render('eliminar_boletin',{title : 'Boletin - Eliminar boletin',
       isAuthenticated : req.isAuthenticated(),
       user: req.user,
-      tipo : req.tipo
+      tipo : req.user.tipo
     });
   }
 }

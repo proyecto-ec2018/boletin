@@ -45,7 +45,22 @@ module.exports = {
 
   verifyUserName : function(req,res,next){
     return res.render('registro', { userNotAvailable: req.flash('userNotAvailable')})
-  }
+  },
 
+  postPublicarBoletin : function(req,res,next){
+    var boletin ={
+      nombre : req.body.nombre,
+      descripcion : req.body.descripcion,
+      editor : req.user.nombre
+    }
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+    console.log('connected to database to register a boletin')
+    db.query('INSERT INTO boletines SET ?',boletin, function(err,rows,fields){
+      if(err) throw error
+      db.end()
+    })
+  }
 
 }

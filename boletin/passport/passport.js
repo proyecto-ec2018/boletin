@@ -22,7 +22,6 @@ module.exports = function(passport){
         db.end()
         if(rows.length > 0 ){
           var user = rows[0]
-          console.log(user)
           if(md5(password) == user.password){
             return done(null,{
               nombre : user.userName,
