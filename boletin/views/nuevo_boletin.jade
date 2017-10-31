@@ -1,5 +1,7 @@
 html
   head
+    if user.tipo < 3
+      meta(http-equiv='refresh', content='0; url=http://localhost:3000/')
     meta(charset='UTF-8')
     title registro
     include templates/navUserAuth
