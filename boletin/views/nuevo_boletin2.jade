@@ -1,0 +1,81 @@
+doctype html
+head
+    meta(charset='UTF-8')
+
+    title Nuevo boletin
+  body
+    include templates/navUserAuth
+    html(lang='en')
+      head
+        meta(charset='utf-8')
+
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+      body
+        .container
+          h2 Publicar Boletin
+
+
+          form
+            .form-group
+              label(for='usr') Nombre del boletin:
+
+              input#usr.form-control(type='text', required='')
+
+            .form-group
+              label(for='comment') Descripcion:
+
+              textarea#comment.form-control(rows='5', required='')
+
+
+            table.table.table-bordered
+              thead.thead-dark
+                tr
+                  th.text-center(width='50')
+                    span.glyphicon.glyphicon-ok
+                    p
+                         &#x9;
+                  th Lista de Articulos
+
+                  th Autor
+
+              tbody
+                tr
+                  td
+                    input.form-check-input(type='checkbox', value='')
+
+                  td Articulo
+
+                  td Autor
+
+                tr
+                  td
+                    input.form-check-input(type='checkbox', value='')
+
+                  td Articulo
+
+                  td Autor
+
+                tr
+                  td
+                    input.form-check-input(type='checkbox', value='')
+
+                  td Articulo
+
+                  td Autor
+
+                tr
+                  td
+                    input.form-check-input(type='checkbox', value='')
+
+                  td Articulo
+
+                  td Autor
+
+        div(align='center')
+          button.btn.btn-primary  Publicar boletin

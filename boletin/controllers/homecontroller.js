@@ -26,7 +26,7 @@ module.exports = {
 
   nuevoBoletin : function(req,res,next){
     if(req.isAuthenticated() && req.user.tipo >=3){
-      res.render('nuevo_boletin',{title: 'Nuevo boletin',
+      res.render('nuevo_boletin2',{title: 'Nuevo boletin',
         isAuthenticated : req.isAuthenticated(),
         user: req.user,
         tipo : req.user.tipo
@@ -47,7 +47,7 @@ module.exports = {
       res.redirect('/');
     }
   }
-  
+
   /*eliminarBoletin : function(req,res,next){
     res.render('eliminar_boletin',{title : 'Boletin - Eliminar boletin',
       isAuthenticated : req.isAuthenticated(),
