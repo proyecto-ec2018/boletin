@@ -36,11 +36,23 @@ module.exports = {
     }
   },
 
-  eliminarBoletin : function(req,res,next){
+  eliminarBoletin : function(req, res, next){
+    if(req.isAuthenticated() && req.user.tipo >= 3){
+      res.render('eliminar_boletin',{title : 'Boletin - eliminar boletin',
+        isAuthenticated : req.isAuthenticated(),
+        user : req.user,
+        tipo : req.user.tipo
+      })
+    }else{
+      res.redirect('/');
+    }
+  }
+  
+  /*eliminarBoletin : function(req,res,next){
     res.render('eliminar_boletin',{title : 'Boletin - Eliminar boletin',
       isAuthenticated : req.isAuthenticated(),
       user: req.user,
       tipo : req.user.tipo
     });
-  }
+  }*/
 }
