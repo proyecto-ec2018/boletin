@@ -1,5 +1,7 @@
 var mysql = require('mysql')
 var md5 = require('md5')
+var formidable = require('formidable')
+var path = require('path')
 module.exports = {
   /* En este archivo se definen las funciones que involucren acceder a
     la base de datos.
@@ -13,6 +15,7 @@ module.exports = {
       se redirige a '/userNotAvailable'
   */
   postRegistrarUsuario : function(req,res,next){
+    console.log(req.body)
     var usuario= {
       userName : req.body.usrName,
       email : req.body.email,
@@ -61,6 +64,39 @@ module.exports = {
       if(err) throw error
       db.end()
     })
+  },
+
+  getUploadFile : function(req,res,next){
+    res.render('index2');
+  },
+  postUploadFile : function(req,res,next){
+    var form = new formidable.IncomingForm();
+    var articulo ={
+      estado : 1
+    }
+    form.parse(req,function(err,fields,files){
+      articulo.titulo=fields.titulo
+      articulo.descripcion=fields.descripcion
+      articulo.autor = req.user.nombre
+      var config = require('.././database/config')
+      var db = mysql.createConnection(config)
+      db.connect();
+      db.query('INSERT INTO articulos SET ?',articulo, function(err,rows,fields){
+        if(err) throw err
+        db.end()
+      })
+    });
+    form.on('fileBegin', function (name, file){
+      file.path = path.normalize(__dirname + '/..') + '/uploads/' + file.name;
+      articulo.nombre_archivo = file.name
+      articulo.extension_archivo = path.extname(file.name)
+    });
+    form.on('file', function (name, file){
+      console.log('Uploaded ' + file.name);
+    });
+
+    return res.redirect('/')
   }
+
 
 }

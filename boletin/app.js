@@ -11,6 +11,28 @@ var app = express();
 var session = require('express-session')
 var passport = require('passport')
 require('./passport/passport')(passport)
+/*var formidable = require('formidable')
+
+app.get('/upload', function (req, res){
+    res.render('index2');
+});
+
+app.post('/upload', function (req, res){
+    var form = new formidable.IncomingForm();
+
+    form.parse(req);
+
+    form.on('fileBegin', function (name, file){
+        file.path = __dirname + '/uploads/' + file.name;
+    });
+
+    form.on('file', function (name, file){
+        console.log('Uploaded ' + file.name);
+    });
+
+    res.render('/index2');
+});
+*/
 
 app.use(cookieParser());
 app.use(session({

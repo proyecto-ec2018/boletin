@@ -21,4 +21,7 @@ router.get('/auth-logout',AuthMiddleware.isLogged, controllers.homecontroller.lo
 router.get('/userNotAvailable', controllers.dbcontroller.verifyUserName)
 router.get('/nuevo-boletin',AuthMiddleware.isLogged, controllers.homecontroller.nuevoBoletin)
 router.get('/eliminar_boletin',AuthMiddleware.isLogged, controllers.homecontroller.eliminarBoletin)
+router.get('/upload-files', controllers.dbcontroller.getUploadFile)
+
+router.post('/upload-files', controllers.dbcontroller.postUploadFile)
 module.exports = router;

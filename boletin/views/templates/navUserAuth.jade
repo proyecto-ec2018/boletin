@@ -30,6 +30,9 @@ div(class='' id='' style='background-color: darkslategray;')
                   li
                     a(href="http://localhost:3000/auth-logout" style='background-color:darkslategray; color:white;')= 'Cerrar Sesion '
                       span(class='glyphicon glyphicon-log-out')
+                  if user.tipo>=2
+                  a(href="http://localhost:3000/upload-files" style='background-color:darkslategray; color:white;')= ' Enviar propuesta '
+                    span(class='glyphicon glyphicon-upload')
                   if user.tipo>=3
                     li
                       a(href="http://localhost:3000/nuevo-boletin" style='background-color:darkslategray; color:white;')= 'Nuevo boletin '

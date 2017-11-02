@@ -1,0 +1,17 @@
+block contenido
+  body
+    div(class="col-md 6 remove float center-block big-top-space")
+      h1 Subir archivo
+      form(action="/upload-files" method='POST' enctype="multipart/form-data")
+        div(class='form-group')
+          label(for="title") Titulo
+          input(type="text" name="titulo" placeholder="Titulo..." id="title" class="form-control")
+        div(class='form-group')
+          label(for="descripcion") Descripcion
+          input(type="text" name="descripcion" placeholder="Descripcion..." id="descripcion" class="form-control")
+        div
+          label(for="archivo") Archivo
+          input(type="file" name="file" id="archivo" class="form-control")
+        div(class="row top-space")
+          div(class="col-xs-12 col-sm6")
+            input(type="submit" value="Enviar" class="btn btn-info")
