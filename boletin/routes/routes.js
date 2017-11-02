@@ -19,6 +19,12 @@ router.post('/auth-login',passport.authenticate('local',{
 
 router.get('/auth-logout',AuthMiddleware.isLogged, controllers.homecontroller.logout)
 router.get('/userNotAvailable', controllers.dbcontroller.verifyUserName)
+
 router.get('/nuevo-boletin',AuthMiddleware.isLogged, controllers.homecontroller.nuevoBoletin)
+router.post('/nuevo-boletin', AuthMiddleware.isLogged, controllers.dbcontroller.postPublicarBoletin)
+
 router.get('/eliminar_boletin',AuthMiddleware.isLogged, controllers.homecontroller.eliminarBoletin)
+
+router.get('/upload-files', controllers.dbcontroller.getUploadFile)
+router.post('/upload-files', controllers.dbcontroller.postUploadFile)
 module.exports = router;
