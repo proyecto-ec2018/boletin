@@ -21,16 +21,16 @@ head
           h2 Publicar Boletin
 
 
-          form
+          form(action='http://localhost:3000/nuevo-boletin' method='post' name='form')
             .form-group
               label(for='usr') Nombre del boletin:
 
-              input#usr.form-control(type='text', required='', placeholder='Nombre...')
+              input#usr.form-control(type='text', required='', placeholder='Nombre...' name='nombre')
 
             .form-group
               label(for='comment') Descripcion:
 
-              textarea#comment.form-control(rows='5', required='',placeholder='Descripcion...')
+              textarea#comment.form-control(rows='5', required='',placeholder='Descripcion...' name='descripcion')
 
 
             table.table.table-bordered
@@ -45,37 +45,14 @@ head
                   th Autor
 
               tbody
-                tr
-                  td
-                    input.form-check-input(type='checkbox', value='')
+                -for(var i =0; i < titulos.length ; i++)
+                  tr
+                    td
+                      input.form-check-input(type='checkbox', value='')
+                    td= titulos[i]
 
-                  td= titulos[0]
+                    td= autores[i]
 
-                  td= autores[0]
-
-                tr
-                  td
-                    input.form-check-input(type='checkbox', value='')
-
-                  td= titulos[1]
-
-                  td=autores[1]
-
-                tr
-                  td
-                    input.form-check-input(type='checkbox', value='')
-
-                  td Articulo
-
-                  td Autor
-
-                tr
-                  td
-                    input.form-check-input(type='checkbox', value='')
-
-                  td Articulo
-
-                  td Autor
 
         div(align='center')
-          button.btn.btn-primary  Publicar boletin
+          button(type="submit" class='btn btn-default')  Publicar boletin

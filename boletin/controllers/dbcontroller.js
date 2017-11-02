@@ -51,6 +51,7 @@ module.exports = {
   },
 
   postPublicarBoletin : function(req,res,next){
+    console.log(req.body)
     var boletin ={
       nombre : req.body.nombre,
       descripcion : req.body.descripcion,
@@ -60,10 +61,11 @@ module.exports = {
     var db = mysql.createConnection(config)
     db.connect();
     console.log('connected to database to register a boletin')
-    db.query('INSERT INTO boletines SET ?',boletin, function(err,rows,fields){
+    /*db.query('INSERT INTO boletines SET ?',boletin, function(err,rows,fields){
       if(err) throw error
       db.end()
     })
+    */
   },
 
   getUploadFile : function(req,res,next){
