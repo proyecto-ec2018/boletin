@@ -1,3 +1,4 @@
+var mysql = require('mysql')
 module.exports = {
   //Funciones del controlador
   index : function(req,res, next){
@@ -25,15 +26,34 @@ module.exports = {
   },
 
   nuevoBoletin : function(req,res,next){
-    if(req.isAuthenticated() && req.user.tipo >=3){
-      res.render('nuevo_boletin2',{title: 'Nuevo boletin',
-        isAuthenticated : req.isAuthenticated(),
-        user: req.user,
-        tipo : req.user.tipo
-      })
-    }else{
-      res.redirect('/');
-    }
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+    var sql = db.query('SELECT titulo, autor FROM articulos', function(err,rows,fields){
+      if (err) throw err
+      titulo =[]
+      autor = []
+      for(i=0; i < rows.length;i++){
+        titulo[i] = rows[i].titulo
+        autor[i] = rows[i].autor
+      }
+      var articulos = {
+        titulos : titulo,
+        autores : autor
+      }
+      db.end()
+      if(req.isAuthenticated() && req.user.tipo >=3){
+        res.render('nuevo_boletin2',{title: 'Nuevo boletin',
+          isAuthenticated : req.isAuthenticated(),
+          user: req.user,
+          tipo : req.user.tipo,
+          titulos : articulos.titulos,
+          autores : articulos.autores
+        })
+      }else{
+        res.redirect('/');
+      }
+    })
   },
 
   eliminarBoletin : function(req, res, next){
