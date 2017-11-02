@@ -51,21 +51,37 @@ module.exports = {
   },
 
   postPublicarBoletin : function(req,res,next){
-    console.log(req.body)
+
     var boletin ={
-      nombre : req.body.nombre,
-      descripcion : req.body.descripcion,
-      editor : req.user.nombre
+      nombre_boletin : req.body.nombre,
+      descripcion_boletin : req.body.descripcion,
+      creador_boletin : req.user.nombre,
+      es_actual : 1
     }
+
     var config = require('.././database/config')
     var db = mysql.createConnection(config)
     db.connect();
     console.log('connected to database to register a boletin')
-    /*db.query('INSERT INTO boletines SET ?',boletin, function(err,rows,fields){
-      if(err) throw error
-      db.end()
+    db.query('INSERT INTO boletines SET ?',boletin, function(err,rows,fields){
+      if(err) throw err
+      if(req.body.checkbox){
+        if(req.body.checkbox.length > 0){
+          //UPDATE `articulos` SET `boletin_asoc` = 'XD' WHERE `articulos`.`id` = 0;
+          for(i = 0; i < req.body.checkbox.length; i++){
+            var queryString = 'UPDATE articulos SET boletin_asoc =' + "'" +boletin.nombre_boletin + "'"+ 'WHERE articulos.id = ' + req.body.checkbox[i]
+            db.query(queryString,function(err,rows,fields){
+              if(err) throw err
+
+            })
+          }
+          db.end()
+          return res.redirect('/')
+        }
+
+      }
     })
-    */
+
   },
 
   getUploadFile : function(req,res,next){

@@ -48,11 +48,9 @@ head
                 -for(var i =0; i < titulos.length ; i++)
                   tr
                     td
-                      input.form-check-input(type='checkbox', value='')
+                      input.form-check-input(type='checkbox', value=i name='checkbox')
                     td= titulos[i]
 
                     td= autores[i]
-
-
-        div(align='center')
-          button(type="submit" class='btn btn-default')  Publicar boletin
+            div(align='center')
+              button(type="submit" class='btn btn-default')  Publicar boletin
