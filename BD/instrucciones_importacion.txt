@@ -1,6 +1,6 @@
 Intrucciones para la importacion de la base de datos a su servidor local:
 	Se debe arrancar el gestor de bases de datos.
-	Si la base de datos no existe en el gestor local se debe crear una base de datos con el mismo nombre de aquella que se importara si la base de datos ya existe saltar al siguiente paso.
+	Si la base de datos no existe en el gestor local se debe crear una base de datos con el mismo nombre de aquella que se importará (boletin) si la base de datos ya existe saltar al siguiente paso.
 	Se selecciona dicha base de datos.
 	Se selecciona importar.
 	Se navega hasta la direccion local de la base de datos
