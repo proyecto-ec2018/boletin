@@ -1,0 +1,27 @@
+PENDIENTES>>
+
+	vistas>
+		
+		enviar propuesta
+		crear boletin
+		perfil de usuario
+		visor de articulos (publicados, propuestos, aprobados, etc.)
+		visor de boletines (que varie dependiendo del tipo de usuario)
+	
+	formas>
+		
+		crear boletin
+		modificar boletin
+		perfil de usuario
+	
+
+NOTAS>
+
+	en publicar boletin, pienso que deberia tener la opcion de descargar el articulo, o poder leerlo ahi mismo
+	
+	cuando se publica el boletin, se queda en un estado inconcluso la pagina, a pesar de que si los registra
+
+	en index, los boletines no abren sus correspondientes listas al seleccionarlos
+		(si selecciono el 1, por ejemplo, el segundo boletin cierra al primero y asi)
+
+	el buscador no sirve en eliminacion de boletines
