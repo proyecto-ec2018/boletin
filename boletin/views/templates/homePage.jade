@@ -15,7 +15,7 @@ html
 
   body
     include navUserAuth
-    
+
     .jumbotron
       .container
         h1.display-3 Bienvenido al sitio
@@ -69,105 +69,57 @@ html
             p
               a.btn.btn-primary(href='#') Leer m&aacute;s
 
+    //empiezan los boletines
+    if titulos.length > 0
+      #accordion.container
+        .panel.panel-default
+          .panel-heading
+            h4.panel-title
+              a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')=titulos[0]
 
-    #accordion.container
-      .panel.panel-default
-        .panel-heading
-          h4.panel-title
-            a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')
-              | Bolet&iacute;n en turno
+          #collapseOne.panel-collpse.collapse.in
+            -for(i = 0 ; i < articulo[0].length ; i++)
+              .panel-body
+                a(href='$')
+                  span.glyphicon.glyphicon-download-alt
 
-        #collapseOne.panel-collpse.collapse.in
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
+                a(href='#')=articulo[0,i]
 
-            a(href='#')  Art&iacute;culo 1
-
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
-
-            a(href='#')  Art&iacute;culo
-
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
-
-            a(href='#')  Art&iacute;culo
-
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
-
-            a(href='#')  Art&iacute;culo
+        if titulos.length > 1
+          -for(i=1 ; i < titulos.length; i++)
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title
+                  a(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo')=titulos[i]
 
 
-      .panel.panel-default
-        .panel-heading
-          h4.panel-title
-            a(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo')
-              | Bolet&iacute;n anterior
+              #collapseTwo.panel-collapse.collapse
+                .panel-body
+                  a(href='$')
+                    span.glyphicon.glyphicon-download-alt
 
-        #collapseTwo.panel-collapse.collapse
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
+                  a(href='#') Art&iacute;culo
 
-            a(href='#') Art&iacute;culo
+                .panel-body
+                  a(href='$')
+                    span.glyphicon.glyphicon-download-alt
 
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
+                  a(href='#') Art&iacute;culo
 
-            a(href='#') Art&iacute;culo
+                .panel-body
+                  a(href='$')
+                    span.glyphicon.glyphicon-download-alt
 
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
+                  a(href='#') Art&iacute;culo
 
-            a(href='#') Art&iacute;culo
+                .panel-body
+                  a(href='$')
+                    span.glyphicon.glyphicon-download-alt
 
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
-
-            a(href='#') Art&iacute;culo
+                  a(href='#') Art&iacute;culo
 
 
-      .panel.panel-default
-        .panel-heading
-          h4.panel-title
-            a(data-toggle='collapse', data-parent='#accordion', href='#collapseThree')
-              | Bolet&iacute;n anterior
-
-        #collapseThree.panel-collapse.collapse
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
-
-            a(href='#') Art&iacute;culo
-
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
-
-            a(href='#') Art&iacute;culo
-
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
-
-            a(href='#') Art&iacute;culo
-
-          .panel-body
-            a(href='$')
-              span.glyphicon.glyphicon-download-alt
-
-            a(href='#') Art&iacute;culo
-
-
-
+    //Termina aqui los boletines
     .footer
       .container
         h3 Informaci&oacute;n de contacto

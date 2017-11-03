@@ -67,7 +67,6 @@ module.exports = {
       if(err) throw err
       if(req.body.checkbox){
         if(req.body.checkbox.length > 0){
-          //UPDATE `articulos` SET `boletin_asoc` = 'XD' WHERE `articulos`.`id` = 0;
           for(i = 0; i < req.body.checkbox.length; i++){
             var queryString = 'UPDATE articulos SET boletin_asoc =' + "'" +boletin.nombre_boletin + "'"+ 'WHERE articulos.id = ' + req.body.checkbox[i]
             db.query(queryString,function(err,rows,fields){
