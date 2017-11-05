@@ -70,55 +70,52 @@ html
               a.btn.btn-primary(href='#') Leer m&aacute;s
 
     //empiezan los boletines
-    if titulos.length > 0
-      #accordion.container
+    #accordion.container
+      if titulos.length >0
         .panel.panel-default
           .panel-heading
             h4.panel-title
-              a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')=titulos[0]
-
+              a(data-toggle='collapse', data-parent='#accordion', href=col[0])=titulos[0]
           #collapseOne.panel-collpse.collapse.in
-            -for(i = 0 ; i < articulo[0].length ; i++)
+            -for(i = 0 ; i < tamaños[0] ; i++)
               .panel-body
                 a(href='$')
                   span.glyphicon.glyphicon-download-alt
 
-                a(href='#')=articulo[0,i]
-
-        if titulos.length > 1
-          -for(i=1 ; i < titulos.length; i++)
-            .panel.panel-default
-              .panel-heading
-                h4.panel-title
-                  a(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo')=titulos[i]
-
-
-              #collapseTwo.panel-collapse.collapse
+                a(href='#')=' '+ articulo[i+sumas[0]]
+        if titulos.length >1
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+                a(data-toggle='collapse', data-parent='#accordion', href=col[1])=titulos[1]
+            #collapseTwo.panel-collapse.collapse
+              -for(i=0; i < tamaños[1];i++)
                 .panel-body
                   a(href='$')
                     span.glyphicon.glyphicon-download-alt
-
-                  a(href='#') Art&iacute;culo
-
+                  a(href='#')=' ' + articulo[i+sumas[1]]
+        if titulos.length >2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+                a(data-toggle='collapse', data-parent='#accordion', href=col[2])=titulos[2]
+            #collapseThree.panel-collapse.collapse
+              -for(i=0; i < tamaños[2];i++)
                 .panel-body
                   a(href='$')
                     span.glyphicon.glyphicon-download-alt
-
-                  a(href='#') Art&iacute;culo
-
+                  a(href='#')=' '+ articulo[i+sumas[2]]
+        if titulos.length >3
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+                a(data-toggle='collapse', data-parent='#accordion', href=col[3])=titulos[3]
+            #collapseFour.panel-collapse.collapse
+              -for(i=0; i < tamaños[3];i++)
                 .panel-body
                   a(href='$')
                     span.glyphicon.glyphicon-download-alt
-
-                  a(href='#') Art&iacute;culo
-
-                .panel-body
-                  a(href='$')
-                    span.glyphicon.glyphicon-download-alt
-
-                  a(href='#') Art&iacute;culo
-
-
+                  a(href='#')=' '+ articulo[i+sumas[3]]
     //Termina aqui los boletines
     .footer
       .container
