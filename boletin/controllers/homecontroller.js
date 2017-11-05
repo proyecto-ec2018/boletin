@@ -4,6 +4,7 @@ module.exports = {
   index : function(req,res, next){
     var config = require('.././database/config')
     var db = mysql.createConnection(config)
+
     db.connect();
     db.query('SELECT * FROM boletines ORDER BY `id_boletin` DESC', function(err,rows,fields){
       if(err) throw err
@@ -24,33 +25,52 @@ module.exports = {
       //Se obtienen los titulos de los boletines publicados
       for(i = 0 ; i < iteraciones ; i++) titulo[i] = rows[i].nombre_boletin
       //Se obtienen los titulos de los articulos de los boletines
-      for( i = 0 ; i < iteraciones ; i++ ){
-        queryString[i] = 'SELECT * FROM articulos WHERE boletin_asoc = ' + "'" + titulo[i] +"'"
-        db.query(queryString[i], function(err,rows,fields){
-          for(j=0 ; j < rows.length; j++) {
-            articulos[j+suma] = rows[j].titulo
-          }
-          for(j = 0 ; j < aux ; j++) sumatorias[aux]+=numArticulos
-          numArticulos = rows.length
-          tamañoBoletines[aux] = numArticulos
-          suma+=numArticulos
+      if(iteraciones>0){
+        for( i = 0 ; i < iteraciones ; i++ ){
+          queryString[i] = 'SELECT * FROM articulos WHERE boletin_asoc = ' + "'" + titulo[i] +"'"
+          db.query(queryString[i], function(err,rows,fields){
 
-          aux++
-          cont++
+            for(j=0 ; j < rows.length; j++) {
+              articulos[j+suma] = rows[j].titulo
+            }
+            for(j = 0 ; j < aux ; j++) sumatorias[aux]+=numArticulos
+            numArticulos = rows.length
+            tamañoBoletines[aux] = numArticulos
+            suma+=numArticulos
 
-          if(aux==iteraciones){
-            col=['#collapseOne','#collapseTwo','#collapseThree','#collapseFour']
-            res.render('index',{title: 'Boletin',
-              isAuthenticated : req.isAuthenticated(),
-              user: req.user,
-              tipo : req.tipo,
-              titulos : titulo,
-              articulo: articulos,
-              tamaños : tamañoBoletines,
-              sumas : sumatorias,
-              col : col
-            })
-          }
+            aux++
+            cont++
+
+            if(aux==iteraciones){
+              col=['#collapseOne','#collapseTwo','#collapseThree','#collapseFour']
+              res.render('index',{title: 'Boletin',
+                isAuthenticated : req.isAuthenticated(),
+                user: req.user,
+                tipo : req.tipo,
+                titulos : titulo,
+                articulo: articulos,
+                tamaños : tamañoBoletines,
+                sumas : sumatorias,
+                col : col
+              })
+            }
+          })
+        }
+      }else{
+        titulos=[]
+        articulos=[]
+        col=['#collapseOne','#collapseTwo','#collapseThree','#collapseFour']
+        tamañoBoletines=[]
+        sumatorias=[]
+        res.render('index',{title: 'Boletin',
+          isAuthenticated : req.isAuthenticated(),
+          user: req.user,
+          tipo : req.tipo,
+          titulos : titulo,
+          articulo: articulos,
+          tamaños : tamañoBoletines,
+          sumas : sumatorias,
+          col : col
         })
       }
     })
