@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>A Pen by  Fabian </title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>chingasAtuMadreJoseChuy</h2>
+  <p>Seleccione el Boletin a editar y rellene los campos:</p>   
+  <form >
+    <table class="table table-bordered scrollit">
+      <thead>
+        <tr>
+          <th WIDTH="30"></th>
+          <th>Lista de boletines</th>
+          <th >Lista de articulos</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td> <button onclick="alertaBoletin()" type="submit" class="btn btn-danger btn-xs" id ="borrar">&times;</button> </td>
+          <td>  
+            <b>Boletin 1</b>
+             <button href="#edicion" type="button" class="btn btn-primary btn-xs" id="editar" data-toggle="modal">Editar</button>
+            <div class="modal" tabindex="-1" role="dialog" id="edicion">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title">Editar</h2>
+                    <label>Nombre: </label>
+               
+                    <input class="form-control" type ="text" id ="input_nombre" required>
+                    <br>
+                        <textarea class="form-control" rows="10" id="comment" placeholder = "Descripcion del boletin"required></textarea>
+    </div>
+                <div align="center">
+    <button type = "submit" class="btn btn-primary">Editar</button>
+                  </div>
+                  <div class="modal-body">
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="file" class="btn btn-success btn-xs" id="agregar">Agregar articulo</button>
+          </td>
+          <td > 
+            <div id = "scroll">
+       
+                     <p>Articulo 1<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 2<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 3<button onclick="alertaArticulo()" type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 4<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 5<button onclick="alertaArticulo()" type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              
+             
+            </div>
+            
+          
+   </td>
+          
+        </tr>
+        <td> <button onclick="alertaBoletin()" type="submit" class="btn btn-danger btn-xs" id ="borrar">&times;</button> </td>
+          <td>  
+            <b>Boletin 2</b>
+             <button href="#edicion" type="button" class="btn btn-primary btn-xs" id="editar" data-toggle="modal">Editar</button>
+            <div class="modal" tabindex="-1" role="dialog" id="edicion">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title">Editar</h2>
+                    <label>Nombre: </label>
+               
+                    <input class="form-control" type ="text" id ="input_nombre" required>
+                    <br>
+                        <textarea class="form-control" rows="10" id="comment" placeholder = "Descripcion del boletin"required></textarea>
+    </div>
+                <div align="center">
+    <button type = "submit" class="btn btn-primary">Editar</button>
+                  </div>
+                  <div class="modal-body">
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="file" class="btn btn-success btn-xs" id="agregar">Agregar articulo</button>
+          </td>
+          <td > 
+            <div id = "scroll">
+              
+              <p>Articulo 1<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 2<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 3<button onclick="alertaArticulo()" type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              
+             
+            </div>
+            
+          
+   </td>
+
+        <tr>
+          <td> <button onclick="alertaBoletin()" type="submit" class="btn btn-danger btn-xs" id ="borrar">&times;</button> </td>
+          <td>  
+            <b>Boletin 3</b>
+            <button href="#edicion" type="button" class="btn btn-primary btn-xs" id="editar" data-toggle="modal">Editar</button>
+            <div class="modal" tabindex="-1" role="dialog" id="edicion">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title">Editar</h2>
+                    <label>Nombre: </label>
+                    <input class="form-control" type ="text">
+                        <textarea class="form-control" rows="10" id="comment" placeholder = "Descripcion del boletin"required></textarea>
+    </div>
+                <div align="center">
+    <button type = "submit" class="btn btn-primary">Editar</button>
+                  </div>
+                  <div class="modal-body">
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="file" class="btn btn-success btn-xs" id="agregar">Agregar articulo</button>
+          </td>
+          <td > 
+            <div id = "scroll">
+       
+                  <p>Articulo 1<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 2<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 3<button onclick="alertaArticulo()" type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+            </div>
+            
+          
+   </td>
+          
+    
+        </tr>
+
+        <tr>
+          <td> <button onclick="alertaBoletin()" type="sumbit" class="btn btn-danger btn-xs" id = "borrar" id = "borrar">&times;</button> </td>
+          <td>  
+            <b>Boletin 4</b>
+             <button href="#edicion" type="button" class="btn btn-primary btn-xs" id="editar" data-toggle="modal">Editar</button>
+            <div class="modal" tabindex="-1" role="dialog" id="edicion">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title">Editar</h2>
+                    <label>Nombre: </label>
+               
+                    <input class="form-control" type ="text" id ="input_nombre" required>
+                    <br>
+                        <textarea class="form-control" rows="10" id="comment" placeholder = "Descripcion del boletin"required></textarea>
+    </div>
+                <div align="center">
+    <button type = "submit" class="btn btn-primary">Editar</button>
+                  </div>
+                  <div class="modal-body">
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="file" class="btn btn-success btn-xs" id="agregar">Agregar articulo</button>
+          </td>
+          <td > 
+            <div id = "scroll">
+       
+              <p>Articulo 1<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 2<button onclick="alertaArticulo()"  type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              <p>Articulo 3<button onclick="alertaArticulo()" type="submit" class="btn btn-danger btn-xs" id="eliminar_articulo">Eliminar</button></p>
+              
+            </div>
+            
+          
+   </td>
+        
+        
+
+      </tbody>
+    </table>
+  </form>
+</div>
+
+</body>
+</html>
+  
+    <script  src="js/index.js"></script>
+
+</body>
+</html>

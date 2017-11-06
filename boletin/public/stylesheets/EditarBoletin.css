@@ -1,0 +1,24 @@
+#agregar{
+  color: black;
+}
+
+#editar{
+  color: black;
+}
+
+#scroll{
+    position : relative;
+    left
+    width: 350px;
+    height: 80px;
+    overflow-x: auto;
+}
+#eliminar_articulo{
+  color: black;
+  position: relative;
+  left: 10px;
+}
+
+#input_nombre{
+  width: 250px;
+}
