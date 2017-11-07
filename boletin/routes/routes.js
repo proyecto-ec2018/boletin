@@ -25,6 +25,9 @@ router.post('/nuevo-boletin', AuthMiddleware.isLogged, controllers.dbcontroller.
 
 router.get('/eliminar_boletin',AuthMiddleware.isLogged, controllers.homecontroller.eliminarBoletin)
 
+router.get('/editar_boletin',AuthMiddleware.isLogged, controllers.homecontroller.editarBoletin)
+router.post('/eliminar_boletin',AuthMiddleware.isLogged, controllers.dbcontroller.eliminarBoletin)
+
 router.get('/upload-files', controllers.dbcontroller.getUploadFile)
 router.post('/upload-files', controllers.dbcontroller.postUploadFile)
 module.exports = router;

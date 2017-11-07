@@ -123,6 +123,37 @@ module.exports = {
     })
   },
 
+  editarBoletin : function(req, res, next)
+  {
+    var config = require('../database/config')
+    var db = mysql.createConnection(config)
+    db.connect()
+
+    var boletines = null;
+
+    var sql = db.query('SELECT * FROM boletines', function(err,rows,fields){
+      if (err) throw err;
+
+      boletines = rows;
+      db.end();
+
+      if(req.isAuthenticated() && req.user.tipo >= 3)
+      {
+        res.render('editar_boletin',
+                  {
+                    title: 'Editar boletin',
+                    isAuthenticated : req.isAuthenticated(),
+                    user : req.user,
+                    tipo : req.user.tipo,
+                    boletines : boletines
+                  }
+        );
+      }
+    }); // fin db.query()
+
+  }, // fin editarBoletin
+
+
   eliminarBoletin : function(req, res, next){
     if(req.isAuthenticated() && req.user.tipo >= 3){
       res.render('eliminar_boletin',{title : 'Boletin - eliminar boletin',

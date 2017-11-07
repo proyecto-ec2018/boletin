@@ -113,7 +113,31 @@ module.exports = {
     });
 
     return res.redirect('/')
-  }
+  },
 
+  eliminarBoletin : function(req,res,next){
+        var id = req.body.id;
+
+        var config = require('../database/config');
+
+        var db = mysql.createConnection(config);
+        db.connect();
+
+        var respuesta = {res: false};
+
+        db.query('DELETE FROM boletines WHERE id_boletin = ' + id, function(err,rows,fields){
+            if(err)
+            {
+                throw err;
+                respuesta = {res: false}
+            } 
+
+            db.end();
+
+            respuesta.res = true;
+
+            res.json(respuesta);
+        });
+  }
 
 }

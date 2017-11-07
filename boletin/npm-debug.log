@@ -7,8 +7,8 @@
 6 silly lifecycle boletin@1.0.0~prestart: no script for prestart, continuing
 7 info lifecycle boletin@1.0.0~start: boletin@1.0.0
 8 verbose lifecycle boletin@1.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle boletin@1.0.0~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/victornoriega/Desktop/boletin/boletin/boletin/node_modules/.bin:/home/victornoriega/bin:/home/victornoriega/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-10 verbose lifecycle boletin@1.0.0~start: CWD: /home/victornoriega/Desktop/boletin/boletin/boletin
+9 verbose lifecycle boletin@1.0.0~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/sebastianrs/Desktop/git-repos/myproject/boletin/boletin/node_modules/.bin:/home/sebastianrs/bin:/home/sebastianrs/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+10 verbose lifecycle boletin@1.0.0~start: CWD: /home/sebastianrs/Desktop/git-repos/myproject/boletin/boletin
 11 silly lifecycle boletin@1.0.0~start: Args: [ '-c', 'node ./bin/www' ]
 12 silly lifecycle boletin@1.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle boletin@1.0.0~start: Failed to exec start script
@@ -23,8 +23,8 @@
 14 verbose stack     at maybeClose (internal/child_process.js:821:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 15 verbose pkgid boletin@1.0.0
-16 verbose cwd /home/victornoriega/Desktop/boletin/boletin/boletin
-17 error Linux 4.10.0-28-generic
+16 verbose cwd /home/sebastianrs/Desktop/git-repos/myproject/boletin/boletin
+17 error Linux 4.4.0-62-generic
 18 error argv "/usr/bin/nodejs" "/usr/bin/npm" "start"
 19 error node v4.2.6
 20 error npm  v3.5.2
