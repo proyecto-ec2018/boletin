@@ -10,6 +10,11 @@ function alertaArticulo(){
     }
 }
 
+function returnData(param)
+{
+    console.log(param);
+}
+
 $(function(){
 
     // funcion para borrar boletin
@@ -19,7 +24,8 @@ $(function(){
         {
           var elemento = $(this);
           var id = elemento.parent().parent().find('#id_boletin').text();
-
+            
+        console.log(typeof(id));
           $.ajax({
               url : 'http://localhost:3000/eliminar_boletin',
               method : 'post',
@@ -51,21 +57,12 @@ $(function(){
           var arregloDatos = $('#'+form_id);
         
           console.log(arregloDatos  );
-          console.log(id);
+          console.log(typeof(id));
           console.log(elemento);
           console.log("este es el nombre " + nombre_boletin);
           console.log(descripcion);
-
-          $.ajax({
-              url : 'http://localhost:3000/editar_boletin2',
-              method : 'post',
-              data : JSON.stringify( {'ID' : id, 'nombre' : nombre_boletin, 'desc' : descripcion } ),
-              success : function(res){
-                  if(res.res){
-                      alert("El boletin ha sido modificado");
-                  }
-              }
-          });
+        
+          $.post('http://localhost:3000/editar_boletin2', {ID : id, nombre : nombre_boletin, desc : descripcion });
         } 
     });
 
