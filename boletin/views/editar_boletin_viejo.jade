@@ -1,0 +1,45 @@
+
+
+
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Editar Boletin
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/semantic/semantic.css')
+    script(src='/javascripts/jquery-3.2.1.js')
+    script(src='/semantic/semantic.js')
+      
+  body
+  block content
+    include templates/navUserAuth
+    div(class=['ui', 'container', 'grid', 'stackable'])
+      div(class=['sixteen', 'wide', 'column'])
+
+        h2(class=['ui', 'header', 'blue', 'dividing'])= 'Lista de boletines'
+
+        table(class=['ui', 'table', 'called'] id='tbl_boletines')
+          thead
+              th= 'ID'
+              th= 'Nombre'
+              th= 'Descripcion'
+              th= 'Creador'
+              th= 'Fecha de creacion'
+              th= 'Acciones'
+          tbody
+              each boletin in boletines
+                tr
+                  td(id='id_boletin')= boletin.id_boletin
+                  td= boletin.nombre_boletin                  
+                  td= boletin.descripcion_boletin
+                  td= boletin.creador_boletin
+                  td= boletin.fecha_creacion
+                  td 
+                    a(id='btn_eliminar' class=['ui','button','basic', 'icon'] href='#' data_inverted='' data-tooltop='Eliminar' data-position='top center')  
+                      i(class=['trash', 'icon'])
+    script(src='/javascripts/editarBoletin.js')
+
+    

@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport')
 var controllers = require('.././controllers')
 var AuthMiddleware = require('../middleware/auth')
+var bodyParser = require('body-parser')
 
 /* GET home page. */
 router.get('/', controllers.homecontroller.index)
@@ -26,6 +27,8 @@ router.post('/nuevo-boletin', AuthMiddleware.isLogged, controllers.dbcontroller.
 router.get('/eliminar_boletin',AuthMiddleware.isLogged, controllers.homecontroller.eliminarBoletin)
 
 router.get('/editar_boletin',AuthMiddleware.isLogged, controllers.homecontroller.editarBoletin)
+
+router.post('/editar_boletin2',AuthMiddleware.isLogged, controllers.dbcontroller.postEditarBoletin)
 router.post('/eliminar_boletin',AuthMiddleware.isLogged, controllers.dbcontroller.eliminarBoletin)
 
 router.get('/upload-files', controllers.dbcontroller.getUploadFile)

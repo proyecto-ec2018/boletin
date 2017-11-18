@@ -83,6 +83,40 @@ module.exports = {
 
   },
 
+  postEditarBoletin : function(req,res,next){
+
+    var nombre_boletin = req.body.nombre;
+    var descripcion_boletin = req.body.desc;
+    var id_boletin = req.body.ID;
+
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+
+    console.log('connected to database to edit a boletin')
+
+    var respuesta = {res: false};
+    //var sql = "UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'";
+    //var edit_query = 'UPDATE boletines SET ? WHERE ?', [{nombre_boletin : boletin.nombre_boletin}, {id_boletin : boletin.id_boletin}];
+    var update_query = 'UPDATE boletines SET nombre_boletin = ' + req.body.nombre + ' WHERE id_boletin = ' + req.body.ID;
+    console.log(update_query);
+    //db.query('UPDATE boletines SET nombre_boletin = ? WHERE id_boletin = ?', [nombre_boletin, id_boletin], function(err,rows,fields){
+      db.query(update_query, function(err,rows,fields){
+        if(err)
+        {
+            throw err;
+            respuesta.res = false;
+        } 
+            res.status(201).end();
+
+            respuesta.res = true;
+
+            res.json(respuesta);
+        
+    });
+
+  },
+
   getUploadFile : function(req,res,next){
     res.render('index2');
   },

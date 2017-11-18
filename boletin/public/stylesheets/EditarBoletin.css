@@ -6,6 +6,13 @@
   color: black;
 }
 
+#f1{
+  color: black;
+}
+
+#f2{
+  color: black;
+}
 #scroll{
     position : relative;
     left
@@ -13,12 +20,11 @@
     height: 80px;
     overflow-x: auto;
 }
+
 #eliminar_articulo{
   color: black;
   position: relative;
   left: 10px;
 }
 
-#input_nombre{
-  width: 250px;
-}
+.
