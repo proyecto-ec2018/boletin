@@ -21,6 +21,16 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `boletin`
 --
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `favoritos`
+--
+CREATE TABLE `favoritos`(
+  `id_articulo` int(11) NOT NULL,
+  `userName` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  
 
 -- --------------------------------------------------------
 
