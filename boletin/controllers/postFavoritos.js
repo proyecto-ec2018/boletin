@@ -1,7 +1,7 @@
 var config= require('.././database/config')
 
 var userid = req.body.userName;
-var postid = req.body.selectedarticuls;
+var postid = req.body.selectedarticles;
 
 module.exports={
   postFavorite : function(req,res,next){
