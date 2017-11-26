@@ -66,6 +66,32 @@ $(function(){
         } 
     });
 
+    // funcion para editar articulo
+    $('.editar_articulo').click(function(e){
+        e.preventDefault();
+        if(confirm("Estas seguro de enviar los cambios del articulo?"))
+        {
+          var elemento = $(this);
+          var id_articulo = elemento.attr('id');
+          
+          var nombre = elemento.parent().parent().find('#input_name_'+id_articulo).val();
+          var descripcion = elemento.parent().parent().find('#input_text_'+id_articulo).val();
+          
+          $.post('http://localhost:3000/editar_articulo',{ID : id_articulo, nombre : nombre, descripcion : descripcion});
+        } 
+    });
+  
+    $('.eliminar_articulo').click(function(e){
+      e.preventDefault();
+      if(confirm("Estás seguro eliminar el artículo?"))
+        {
+          var elemento = $(this);
+          var id_articulo = elemento.attr('id');
+          
+          $.post('http://localhost:3000/eliminar_articulo',{ID : id_articulo});
+        } 
+    });
+  
 });
 
 

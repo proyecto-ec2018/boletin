@@ -1,4 +1,81 @@
-extends layout
+extends templates/estilos
 
-block content
-  include templates/homePage
+block content  
+  if message.length > 0
+    div(class="alert alert-success" role="alert" style="margin-bottom:0px;")=message
+  
+  include templates/navUserAuth
+  
+  div(class="jumbotron" style='background-color:black;')
+    div(class="container")
+      h1(class="display-3" style='color:white;')='Bienvenido al sitio'
+      p(class="lead" style='color:white;')='En el siguiente sitio podrás encontrar información sobre diversos temas. Propósito del sitio explicado brevemente. Tratar de fijar una altura máxima para esta cosa pues varía según el contenido.'        
+      p(class="lead" style='color:white;')
+        a(class="btn btn-primary btn-lg" href="#" role="button")='Conocer más'
+  
+  div(class="container thumb-section")
+    div(class="row")
+      div(class="col-md-4")
+        if cantidad_articulos > 0
+          div(class="thumbnail")
+            img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
+            div(class="caption")
+              h3=articulos_copia[0].titulo
+              p=articulos_copia[0].descripcion
+              p='ID: ' + articulos_copia[0].id
+              p
+                a(href="#" class="btn btn-primary")='Leer más'
+
+      if cantidad_articulos > 1
+        div(class="col-md-4")
+          div(class="thumbnail")
+            img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
+            div(class="caption")
+              h3=articulos_copia[1].titulo
+              p=articulos_copia[1].descripcion
+              p='ID: ' + articulos_copia[1].id
+              p
+                a(href="#" class="btn btn-primary")='Leer más'
+      if cantidad_articulos > 2
+        div(class="col-md-4")
+          div(class="thumbnail")
+            img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
+            div(class="caption")
+              h3=articulos_copia[2].titulo
+              p=articulos_copia[2].descripcion
+              p='ID: ' + articulos_copia[2].id
+              p
+                a(href="#" class="btn btn-primary")='Leer más'
+  
+  div(class='container')
+    each x in boletines_copia
+       div(class="panel-group")
+        div(class="panel panel-default")
+          div(class="panel-heading")
+            h4(class="panel-title")
+              a(data-toggle="collapse" href='#'+x.nombre_boletin)=x.nombre_boletin
+              
+          div(id=x.nombre_boletin class="panel-collapse collapse")
+            ul(class="list-group")
+              each y in articulos_copia
+                if(y.boletin_asoc == x.id_boletin)
+                  li(class="list-group-item")
+                    
+                    div(class="panel-group")
+                      div(class="panel panel-default")
+                        div(class="panel-heading")
+                          h4(class="panel-title")
+                            a(href="#")
+                              span(class="glyphicon glyphicon-download-alt")
+                            a(data-toggle="collapse" href='#'+y.titulo)=' ' + y.titulo
+                            
+                        div(id=y.titulo class="panel-collapse collapse")
+                          ul(class="list-group")
+                            li(class="list-group-item")
+                              h3=y.descripcion
+                              embed(src='/uploads/' + y.nombre_archivo width='1000px' height='500px')
+                              //embed(src="http://localhost/uploads/" + y.nombre_archivo  width='1000px' height='500px')
+
+  include templates/footer
+  
+  //include templates/homePage

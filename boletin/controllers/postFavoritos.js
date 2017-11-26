@@ -10,8 +10,8 @@ module.exports={
     var config = require('.././database/config')
     var db = mysql.createConnection(config)
     db.connect();
-    db.query("SELECT COUNT(*) AS articulos FROM favoritos WHERE id_articulo="postid" and userName="userid",function(err,rows,fields){
+    /*db.query("SELECT COUNT(*) AS articulos FROM favoritos WHERE id_articulo="postid" and userName="userid",function(err,rows,fields){
       db.query("INSERT INTO favoritos(id_articulo,userName) values("postid","userName")"
-    })
+    })*/
   }
 }

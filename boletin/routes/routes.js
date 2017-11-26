@@ -29,8 +29,16 @@ router.get('/eliminar_boletin',AuthMiddleware.isLogged, controllers.homecontroll
 router.get('/editar_boletin',AuthMiddleware.isLogged, controllers.homecontroller.editarBoletin)
 
 router.post('/editar_boletin2',AuthMiddleware.isLogged, controllers.dbcontroller.postEditarBoletin)
+
+router.post('/editar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postEditarArticulo)
+router.post('/eliminar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postEliminarArticulo)
+
 router.post('/eliminar_boletin',AuthMiddleware.isLogged, controllers.dbcontroller.eliminarBoletin)
 
-router.get('/upload-files', controllers.dbcontroller.getUploadFile)
-router.post('/upload-files', controllers.dbcontroller.postUploadFile)
+router.get('/upload-files',controllers.homecontroller.getUploadFile)
+router.post('/upload-files',controllers.dbcontroller.postUploadFile)
+
+router.get('/a_a', controllers.homecontroller.getActualizarArticulo);
+router.post('/a_a', controllers.homecontroller.postActualizarArticulo);
+
 module.exports = router;

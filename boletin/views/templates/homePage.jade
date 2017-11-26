@@ -2,20 +2,18 @@ doctype html
 html
   head
     meta(charset='utf-8')
-    // <meta name="viewport" content="width=device-width, initial-scale=1">
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-
     link(rel='stylesheet', href='/stylesheets/estilo-home-page.css')
-
     title P&aacute;gina del bolet&iacute;n
 
   body
-    include navUserAuth
-
+    if message.length > 0
+      div(class="alert alert-success" role="alert" style="margin-bottom:0px;")=message
+      
+    include navUserAuth  
+    
     .jumbotron
       .container
         h1.display-3 Bienvenido al sitio
@@ -68,64 +66,65 @@ html
 
             p
               a.btn.btn-primary(href='#') Leer m&aacute;s
+  
+    /// Parte de los boletines
+    div(class="container")
+      div(class="panel-group" id="accordion")
+      
+      if titulos.length > 0
+        div(class="panel panel-default")
+          div(class="panel-heading")
+            h4(class="panel-title")
+              a(data-toggle="collapse" data-parent="#accordion" href='#'+titulos[0])=titulos[0]
 
-    //empiezan los boletines
-    #accordion.container
-      if titulos.length >0
-        .panel.panel-default
-          .panel-heading
-            h4.panel-title
-              a(data-toggle='collapse', data-parent='#accordion', href=col[0])=titulos[0]
-          #collapseOne.panel-collpse.collapse.in
-            -for(i = 0 ; i < tamaños[0] ; i++)
-              .panel-body
-                a(href='$')
-                  span.glyphicon.glyphicon-download-alt
+          div(id=titulos[0] class="panel-collapse collapse in")
+            -for(var i = 0 ; i < tamaños[0] ; i++){
+              div(class="panel-body")
+              if isAuthenticated
+                a(href="#")
+                  span(class="glyphicon glyphicon-star")
+              a(href="#")
+                span(class="glyphicon glyphicon-download-alt")
+              a(href='#')=' '+ articulo[i+sumas[0]]
+            -}
 
-                a(href='#')=' '+ articulo[i+sumas[0]]
-        if titulos.length >1
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title
-                a(data-toggle='collapse', data-parent='#accordion', href=col[1])=titulos[1]
-            #collapseTwo.panel-collapse.collapse
-              -for(i=0; i < tamaños[1];i++)
-                .panel-body
-                  a(href='$')
-                    span.glyphicon.glyphicon-download-alt
-                  a(href='#')=' ' + articulo[i+sumas[1]]
-        if titulos.length >2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title
-                a(data-toggle='collapse', data-parent='#accordion', href=col[2])=titulos[2]
-            #collapseThree.panel-collapse.collapse
-              -for(i=0; i < tamaños[2];i++)
-                .panel-body
-                  a(href='$')
-                    span.glyphicon.glyphicon-download-alt
-                  a(href='#')=' '+ articulo[i+sumas[2]]
-        if titulos.length >3
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title
-                a(data-toggle='collapse', data-parent='#accordion', href=col[3])=titulos[3]
-            #collapseFour.panel-collapse.collapse
-              -for(i=0; i < tamaños[3];i++)
-                .panel-body
-                  a(href='$')
-                    span.glyphicon.glyphicon-download-alt
-                  a(href='#')=' '+ articulo[i+sumas[3]]
+
+      if titulos.length > 1
+        div(class="panel panel-default")
+          div(class="panel-heading")
+            h4(class="panel-title")
+              a(data-toggle="collapse" data-parent="#accordion" href="#collapse2")=titulos[1]
+          
+          div(id="collapse2" class="panel-collapse collapse")
+
+            -for(var i = 0 ; i < tamaños[1] ; i++){
+              div(class="panel-body")
+              if isAuthenticated
+                a(href="#" name=articulo[i+sumas[1]])
+                  span(class="glyphicon glyphicon-star")
+              a(href="#")
+                span(class="glyphicon glyphicon-download-alt")
+              a(href='#')=' '+ articulo[i+sumas[1]]
+            -}
+
+      
+      if titulos.length > 2
+        div(class="panel panel-default")
+          div(class="panel-heading")
+            h4(class="panel-title")
+              a(data-toggle="collapse" data-parent="#accordion" href="#collapse3")=titulos[2]
+          
+          div(id="collapse3" class="panel-collapse collapse")
+
+            -for(var i = 0 ; i < tamaños[2] ; i++){
+              div(class="panel-body")
+              if isAuthenticated
+                a(href="#" name=articulo[i+sumas[2]])
+                  span(class="glyphicon glyphicon-star")
+              a(href="#")
+                span(class="glyphicon glyphicon-download-alt")
+              a(href='#')=' '+ articulo[i+sumas[2]]
+            -}
+
     //Termina aqui los boletines
-    .footer
-      .container
-        h3 Informaci&oacute;n de contacto
-
-        ul
-          li Correo electr&oacute;nico:
-
-          li Redes sociales:
-
-        p Derechos reservados etc
-
-        p M&aacute;s informaci&oacute;n
+    include footer

@@ -52,35 +52,22 @@ module.exports = {
 
   postPublicarBoletin : function(req,res,next){
 
-    var boletin ={
-      nombre_boletin : req.body.nombre,
-      descripcion_boletin : req.body.descripcion,
-      creador_boletin : req.user.nombre,
-      es_actual : 1
-    }
-
-    var config = require('.././database/config')
-    var db = mysql.createConnection(config)
-    db.connect();
-    console.log('connected to database to register a boletin')
-    db.query('INSERT INTO boletines SET ?',boletin, function(err,rows,fields){
-      if(err) throw err
-      if(req.body.checkbox){
-        if(req.body.checkbox.length > 0){
-          for(i = 0; i < req.body.checkbox.length; i++){
-            var queryString = 'UPDATE articulos SET boletin_asoc =' + "'" +boletin.nombre_boletin + "'"+ 'WHERE articulos.id = ' + req.body.checkbox[i]
-            db.query(queryString,function(err,rows,fields){
-              if(err) throw err
-
-            })
-          }
-          db.end()
-          return res.redirect('/')
-        }
-
-      }
-    })
-
+    var nombre_boletin = req.body.nombre;
+    var descripcion_boletin = req.body.descripcion;
+    var articulos = [];
+    var asd = req.body.asd;
+    
+    articulos = req.body.articulos;
+    
+    var creador_boletin = req.user.nombre;
+    var es_actual = 1;
+    
+    /*console.log(nombre_boletin);
+    console.log(descripcion_boletin);
+    console.log(creador_boletin);
+    
+    console.log(asd);
+    console.log(articulos[0]);*/
   },
 
   postEditarBoletin : function(req,res,next){
@@ -96,10 +83,6 @@ module.exports = {
     console.log('connected to database to edit a boletin')
 
     var respuesta = {res: false};
-    //var sql = "UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'";
-    //var edit_query = 'UPDATE boletines SET ? WHERE ?', {nombre_boletin : nombre}, {id_boletin : id};
-    //var query = 'UPDATE boletines SET nombre_boletin = ' + req.body.nombre + ' WHERE id_boletin = ' + req.body.ID;
-    //var update_query = 'UPDATE boletines SET nombre_boletin = "Juancho" WHERE id_boletin = "61"';
     var query = 'UPDATE boletines SET nombre_boletin = "' + nombre + '", descripcion_boletin = "' + descripcion_boletin + '" WHERE id_boletin = ' + id;
     db.query(query, function(err,result){
       //db.query('UPDATE boletines SET nombre_boletin = "Juancho" WHERE id_boletin = "61"', function(err,rows,fields){
@@ -117,19 +100,55 @@ module.exports = {
     });
 
   },
-
-  getUploadFile : function(req,res,next){
-    res.render('index2');
+  
+  postEditarArticulo : function(req, res, next){
+    
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+    
+    var respuesta = {res: false};
+    
+    console.log('ID del articulo : ' + req.body.ID);
+    console.log('Nuevo nombre : ' + req.body.nombre);
+    console.log('Nueva descripcion : ' + req.body.descripcion);
+    
+    var query = 'UPDATE articulos SET titulo = "' + req.body.nombre + '", descripcion = "' + req.body.descripcion + '" WHERE id = ' + req.body.ID;
+    db.query(query,function(err,result){
+      if(err){
+        throw err;
+        respuesta.res = false;
+      }
+      db.end();
+      console.log(result.affectedRows + " record(s) updated");
+      respuesta.res = true;
+      
+      //res.json(respuesta);
+      
+    });
+    
+    req.flash('edicion_articulo','Se ha actualizado el articulo');
+    res.redirect('/')
   },
+  
   postUploadFile : function(req,res,next){
     var form = new formidable.IncomingForm();
+    
     var articulo ={
-      estado : 1
+      estado : 1,
+      titulo : '',
+      descripcion: '',
+      autor : '',
+      nombre_archivo : '',
+      extension_archivo : ''
     }
+    
     form.parse(req,function(err,fields,files){
+      articulo.autor = req.user.nombre
+      
       articulo.titulo=fields.titulo
       articulo.descripcion=fields.descripcion
-      articulo.autor = req.user.nombre
+      
       var config = require('.././database/config')
       var db = mysql.createConnection(config)
       db.connect();
@@ -138,8 +157,10 @@ module.exports = {
         db.end()
       })
     });
+    
     form.on('fileBegin', function (name, file){
       file.path = path.normalize(__dirname + '/..') + '/uploads/' + file.name;
+      //file.path = path.normalize(__dirname + '') + '/uploads/' + file.name;
       articulo.nombre_archivo = file.name
       articulo.extension_archivo = path.extname(file.name)
     });
@@ -147,6 +168,7 @@ module.exports = {
       console.log('Uploaded ' + file.name);
     });
 
+    req.flash('envio_propuesta','Se ha enviado la propuesta correctamente')
     return res.redirect('/')
   },
 
@@ -173,6 +195,21 @@ module.exports = {
 
             res.json(respuesta);
         });
-  }
+  },
+  
+  postEliminarArticulo : function(req, res, next){
+    var id = req.body.ID;
+    
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+    
+    db.query('DELETE FROM articulos WHERE id = ' + id, function(err, rows, fields){
+      if(err) throw err;
+      
+      db.end();
+    });
+    
+  },
 
 }

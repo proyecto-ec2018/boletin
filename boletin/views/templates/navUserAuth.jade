@@ -8,10 +8,11 @@ div(class='' id='' style='background-color: darkslategray;')
             span(class="icon-bar")
             span(class="icon-bar")
             span(class="icon-bar")
-          a(class="navbar-brand" href="http://localhost:3000/" style="color:white;")= 'Boletin'
+          a(class="navbar-brand" href="http://localhost:3000/" style="color:white;")= 'Boletín'
           ul(class="nav navbar-nav")
             li
-              a(class="" href="http://localhost:3000/guia_autores" style="color:white;") Guía para autores
+              a(class="" href="http://localhost:3000/guia_autores" style="color:white;")='Guía para autores'
+        
         div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="color:white;")
           ul(class="nav navbar-nav navbar-right" )
             if !isAuthenticated
@@ -25,7 +26,7 @@ div(class='' id='' style='background-color: darkslategray;')
 
             if isAuthenticated
               li(class="dropdown" style='color: white;')
-                a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:white')= user.nombre
+                a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:white')= user.nombre + ' '
                   span(class="caret")
                 ul(class="dropdown-menu" style='background-color:darkslategray; color:white;')
                   li
@@ -38,7 +39,7 @@ div(class='' id='' style='background-color: darkslategray;')
                     li
                       a(href="http://localhost:3000/nuevo-boletin" style='background-color:darkslategray; color:white;')= 'Nuevo boletin '
                         span(class='glyphicon glyphicon-book')
-                    li
+                    //li
                       a(href="http://localhost:3000/eliminar_boletin" style='background-color:darkslategray; color:white;')= 'Eliminar boletín '
                         span(class='glyphicon glyphicon-book')
                     li
