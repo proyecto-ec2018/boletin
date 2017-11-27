@@ -1,5 +1,4 @@
-var config= require('.././database/config')
-
+/*var config= require('.././database/config')
 var userid = req.body.userName;
 var postid = req.body.selectedarticles;
 
@@ -13,5 +12,5 @@ module.exports={
     /*db.query("SELECT COUNT(*) AS articulos FROM favoritos WHERE id_articulo="postid" and userName="userid",function(err,rows,fields){
       db.query("INSERT INTO favoritos(id_articulo,userName) values("postid","userName")"
     })*/
-  }
-}
+  //}
+//}
