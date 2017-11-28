@@ -80,19 +80,23 @@ module.exports = {
     
     var indice_actual;
     db.query('SELECT * FROM boletines ORDER BY id_boletin DESC',function(err,rows,fields){
-      indice_actual = rows[0].id_boletin + 1;
-      
-        for(var i = 0 ; i < indices_articulos.length ; i++){
-          db.query('UPDATE articulos SET boletin_asoc = "' + indice_actual + '" WHERE id = ' + indices_articulos[i],function(err,rows,fields){
-            if(err) throw err;
-          })
-        }
-      
-        db.query('INSERT INTO boletines SET ?',boletin,function(err,rows,fields){
+      if(rows >= 1){
+        indice_actual = rows[0].id_boletin + 1;
+      }else{
+        db.query('ALTER TABLE boletines AUTO_INCREMENT = 1')
+        indice_actual = 1;
+      }
+      for(var i = 0 ; i < indices_articulos.length ; i++){
+        db.query('UPDATE articulos SET boletin_asoc = "' + indice_actual + '" WHERE id = ' + indices_articulos[i],function(err,rows,fields){
           if(err) throw err;
-          
-          req.flash('creacion_boletin','Se ha creado el boletín correctamente')
-          res.redirect('/')
+        })
+      }
+
+      db.query('INSERT INTO boletines SET ?',boletin,function(err,rows,fields){
+        if(err) throw err;
+
+        req.flash('creacion_boletin','Se ha creado el boletín correctamente')
+        res.redirect('/')
       });
       
     });
