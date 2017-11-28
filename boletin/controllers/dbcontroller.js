@@ -80,12 +80,13 @@ module.exports = {
     
     var indice_actual;
     db.query('SELECT * FROM boletines ORDER BY id_boletin DESC',function(err,rows,fields){
-      if(rows >= 1){
+      if(rows.length > 0){
         indice_actual = rows[0].id_boletin + 1;
       }else{
         db.query('ALTER TABLE boletines AUTO_INCREMENT = 1')
         indice_actual = 1;
       }
+      
       for(var i = 0 ; i < indices_articulos.length ; i++){
         db.query('UPDATE articulos SET boletin_asoc = "' + indice_actual + '" WHERE id = ' + indices_articulos[i],function(err,rows,fields){
           if(err) throw err;
