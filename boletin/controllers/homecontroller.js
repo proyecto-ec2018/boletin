@@ -34,6 +34,7 @@ module.exports = {
      
       res.render('index',{
       message:req.flash('envio_propuesta'),
+      message:req.flash('creacion_boletin'),
       title: 'Boletín',
 
       isAuthenticated : req.isAuthenticated(),

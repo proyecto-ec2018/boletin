@@ -1,6 +1,8 @@
 extends estilos
 
 block content
+  head
+    script(src='../javascripts/descargas.js')
   include navUserAuth
   
   div(class="" id="" style="margin-bottom: 50px; background-color: darkslategray;")
@@ -34,7 +36,7 @@ block content
           
           div(class="col-md-3 col-md-offset-1")
             p(style="margin-top: 70px;")
-            a(href="#" class="")
+            button(type='button' class="descargar_plantilla_doc")
               p(class="lead") Descargar plantilla 
                 span(class="glyphicon glyphicon-download") 
           
@@ -44,7 +46,7 @@ block content
         div(class="row" style="margin-bottom: 50px;")
           div(class="col-md-3 col-md-offset-1")
             p(style="margin-top: 70px;")
-            a(href="#" class="")
+            a(href="#" class="descargar_plantilla_latex")
               p(class="lead") Descargar plantilla 
                 span(class="glyphicon glyphicon-download")
 

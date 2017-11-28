@@ -18,6 +18,9 @@ router.post('/auth-login',passport.authenticate('local',{
   failureFlash : true
 }))
 
+router.post('/download',controllers.dbcontroller.plantillaDOC)
+//router.post('/descargar_plantilla_latex',controllers.dbcontroller.plantillaLATEX)
+
 router.get('/auth-logout',AuthMiddleware.isLogged, controllers.homecontroller.logout)
 router.get('/userNotAvailable', controllers.dbcontroller.verifyUserName)
 
