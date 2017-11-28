@@ -8,17 +8,29 @@ module.exports = {
 
     db.connect();
     
+    
     var articulos_copia = [];
     var cantidad_articulos;
-    db.query('SELECT * FROM articulos ORDER BY id DESC',function(err,rows,fields){
-      if(err) throw err
-      
+    db.query('SELECT * FROM articulos',function(err,rows,fields){
+      if(err) throw err;
+
       for(var i = 0 ; i < rows.length ; i++){
-        articulos_copia[i] = rows[i];
+        articulos_copia[i] = rows[i]
       }
-      
       cantidad_articulos = rows.length;
     })
+    
+    var favoritos_copia = [];
+    var cantidad_favoritos;
+    db.query('SELECT id_articulo, count(*) as COUNT FROM favoritos GROUP BY id_articulo',function(err,rows,fields){
+      if(err) throw err;
+      for(var i = 0 ; i < rows.length ; i++){
+        favoritos_copia[i] = rows[i];
+        //console.log(favoritos_copia[i].id_articulo)
+      }
+      cantidad_favoritos = rows.length;
+    })
+    
     
     var boletines_copia = [];
     var cantidad_boletines;
@@ -30,20 +42,21 @@ module.exports = {
       }
       
       cantidad_boletines = rows.length;
-
      
       res.render('index',{
-      message:req.flash('envio_propuesta'),
-      message:req.flash('creacion_boletin'),
-      title: 'Boletín',
+        message:req.flash('envio_propuesta'),
+        message:req.flash('creacion_boletin'),
+        title: 'Boletín',
 
-      isAuthenticated : req.isAuthenticated(),
-      user: req.user,
+        isAuthenticated : req.isAuthenticated(),
+        user: req.user,
 
-      articulos_copia : articulos_copia,
-      cantidad_articulos : cantidad_articulos,
-      boletines_copia : boletines_copia,
-      cantidad_boletines : cantidad_boletines
+        articulos_copia : articulos_copia,
+        cantidad_articulos : cantidad_articulos,
+        boletines_copia : boletines_copia,
+        cantidad_boletines : cantidad_boletines,
+        favoritos_copia : favoritos_copia,
+        cantidad_favoritos : cantidad_favoritos
       })
     })
   },
