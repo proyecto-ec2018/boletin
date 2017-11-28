@@ -89,28 +89,13 @@ module.exports = {
         }
       
         db.query('INSERT INTO boletines SET ?',boletin,function(err,rows,fields){
-        if(err) throw err;
-
-        req.flash('creacion_boletin','Se ha creado el boletín correctamente')
-        return res.redirect('/')
+          if(err) throw err;
+          
+          req.flash('creacion_boletin','Se ha creado el boletín correctamente')
+          res.redirect('/')
       });
       
     });
-    
-    /*
-    db.query('INSERT INTO boletines SET ?',boletin,function(err,rows,fields){
-      if(err) throw err;
-      
-      
-      
-      req.flash('creacion_boletin','Se ha creado el boletín correctamente')
-      return res.redirect('/')
-    });
-    */
-    
-    console.log(nombre_boletin);
-    console.log(descripcion_boletin);
-    console.log(creador_boletin);
   },
 
   postEditarBoletin : function(req,res,next){
@@ -226,6 +211,11 @@ module.exports = {
         var respuesta = {res: false};
 
         db.query('DELETE FROM boletines WHERE id_boletin = ' + id, function(err,rows,fields){
+          
+            db.query('UPDATE articulos SET boletin_asoc = 0 WHERE boletin_asoc = ' + id,function(err,rows,fields){
+              if(err) throw err
+            })
+          
             if(err)
             {
                 throw err;

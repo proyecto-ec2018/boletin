@@ -20,10 +20,10 @@ $(function(){
         articulos : JSON.stringify(val),
         nombre : nombre,
         descripcion : descripcion
-      },
+      }/*,
       success:function(response){
         alert('hola')
-      }
+      }*/
     });
   });
 });
