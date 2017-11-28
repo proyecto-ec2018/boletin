@@ -65,16 +65,16 @@ block content
                       div(class="panel panel-default")
                         div(class="panel-heading")
                           h4(class="panel-title")
-                            a(href="#")
+                            //a(href="#")
                               span(class="glyphicon glyphicon-download-alt")
                             a(data-toggle="collapse" href='#'+y.titulo)=' ' + y.titulo
                             
                         div(id=y.titulo class="panel-collapse collapse")
                           ul(class="list-group")
                             li(class="list-group-item")
-                              h3=y.descripcion
-                              embed(src='/uploads/' + y.nombre_archivo width='1000px' height='500px')
-                              //embed(src="http://localhost/uploads/" + y.nombre_archivo  width='1000px' height='500px')
+                              h3='Descripción: '
+                              p=y.descripcion
+                              embed(src='uploads/' + y.nombre_archivo width='1000px' height='500px')
 
   include templates/footer
   
