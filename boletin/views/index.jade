@@ -13,9 +13,14 @@ block content
       p(class="lead" style='color:white;')
         a(class="btn btn-primary btn-lg" href="#" role="button")='Conocer más'
   
+  //each x in favoritos_copia
+    p=x.id_articulo
+    p=parseInt(favoritos_copia[0].id_articulo)
+  
   div(class="container thumb-section")
     div(class="row")
       div(class="col-md-4")
+        /// PRIMER THUMB
         if cantidad_articulos > 0
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
@@ -25,28 +30,31 @@ block content
               p='ID: ' + articulos_copia[0].id
               p
                 a(href="#" class="btn btn-primary")='Leer más'
-
-      if cantidad_articulos > 1
+      
+      // SEGUNDO THUMB
+      //if cantidad_articulos > 1
         div(class="col-md-4")
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
             div(class="caption")
-              h3=articulos_copia[1].titulo
-              p=articulos_copia[1].descripcion
-              p='ID: ' + articulos_copia[1].id
+              h3=articulos_copia[favoritos_copia[1].id_articulo].titulo
+              p=articulos_copia[favoritos_copia[1].id_articulo].descripcion
+              p='ID: ' + articulos_copia[favoritos_copia[1].id_articulo].id
               p
                 a(href="#" class="btn btn-primary")='Leer más'
-      if cantidad_articulos > 2
+      
+      // TERCER THUMB
+      //if cantidad_articulos > 2
         div(class="col-md-4")
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
             div(class="caption")
-              h3=articulos_copia[2].titulo
-              p=articulos_copia[2].descripcion
-              p='ID: ' + articulos_copia[2].id
+              h3=articulos_copia[favoritos_copia[2].id_articulo].titulo
+              p=articulos_copia[favoritos_copia[2].id_articulo].descripcion
+              p='ID: ' + articulos_copia[favoritos_copia[2].id_articulo].id
               p
                 a(href="#" class="btn btn-primary")='Leer más'
-  
+                
   div(class='container')
     each x in boletines_copia
        div(class="panel-group")
