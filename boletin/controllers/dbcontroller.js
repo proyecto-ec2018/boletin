@@ -52,22 +52,65 @@ module.exports = {
 
   postPublicarBoletin : function(req,res,next){
 
-    var nombre_boletin = req.body.nombre;
-    var descripcion_boletin = req.body.descripcion;
-    var articulos = [];
-    var asd = req.body.asd;
-    
-    articulos = req.body.articulos;
-    
     var creador_boletin = req.user.nombre;
     var es_actual = 1;
     
-    /*console.log(nombre_boletin);
+    var nombre_boletin = req.body.nombre;
+    var descripcion_boletin = req.body.descripcion;
+    
+
+    // En esta parte se toma una cadena de texto JSON y se convierte en un objeto JS, despues cada entrada se parsea a entero
+    var indices = JSON.parse(req.body.articulos);
+    var indices_articulos = []
+    for(var i = 0 ; i < indices.length ; i++){
+      indices_articulos[i] = parseInt(indices[i])
+      //console.log(indices_articulos[i])
+    }
+    
+    var boletin = {
+      nombre_boletin : nombre_boletin,
+      descripcion_boletin : descripcion_boletin,
+      creador_boletin : creador_boletin,
+      es_actual : es_actual
+    }
+    
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+    
+    var indice_actual;
+    db.query('SELECT * FROM boletines ORDER BY id_boletin DESC',function(err,rows,fields){
+      indice_actual = rows[0].id_boletin + 1;
+      
+        for(var i = 0 ; i < indices_articulos.length ; i++){
+          db.query('UPDATE articulos SET boletin_asoc = "' + indice_actual + '" WHERE id = ' + indices_articulos[i],function(err,rows,fields){
+            if(err) throw err;
+          })
+        }
+      
+        db.query('INSERT INTO boletines SET ?',boletin,function(err,rows,fields){
+        if(err) throw err;
+
+        req.flash('creacion_boletin','Se ha creado el boletín correctamente')
+        return res.redirect('/')
+      });
+      
+    });
+    
+    /*
+    db.query('INSERT INTO boletines SET ?',boletin,function(err,rows,fields){
+      if(err) throw err;
+      
+      
+      
+      req.flash('creacion_boletin','Se ha creado el boletín correctamente')
+      return res.redirect('/')
+    });
+    */
+    
+    console.log(nombre_boletin);
     console.log(descripcion_boletin);
     console.log(creador_boletin);
-    
-    console.log(asd);
-    console.log(articulos[0]);*/
   },
 
   postEditarBoletin : function(req,res,next){
@@ -159,8 +202,8 @@ module.exports = {
     });
     
     form.on('fileBegin', function (name, file){
-      file.path = path.normalize(__dirname + '/..') + '/uploads/' + file.name;
-      //file.path = path.normalize(__dirname + '') + '/uploads/' + file.name;
+      //file.path = path.normalize(__dirname + '/..') + '/uploads/' + file.name;
+      file.path = path.normalize(/*__dirname*/'public') + '/uploads/' + file.name;
       articulo.nombre_archivo = file.name
       articulo.extension_archivo = path.extname(file.name)
     });
@@ -211,5 +254,12 @@ module.exports = {
     });
     
   },
+  
+  plantillaDOC : function(req,res){
+    /*var direccion = path.normalize(__dirname + '/../public/download/plantillaDOC.pdf')
+    res.download(direccion,'plantillaDOC.pdf');*/
+    res.download('https://www.irs.gov/pub/irs-pdf/fw4.pdf')
+    console.log('descargado plantilla')
+  }
 
 }
