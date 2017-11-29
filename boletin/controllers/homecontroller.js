@@ -227,6 +227,26 @@ module.exports = {
   descargarDocumentoTex : function(req, res, next){
     //console.log('asd');
     res.redirect('/');
+  },
+
+  postFavorito : function(req,res,next){
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+
+    var id_usuario = req.user.id
+    var id_articulo = req.body.id
+    var favorito = {
+      id_usuario : id_usuario,
+      id_articulo : id_articulo
+    }
+    db.query('INSERT INTO favoritos SET ?', favorito, function(err,rows,fields){
+      if(err) err
+      db.end()
+      return res.redirect("/")
+    })
+
+
   }
 
 }
