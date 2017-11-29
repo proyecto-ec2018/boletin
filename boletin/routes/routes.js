@@ -19,7 +19,12 @@ router.post('/auth-login',passport.authenticate('local',{
 }))
 
 router.post('/download',controllers.dbcontroller.plantillaDOC)
-//router.post('/descargar_plantilla_latex',controllers.dbcontroller.plantillaLATEX)
+
+router.post('/descarga_docx',controllers.dbcontroller.postDescargarDocumentoDocx)
+router.get('/descarga_docx',controllers.homecontroller.descargarDocumentoDocx)
+
+router.post('/descarga_tex',controllers.dbcontroller.postDescargarDocumentoTex)
+router.get('/descarga_tex',controllers.homecontroller.descargarDocumentoTex)
 
 router.get('/auth-logout',AuthMiddleware.isLogged, controllers.homecontroller.logout)
 router.get('/userNotAvailable', controllers.dbcontroller.verifyUserName)
