@@ -190,5 +190,14 @@ module.exports = {
     console.log(req.body.id)
   },
   
+  descargarDocumentoDocx : function(req, res, next){
+    //console.log('asd');
+    res.redirect('/');
+  },
+  
+  descargarDocumentoTex : function(req, res, next){
+    //console.log('asd');
+    res.redirect('/');
+  }
   
 }

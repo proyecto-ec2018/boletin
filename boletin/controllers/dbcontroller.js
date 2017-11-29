@@ -255,6 +255,18 @@ module.exports = {
     res.download(direccion,'plantillaDOC.pdf');*/
     res.download('https://www.irs.gov/pub/irs-pdf/fw4.pdf')
     console.log('descargado plantilla')
+  },
+  
+  postDescargarDocumentoDocx : function(req, res, next){
+    //res.download('https://www.irs.gov/pub/irs-pdf/fw4.pdf')
+    res.download(__dirname + '/../public/download/plantilla.docx')
+    //console.log('descargado plantilla')
+  },
+  
+  postDescargarDocumentoTex : function(req, res, next){
+    //res.download('https://www.irs.gov/pub/irs-pdf/fw4.pdf')
+    res.download(__dirname + '/../public/download/plantilla.tex')
+    //console.log('descargado plantilla')
   }
 
 }
