@@ -35,20 +35,23 @@ block content
             p(class="lead") En esta sección se encuentra la plantilla para la presentación de propuestas de artículos. Este tipo de plantilla corresponde a las hojas electrónicas con extensión .docx ...
           
           div(class="col-md-3 col-md-offset-1")
-            p(style="margin-top: 70px;")
-            button(type='button' class="descargar_plantilla_doc")
-              p(class="lead") Descargar plantilla 
-                span(class="glyphicon glyphicon-download") 
+            div(class="container")
+              form(action="http://localhost:3000/descarga_docx" method="POST")
+                button(type='submit' class='btn btn-primary descarga')
+                  p
+                  p(class="lead") Descargar plantilla 
+                    span(class="glyphicon glyphicon-download")
           
         br
         br
         
         div(class="row" style="margin-bottom: 50px;")
           div(class="col-md-3 col-md-offset-1")
-            p(style="margin-top: 70px;")
-            a(href="#" class="descargar_plantilla_latex")
-              p(class="lead") Descargar plantilla 
-                span(class="glyphicon glyphicon-download")
+            form(action="http://localhost:3000/descarga_tex" method="POST")
+                button(type='submit' class='btn btn-primary descarga')
+                  p
+                  p(class="lead") Descargar plantilla 
+                    span(class="glyphicon glyphicon-download")
 
           div(class="col-md-7" style="background-color: darkslategray; color: white;")
             h1(class="display-3") Plantilla para LaTeX
