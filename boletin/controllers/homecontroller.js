@@ -22,11 +22,11 @@ module.exports = {
     
     var favoritos_copia = [];
     var cantidad_favoritos;
-    db.query('SELECT id_articulo, count(*) as COUNT FROM favoritos GROUP BY id_articulo',function(err,rows,fields){
+    db.query('SELECT id_articulo, count(*) as COUNT FROM favoritos GROUP BY id_articulo DESC',function(err,rows,fields){
       if(err) throw err;
+      
       for(var i = 0 ; i < rows.length ; i++){
         favoritos_copia[i] = rows[i];
-        //console.log(favoritos_copia[i].id_articulo)
       }
       cantidad_favoritos = rows.length;
     })
@@ -34,6 +34,8 @@ module.exports = {
     
     var boletines_copia = [];
     var cantidad_boletines;
+    var articulos_buenos = [];
+    
     db.query('SELECT * FROM boletines ORDER BY id_boletin DESC',function(err,rows,fields){
       if(err) throw err
       
@@ -43,6 +45,12 @@ module.exports = {
       
       cantidad_boletines = rows.length;
      
+      for(var i = 0 ; i < cantidad_favoritos ; i++){
+        db.query('SELECT * FROM articulos WHERE id = ' + favoritos_copia[i].id_articulo, function(err,rows,fields){
+          console.log(rows[0].titulo)
+        })
+      }
+      
       res.render('index',{
         message:req.flash('envio_propuesta'),
         message:req.flash('creacion_boletin'),
@@ -57,6 +65,7 @@ module.exports = {
         cantidad_boletines : cantidad_boletines,
         favoritos_copia : favoritos_copia,
         cantidad_favoritos : cantidad_favoritos
+        //articulos_buenos : articulos_buenos
       })
     })
   },
