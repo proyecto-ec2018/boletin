@@ -1,14 +1,13 @@
 var mysql = require('mysql')
 module.exports = {
   //Funciones del controlador
-  
+
   index : function(req,res, next){
     var config = require('.././database/config')
     var db = mysql.createConnection(config)
 
     db.connect();
-    
-    
+
     var articulos_copia = [];
     var cantidad_articulos;
     db.query('SELECT * FROM articulos',function(err,rows,fields){
@@ -19,30 +18,55 @@ module.exports = {
       }
       cantidad_articulos = rows.length;
     })
-    
+
     var favoritos_copia = [];
     var cantidad_favoritos;
     db.query('SELECT id_articulo, count(*) as COUNT FROM favoritos GROUP BY id_articulo',function(err,rows,fields){
       if(err) throw err;
       for(var i = 0 ; i < rows.length ; i++){
         favoritos_copia[i] = rows[i];
-        //console.log(favoritos_copia[i].id_articulo)
       }
       cantidad_favoritos = rows.length;
     })
-    
-    
+
+    var art_fav=[]
+    var usuario
+    if(req.user) usuario = req.user.id
+    var cantidad_fav_user
+    var queryString = "SELECT id_articulo FROM favoritos WHERE id_usuario = " + usuario
+    //boletin_asoc = "' + indice_actual + '" WHERE id = '
+    if(req.user){
+      db.query(queryString,function(err,rows,fields){
+        if(err) throw err;
+        for(var i = 0 ; i < rows.length ; i++){
+          art_fav[i] = rows[i];
+        }
+        cantidad_fav_user = rows.length;
+      })
+    }
+
+
     var boletines_copia = [];
     var cantidad_boletines;
     db.query('SELECT * FROM boletines ORDER BY id_boletin DESC',function(err,rows,fields){
       if(err) throw err
-      
+
       for(var i = 0 ; i < rows.length ; i++){
         boletines_copia[i] = rows[i];
       }
-      
+
       cantidad_boletines = rows.length;
-     
+      var articulos_favoritos
+      for(i=0; i < cantidad_articulos ; i++){
+        for(j=0 ; j < cantidad_fav_user;j++){
+          if(art_fav[j].id_articulo==articulos_copia[i].id){
+            articulos_copia[i].esFavorito=true;
+            break;
+          }else{
+            articulos_copia[i].esFavorito=false;
+          }
+        }
+      }
       res.render('index',{
         message:req.flash('envio_propuesta'),
         message:req.flash('creacion_boletin'),
@@ -56,11 +80,13 @@ module.exports = {
         boletines_copia : boletines_copia,
         cantidad_boletines : cantidad_boletines,
         favoritos_copia : favoritos_copia,
-        cantidad_favoritos : cantidad_favoritos
+        cantidad_favoritos : cantidad_favoritos,
+        art_fav : art_fav,
+        cantidad_fav_user : cantidad_fav_user
       })
     })
   },
-  
+
   showSignUpForm : function(req,res,next){
     res.render('registro',{title: ' Registro',
       notAvailable : req.flash('userNotAvailable')})
@@ -77,8 +103,8 @@ module.exports = {
       user: req.user
     });
   },
-  
-  
+
+
   getUploadFile : function(req, res, next){
     if(req.isAuthenticated()){
       res.render('index2',{title : 'Enviar propuesta',
@@ -89,24 +115,24 @@ module.exports = {
     }else{
       res.redirect('/');
     }
-    
+
   },
-  
+
 
   nuevoBoletin : function(req,res,next){
     var config = require('.././database/config')
     var db = mysql.createConnection(config)
     db.connect();
-    
+
     var articulos_copia = []
     db.query('SELECT * FROM articulos', function(err, rows, fields){
       if(err) throw err
-      
+
       for(var i = 0 ; i < rows.length ; i++){
         articulos_copia[i] = rows[i];
       }
       db.end();
-      
+
       if(req.isAuthenticated() && req.user.tipo >=3){
         res.render('nuevo_boletin2',{title: 'Nuevo boletín',
           isAuthenticated : req.isAuthenticated(),
@@ -116,7 +142,7 @@ module.exports = {
       }else{
         res.redirect('/');
       }
-      
+
     })
   },
 
@@ -133,7 +159,7 @@ module.exports = {
       if(err) throw err;
       articulos = rows;
     });
-    
+
     var sql = db.query('SELECT * FROM boletines', function(err,rows,fields){
       if (err) throw err;
 
@@ -170,25 +196,42 @@ module.exports = {
       res.redirect('/');
     }
   },
-  
+
   getActualizarArticulo : function(req, res, next){
     console.log('asd aa')
     res.render('asd')
   },
-  
+
   postActualizarArticulo : function(req, res, next){
     console.log('asd')
-    
+
     var config = require('../database/config')
     var db = mysql.createConnection(config)
     db.connect()
-    
+
     var titulo_b = req.body.titulo;
     var descripcion_b = req.body.descripcion;
     var id_b = req.body.identificador;
-    
+
     console.log(req.body.id)
   },
-  
-  
+
+  postFavorito : function(req,res,next){
+    var config = require('../database/config')
+    var db = mysql.createConnection(config)
+    db.connect()
+    var favorito={
+      id_articulo : req.body.id,
+      id_usuario : req.user.id
+    }
+    db.query('INSERT INTO favoritos set ?', favorito, function(err){
+      if(err) throw err
+      db.end()
+    })
+
+    return res.redirect('/')
+
+  }
+
+
 }

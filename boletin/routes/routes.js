@@ -7,6 +7,8 @@ var bodyParser = require('body-parser')
 
 /* GET home page. */
 router.get('/', controllers.homecontroller.index)
+router.post('/', controllers.homecontroller.postFavorito)
+
 router.get('/guia_autores', controllers.homecontroller.mostrarGuia)
 router.get('/registro', controllers.homecontroller.showSignUpForm)
 router.post('/newuser',controllers.dbcontroller.postRegistrarUsuario)

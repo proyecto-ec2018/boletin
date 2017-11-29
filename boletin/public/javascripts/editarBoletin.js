@@ -24,7 +24,7 @@ $(function(){
         {
           var elemento = $(this);
           var id = elemento.parent().parent().find('#id_boletin').text();
-            
+
         console.log(typeof(id));
           $.ajax({
               url : 'http://localhost:3000/eliminar_boletin',
@@ -38,7 +38,7 @@ $(function(){
                   }
               }
           });
-        } 
+        }
     });
 
     // funcion para editar boletin
@@ -52,18 +52,18 @@ $(function(){
           var form_id = 'form_' + id;
           var nombre_boletin = elemento.parent().parent().find('#input_name'+id).val();
           var descripcion = elemento.parent().parent().find('#input_text'+id).val();
-          
+
 
           var arregloDatos = $('#'+form_id);
-        
+
           console.log(arregloDatos  );
           console.log(typeof(id));
           console.log(elemento);
           console.log("este es el nombre " + nombre_boletin);
           console.log(descripcion);
-        
+
           $.post('http://localhost:3000/editar_boletin2', {ID : id, nombre : nombre_boletin, desc : descripcion });
-        } 
+        }
     });
 
     // funcion para editar articulo
@@ -73,25 +73,23 @@ $(function(){
         {
           var elemento = $(this);
           var id_articulo = elemento.attr('id');
-          
+
           var nombre = elemento.parent().parent().find('#input_name_'+id_articulo).val();
           var descripcion = elemento.parent().parent().find('#input_text_'+id_articulo).val();
-          
+
           $.post('http://localhost:3000/editar_articulo',{ID : id_articulo, nombre : nombre, descripcion : descripcion});
-        } 
+        }
     });
-  
+
     $('.eliminar_articulo').click(function(e){
       e.preventDefault();
       if(confirm("Estás seguro eliminar el artículo?"))
         {
           var elemento = $(this);
           var id_articulo = elemento.attr('id');
-          
+
           $.post('http://localhost:3000/eliminar_articulo',{ID : id_articulo});
-        } 
+        }
     });
-  
+
 });
-
-
