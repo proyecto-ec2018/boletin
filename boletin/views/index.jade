@@ -11,8 +11,9 @@ block content
   div(class="jumbotron" style='background-color:black;')
     div(class="container")
       h1(class="display-3" style='color:white;')='Bienvenido al sitio'
-      p(class="lead" style='color:white;')='En el siguiente sitio podrás encontrar información sobre diversos temas. Propósito del sitio explicado brevemente. Tratar de fijar una altura máxima para esta cosa pues varía según el contenido.'        
-      p(class="lead" style='color:white;')
+      p(class="lead" style='color:white; padding-bottom:50px;')='En el siguiente sitio podrás encontrar información sobre diversos temas. Propósito del sitio explicado brevemente. Tratar de fijar una altura máxima para esta cosa pues varía según el contenido.'
+      
+      //p(class="lead" style='color:white;')
         a(class="btn btn-primary btn-lg" href="#" role="button")='Conocer más'
   
   // La cosa mas asquerosa que se puede hacer pero funciona
@@ -38,11 +39,24 @@ block content
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
             div(class="caption")
-              h3=articulos[0].titulo
+              h3(style="text-align:center;")=articulos[0].titulo
               p=articulos[0].descripcion
               p='ID: ' + articulos[0].id
               p
-                a(href="#" class="btn btn-primary")='Leer más'
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#"+articulos[0].id)='Leer más'
+                div(id=articulos[0].id class="modal fade" role="dialog")
+                  div(class="modal-dialog modal-lg")
+
+                    div(class="modal-content")
+                      div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal") &times;
+                        h4(class="modal-title")=articulos[0].titulo
+
+                      div(class="modal-body")
+                        p=articulos[0].descripcion
+                        embed(src='uploads/' + articulos[0].nombre_archivo width='850px' height='450px')
+                      div(class="modal-footer")
+                        button(type="button" class="btn btn-default" data-dismiss="modal")='Cerrar'
       
       // SEGUNDO THUMB
       if total_favoritos > 1
@@ -50,23 +64,49 @@ block content
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
             div(class="caption")
-              h3=articulos[1].titulo
+              h3(style="text-align:center;")=articulos[1].titulo
               p=articulos[1].descripcion
               p='ID: ' + articulos[1].id
               p
-                a(href="#" class="btn btn-primary")='Leer más'
-      
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#"+articulos[1].id)='Leer más'
+                div(id=articulos[1].id class="modal fade" role="dialog")
+                  div(class="modal-dialog modal-lg")
+
+                    div(class="modal-content")
+                      div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal") &times;
+                        h4(class="modal-title")=articulos[1].titulo
+
+                      div(class="modal-body")
+                        p=articulos[1].descripcion
+                        embed(src='uploads/' + articulos[1].nombre_archivo width='850px' height='450px')
+                      div(class="modal-footer")
+                        button(type="button" class="btn btn-default" data-dismiss="modal")='Cerrar'
+
       // TERCER THUMB
       if total_favoritos > 2
         div(class="col-md-4")
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')      
             div(class="caption")
-              h3=articulos[2].titulo
+              h3(style="text-align:center;")=articulos[2].titulo
               p=articulos[2].descripcion
               p='ID: ' + articulos[2].id
               p
-                a(href="#" class="btn btn-primary")='Leer más'
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#"+articulos[2].id)='Leer más'
+                div(id=articulos[2].id class="modal fade" role="dialog")
+                  div(class="modal-dialog modal-lg")
+
+                    div(class="modal-content")
+                      div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal") &times;
+                        h4(class="modal-title")=articulos[2].titulo
+
+                      div(class="modal-body")
+                        p=articulos[2].descripcion
+                        embed(src='uploads/' + articulos[2].nombre_archivo width='850px' height='450px')
+                      div(class="modal-footer")
+                        button(type="button" class="btn btn-default" data-dismiss="modal")='Cerrar'
                 
   div(class='container')
     each x in boletines_copia
