@@ -21,8 +21,9 @@ module.exports = {
 
     var favoritos_copia = [];
     var cantidad_favoritos;
-    db.query('SELECT id_articulo, count(*) as COUNT FROM favoritos GROUP BY id_articulo',function(err,rows,fields){
+    db.query('SELECT id_articulo, count(*) as COUNT FROM favoritos GROUP BY id_articulo DESC',function(err,rows,fields){
       if(err) throw err;
+
       for(var i = 0 ; i < rows.length ; i++){
         favoritos_copia[i] = rows[i];
       }
@@ -48,6 +49,8 @@ module.exports = {
 
     var boletines_copia = [];
     var cantidad_boletines;
+    var articulos_buenos = [];
+
     db.query('SELECT * FROM boletines ORDER BY id_boletin DESC',function(err,rows,fields){
       if(err) throw err
 
@@ -216,22 +219,14 @@ module.exports = {
     console.log(req.body.id)
   },
 
-  postFavorito : function(req,res,next){
-    var config = require('../database/config')
-    var db = mysql.createConnection(config)
-    db.connect()
-    var favorito={
-      id_articulo : req.body.id,
-      id_usuario : req.user.id
-    }
-    db.query('INSERT INTO favoritos set ?', favorito, function(err){
-      if(err) throw err
-      db.end()
-    })
+  descargarDocumentoDocx : function(req, res, next){
+    //console.log('asd');
+    res.redirect('/');
+  },
 
-    return res.redirect('/')
-
+  descargarDocumentoTex : function(req, res, next){
+    //console.log('asd');
+    res.redirect('/');
   }
-
 
 }

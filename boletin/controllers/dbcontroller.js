@@ -54,10 +54,10 @@ module.exports = {
 
     var creador_boletin = req.user.nombre;
     var es_actual = 1;
-    
+
     var nombre_boletin = req.body.nombre;
     var descripcion_boletin = req.body.descripcion;
-    
+
 
     // En esta parte se toma una cadena de texto JSON y se convierte en un objeto JS, despues cada entrada se parsea a entero
     var indices = JSON.parse(req.body.articulos);
@@ -66,18 +66,18 @@ module.exports = {
       indices_articulos[i] = parseInt(indices[i])
       //console.log(indices_articulos[i])
     }
-    
+
     var boletin = {
       nombre_boletin : nombre_boletin,
       descripcion_boletin : descripcion_boletin,
       creador_boletin : creador_boletin,
       es_actual : es_actual
     }
-    
+
     var config = require('.././database/config')
     var db = mysql.createConnection(config)
     db.connect();
-    
+
     var indice_actual;
     db.query('SELECT * FROM boletines ORDER BY id_boletin DESC',function(err,rows,fields){
       if(rows.length > 0){
@@ -86,7 +86,7 @@ module.exports = {
         db.query('ALTER TABLE boletines AUTO_INCREMENT = 1')
         indice_actual = 1;
       }
-      
+
       for(var i = 0 ; i < indices_articulos.length ; i++){
         db.query('UPDATE articulos SET boletin_asoc = "' + indice_actual + '" WHERE id = ' + indices_articulos[i],function(err,rows,fields){
           if(err) throw err;
@@ -99,7 +99,7 @@ module.exports = {
         req.flash('creacion_boletin','Se ha creado el boletín correctamente')
         res.redirect('/')
       });
-      
+
     });
   },
 
@@ -123,29 +123,29 @@ module.exports = {
         {
             throw err;
             respuesta.res = false;
-        } 
+        }
             db.end();
             console.log(result.affectedRows + " record(s) updated");
             respuesta.res = true;
 
             res.json(respuesta);
-        
+
     });
 
   },
-  
+
   postEditarArticulo : function(req, res, next){
-    
+
     var config = require('.././database/config')
     var db = mysql.createConnection(config)
     db.connect();
-    
+
     var respuesta = {res: false};
-    
+
     console.log('ID del articulo : ' + req.body.ID);
     console.log('Nuevo nombre : ' + req.body.nombre);
     console.log('Nueva descripcion : ' + req.body.descripcion);
-    
+
     var query = 'UPDATE articulos SET titulo = "' + req.body.nombre + '", descripcion = "' + req.body.descripcion + '" WHERE id = ' + req.body.ID;
     db.query(query,function(err,result){
       if(err){
@@ -155,18 +155,18 @@ module.exports = {
       db.end();
       console.log(result.affectedRows + " record(s) updated");
       respuesta.res = true;
-      
+
       //res.json(respuesta);
-      
+
     });
-    
+
     req.flash('edicion_articulo','Se ha actualizado el articulo');
     res.redirect('/')
   },
-  
+
   postUploadFile : function(req,res,next){
     var form = new formidable.IncomingForm();
-    
+
     var articulo ={
       estado : 1,
       titulo : '',
@@ -175,13 +175,13 @@ module.exports = {
       nombre_archivo : '',
       extension_archivo : ''
     }
-    
+
     form.parse(req,function(err,fields,files){
       articulo.autor = req.user.nombre
-      
+
       articulo.titulo=fields.titulo
       articulo.descripcion=fields.descripcion
-      
+
       var config = require('.././database/config')
       var db = mysql.createConnection(config)
       db.connect();
@@ -190,7 +190,7 @@ module.exports = {
         db.end()
       })
     });
-    
+
     form.on('fileBegin', function (name, file){
       //file.path = path.normalize(__dirname + '/..') + '/uploads/' + file.name;
       file.path = path.normalize(/*__dirname*/'public') + '/uploads/' + file.name;
@@ -216,16 +216,16 @@ module.exports = {
         var respuesta = {res: false};
 
         db.query('DELETE FROM boletines WHERE id_boletin = ' + id, function(err,rows,fields){
-          
+
             db.query('UPDATE articulos SET boletin_asoc = 0 WHERE boletin_asoc = ' + id,function(err,rows,fields){
               if(err) throw err
             })
-          
+
             if(err)
             {
                 throw err;
                 respuesta = {res: false}
-            } 
+            }
 
             db.end();
 
@@ -234,27 +234,39 @@ module.exports = {
             res.json(respuesta);
         });
   },
-  
+
   postEliminarArticulo : function(req, res, next){
     var id = req.body.ID;
-    
+
     var config = require('.././database/config')
     var db = mysql.createConnection(config)
     db.connect();
-    
+
     db.query('DELETE FROM articulos WHERE id = ' + id, function(err, rows, fields){
       if(err) throw err;
-      
+
       db.end();
     });
-    
+
   },
-  
+
   plantillaDOC : function(req,res){
     /*var direccion = path.normalize(__dirname + '/../public/download/plantillaDOC.pdf')
     res.download(direccion,'plantillaDOC.pdf');*/
     res.download('https://www.irs.gov/pub/irs-pdf/fw4.pdf')
     console.log('descargado plantilla')
+  },
+
+  postDescargarDocumentoDocx : function(req, res, next){
+    //res.download('https://www.irs.gov/pub/irs-pdf/fw4.pdf')
+    res.download(__dirname + '/../public/download/plantilla.docx')
+    //console.log('descargado plantilla')
+  },
+
+  postDescargarDocumentoTex : function(req, res, next){
+    //res.download('https://www.irs.gov/pub/irs-pdf/fw4.pdf')
+    res.download(__dirname + '/../public/download/plantilla.tex')
+    //console.log('descargado plantilla')
   }
 
 }

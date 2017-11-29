@@ -1,6 +1,8 @@
 extends templates/estilos
 
 block content
+  head
+    script(src='/javascripts/crear_boletin.js')
   if message.length > 0
     div(class="alert alert-success" role="alert" style="margin-bottom:0px;")=message
 
@@ -9,52 +11,103 @@ block content
   div(class="jumbotron" style='background-color:black;')
     div(class="container")
       h1(class="display-3" style='color:white;')='Bienvenido al sitio'
-      p(class="lead" style='color:white;')='En el siguiente sitio podrás encontrar información sobre diversos temas. Propósito del sitio explicado brevemente. Tratar de fijar una altura máxima para esta cosa pues varía según el contenido.'
-      p(class="lead" style='color:white;')
+      p(class="lead" style='color:white; padding-bottom:50px;')='En el siguiente sitio podrás encontrar información sobre diversos temas. Propósito del sitio explicado brevemente. Tratar de fijar una altura máxima para esta cosa pues varía según el contenido.'
+      
+      //p(class="lead" style='color:white;')
         a(class="btn btn-primary btn-lg" href="#" role="button")='Conocer más'
-
-  //each x in favoritos_copia
-    p=x.id_articulo
-    p=parseInt(favoritos_copia[0].id_articulo)
-
+  
+  // La cosa mas asquerosa que se puede hacer pero funciona
+  -var articulos = []
+  -var cuantos = []
+  // Este for se puede reducir hasta 3(si estos son mas de 3) dado que solo necesitamos los 3 mas favoritos
+  -for(var i = 0 ; i < cantidad_favoritos ; i++){
+    -for(var j = 0 ; j < cantidad_articulos ; j++){
+      -if(favoritos_copia[i].id_articulo == articulos_copia[j].id){
+        -articulos[i] = articulos_copia[j]
+        -cuantos[i] = favoritos_copia[i].COUNT
+      -}
+    -}
+  -}
+  
+  -var total_favoritos = articulos.length
+  
   div(class="container thumb-section")
     div(class="row")
       div(class="col-md-4")
         /// PRIMER THUMB
-        if cantidad_articulos > 0
+        if total_favoritos > 0
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')
             div(class="caption")
-              h3=articulos_copia[0].titulo
-              p=articulos_copia[0].descripcion
-              p='ID: ' + articulos_copia[0].id
+              h3(style="text-align:center;")=articulos[0].titulo
+              p=articulos[0].descripcion
+              p='ID: ' + articulos[0].id
               p
-                a(href="#" class="btn btn-primary")='Leer más'
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#"+articulos[0].id)='Leer más'
+                div(id=articulos[0].id class="modal fade" role="dialog")
+                  div(class="modal-dialog modal-lg")
 
+                    div(class="modal-content")
+                      div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal") &times;
+                        h4(class="modal-title")=articulos[0].titulo
+
+                      div(class="modal-body")
+                        p=articulos[0].descripcion
+                        embed(src='uploads/' + articulos[0].nombre_archivo width='850px' height='450px')
+                      div(class="modal-footer")
+                        button(type="button" class="btn btn-default" data-dismiss="modal")='Cerrar'
+      
       // SEGUNDO THUMB
-      //if cantidad_articulos > 1
+      if total_favoritos > 1
         div(class="col-md-4")
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')
             div(class="caption")
-              h3=articulos_copia[favoritos_copia[1].id_articulo].titulo
-              p=articulos_copia[favoritos_copia[1].id_articulo].descripcion
-              p='ID: ' + articulos_copia[favoritos_copia[1].id_articulo].id
+              h3(style="text-align:center;")=articulos[1].titulo
+              p=articulos[1].descripcion
+              p='ID: ' + articulos[1].id
               p
-                a(href="#" class="btn btn-primary")='Leer más'
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#"+articulos[1].id)='Leer más'
+                div(id=articulos[1].id class="modal fade" role="dialog")
+                  div(class="modal-dialog modal-lg")
+
+                    div(class="modal-content")
+                      div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal") &times;
+                        h4(class="modal-title")=articulos[1].titulo
+
+                      div(class="modal-body")
+                        p=articulos[1].descripcion
+                        embed(src='uploads/' + articulos[1].nombre_archivo width='850px' height='450px')
+                      div(class="modal-footer")
+                        button(type="button" class="btn btn-default" data-dismiss="modal")='Cerrar'
 
       // TERCER THUMB
-      //if cantidad_articulos > 2
+      if total_favoritos > 2
         div(class="col-md-4")
           div(class="thumbnail")
             img(src="images/fear.jpg" style='width : 230px; height : 200px;')
             div(class="caption")
-              h3=articulos_copia[favoritos_copia[2].id_articulo].titulo
-              p=articulos_copia[favoritos_copia[2].id_articulo].descripcion
-              p='ID: ' + articulos_copia[favoritos_copia[2].id_articulo].id
+              h3(style="text-align:center;")=articulos[2].titulo
+              p=articulos[2].descripcion
+              p='ID: ' + articulos[2].id
               p
-                a(href="#" class="btn btn-primary")='Leer más'
+                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#"+articulos[2].id)='Leer más'
+                div(id=articulos[2].id class="modal fade" role="dialog")
+                  div(class="modal-dialog modal-lg")
 
+                    div(class="modal-content")
+                      div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal") &times;
+                        h4(class="modal-title")=articulos[2].titulo
+
+                      div(class="modal-body")
+                        p=articulos[2].descripcion
+                        embed(src='uploads/' + articulos[2].nombre_archivo width='850px' height='450px')
+                      div(class="modal-footer")
+                        button(type="button" class="btn btn-default" data-dismiss="modal")='Cerrar'
+                
   div(class='container')
     each x in boletines_copia
        div(class="panel-group")
