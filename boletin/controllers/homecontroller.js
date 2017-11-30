@@ -187,6 +187,38 @@ module.exports = {
 
   }, // fin editarBoletin
 
+  modificarUsuarios : function(req, res, next)
+  {
+    var config = require('../database/config')
+    var db = mysql.createConnection(config)
+    db.connect()
+
+    var usuarios = null;
+
+    var sql = db.query('SELECT * FROM usuarios', function(err,rows,fields)
+    {
+      if (err) throw err;
+
+      usuarios = rows;
+      db.end();
+
+      if(req.isAuthenticated() && req.user.tipo >= 3)
+      {
+        res.render('modificar_usuarios',
+          {
+            message:req.flash('edicion_articulo'),
+            title: 'Manejo de usuarios',
+            isAuthenticated : req.isAuthenticated(),
+            user : req.user,
+            tipo : req.user.tipo,
+            usuarios : usuarios
+          }
+        );
+      }
+    }); // fin db.query()
+
+  }, // fin modificarUsuarios
+
 
   eliminarBoletin : function(req, res, next){
     if(req.isAuthenticated() && req.user.tipo >= 3){

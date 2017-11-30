@@ -48,6 +48,10 @@ router.post('/eliminar_boletin',AuthMiddleware.isLogged, controllers.dbcontrolle
 router.get('/upload-files',controllers.homecontroller.getUploadFile)
 router.post('/upload-files',controllers.dbcontroller.postUploadFile)
 
+router.get('/modificar_usuarios', AuthMiddleware.isLogged, controllers.homecontroller.modificarUsuarios)
+router.post('/modificar_usuarios', AuthMiddleware.isLogged, controllers.dbcontroller.postModificarUsuarios)
+router.post('/eliminar_usuario', AuthMiddleware.isLogged, controllers.dbcontroller.eliminarUsuario)
+
 router.get('/a_a', controllers.homecontroller.getActualizarArticulo);
 router.post('/a_a', controllers.homecontroller.postActualizarArticulo);
 

@@ -10,6 +10,8 @@ block content
     
   include templates/navUserAuth
   div(class='container')
+
+    h1 Edición de boletines
     table(class='table table-bordered' id='tbl_boletines')
       thead
         tr
@@ -36,7 +38,7 @@ block content
             td(id='nombre_boletin')= nombre
               br
             
-              button(data-target=dt type='button' class='btn btn-primary btn-xs editar_boletin' data-toggle='modal')='Editar'
+              button(data-target=dt type='button' class='btn btn-primary btn-xs editar_boletin' data-toggle='modal' )='Editar'
               // Inicio del modal para la edición del boletín
               div(class='modal fade' id=idModal)
                 div(class='modal-dialog' role='document')

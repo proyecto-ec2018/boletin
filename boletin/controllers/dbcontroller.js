@@ -129,7 +129,35 @@ module.exports = {
             respuesta.res = true;
 
             res.json(respuesta);
+    });
+  },
 
+  postModificarUsuarios : function(req,res,next){
+
+    var tipoUsuario = req.body.tipoChecado;
+    var id = req.body.id;
+
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+
+    console.log('connected to database to edit usuarios')
+    console.log('tipoUsuario = ' + tipoUsuario)
+    console.log('id = ' + id)
+
+    var respuesta = {res: false};
+    var query = 'UPDATE usuarios SET tipo = "' + tipoUsuario + '" WHERE id = ' + id;
+    db.query(query, function(err,result){
+        if(err)
+        {
+            throw err;
+            respuesta.res = false;
+        }
+            db.end();
+            console.log(result.affectedRows + " record(s) updated");
+            respuesta.res = true;
+
+            res.json(respuesta);
     });
 
   },
@@ -220,6 +248,30 @@ module.exports = {
             db.query('UPDATE articulos SET boletin_asoc = 0 WHERE boletin_asoc = ' + id,function(err,rows,fields){
               if(err) throw err
             })
+
+            if(err)
+            {
+                throw err;
+                respuesta = {res: false}
+            }
+
+            db.end();
+
+            respuesta.res = true;
+
+            res.json(respuesta);
+        });
+  },
+
+  eliminarUsuario : function(req,res,next){
+        var id = req.body.id;
+        var config = require('../database/config');
+        var db = mysql.createConnection(config);
+        db.connect();
+
+        var respuesta = {res: false};
+
+        db.query('DELETE FROM usuarios WHERE id = ' + id, function(err,rows,fields){
 
             if(err)
             {
