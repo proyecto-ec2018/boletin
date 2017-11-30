@@ -281,11 +281,19 @@ module.exports = {
       id_usuario : id_usuario,
       id_articulo : id_articulo
     }
-    db.query('INSERT INTO favoritos SET ?', favorito, function(err,rows,fields){
-      if(err) err
-      db.end()
-      return res.redirect("/")
-    })
+    if(req.body.borrar=="true"){
+      db.query('DELETE FROM favoritos WHERE id_articulo =' + id_articulo, function(err,rows,fields){
+        if(err) throw err
+        db.end()
+        return res.redirect("/")
+      })
+    }else{
+      db.query('INSERT INTO favoritos SET ?', favorito, function(err,rows,fields){
+        if(err) throw err
+        db.end()
+        return res.redirect("/")
+      })
+    }
   },
 
     getMiPerfil : function(req,res,next){
