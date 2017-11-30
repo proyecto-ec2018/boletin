@@ -306,5 +306,10 @@ module.exports = {
       }else{
         res.redirect('/')
       }
+    },
+
+    postMiPerfil : function(req,res,next){
+      console.log(req.body)
+      return res.redirect('mi-usuario')
     }
 }
