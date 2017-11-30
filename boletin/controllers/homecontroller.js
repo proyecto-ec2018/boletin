@@ -282,7 +282,7 @@ module.exports = {
       id_articulo : id_articulo
     }
     if(req.body.borrar=="true"){
-      db.query('DELETE FROM favoritos WHERE id_articulo =' + id_articulo, function(err,rows,fields){
+      db.query('DELETE FROM favoritos WHERE id_articulo =' + id_articulo + ' AND id_usuario =' +id_usuario, function(err,rows,fields){
         if(err) throw err
         db.end()
         return res.redirect("/")
