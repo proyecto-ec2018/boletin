@@ -21,7 +21,7 @@ module.exports = {
 
     var favoritos_copia = [];
     var cantidad_favoritos;
-    db.query('SELECT id_articulo, count(*) as COUNT FROM favoritos GROUP BY id_articulo DESC',function(err,rows,fields){
+    db.query('SELECT id_articulo, count(*) as COUNT FROM favoritos GROUP BY id_articulo ORDER BY COUNT(*) DESC',function(err,rows,fields){
       if(err) throw err;
 
       for(var i = 0 ; i < rows.length ; i++){
