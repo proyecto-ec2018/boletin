@@ -81,6 +81,25 @@ $(function(){
         }
     });
 
+
+    // funcion para editar articulo
+    $('.agregarArticulo').click(function(e){
+        e.preventDefault();
+        if(confirm("Estas seguro de enviar los cambios del articulo?"))
+        {
+          var elemento = $(this);
+          var id_articulo = elemento.attr('id');
+          var id_boletin = elemento.parent().attr('id');
+
+          console.log(id_articulo)
+          console.log(id_boletin)
+          $.post('http://localhost:3000/agregar_articulo',{id_articulo : id_articulo, id_boletin : id_boletin});
+        }
+
+        // para "redireccionar" a la misma pagina, pero ya actualizada
+        window.location.replace("http://localhost:3000/editar_boletin");
+    });
+
     $('.eliminar_articulo').click(function(e){
       e.preventDefault();
       if(confirm("Estás seguro eliminar el artículo?"))

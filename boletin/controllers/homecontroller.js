@@ -158,10 +158,18 @@ module.exports = {
     var boletines = null;
 
     var articulos = null;
+    var articulosLibres = null;
     var peticion = db.query('SELECT * FROM articulos',function(err,rows,fields){
       if(err) throw err;
       articulos = rows;
     });
+
+    var peticion = db.query('SELECT * FROM articulos WHERE boletin_asoc=0',function(err,rows,fields){
+      if(err) throw err;
+      articulosLibres = rows;
+    });
+
+    console.log(articulosLibres);
 
     var sql = db.query('SELECT * FROM boletines', function(err,rows,fields){
       if (err) throw err;
@@ -179,7 +187,8 @@ module.exports = {
             user : req.user,
             tipo : req.user.tipo,
             boletines : boletines,
-            articulos : articulos
+            articulos : articulos,
+            articulosLibres: articulosLibres
           }
         );
       }

@@ -192,6 +192,35 @@ module.exports = {
     res.redirect('/')
   },
 
+  postAgregarArticulo : function(req, res, next){
+
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+
+    var respuesta = {res: false};
+
+    console.log('ID del articulo : ' + req.body.id_articulo);
+    console.log('Nuevo nombre : ' + req.id_boletin);
+
+    var query = 'UPDATE articulos SET boletin_asoc = "' + req.body.id_boletin + '" WHERE id = ' + req.body.id_articulo;
+    db.query(query,function(err,result){
+      if(err){
+        throw err;
+        respuesta.res = false;
+      }
+      db.end();
+      console.log(result.affectedRows + " record(s) updated");
+      respuesta.res = true;
+
+      //res.json(respuesta);
+
+    });
+
+    req.flash('edicion_articulo','Se ha actualizado el articulo');
+    res.redirect('/')
+  },
+
   postUploadFile : function(req,res,next){
     var form = new formidable.IncomingForm();
 
@@ -294,7 +323,9 @@ module.exports = {
     var db = mysql.createConnection(config)
     db.connect();
 
-    db.query('DELETE FROM articulos WHERE id = ' + id, function(err, rows, fields){
+    //db.query('DELETE FROM articulos WHERE id = ' + id, function(err, rows, fields){
+    var query = 'UPDATE articulos SET boletin_asoc = 0 WHERE id = ' + id;
+    db.query(query,function(err,rows,fields){
       if(err) throw err;
 
       db.end();

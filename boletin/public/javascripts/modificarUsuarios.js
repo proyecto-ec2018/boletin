@@ -1,9 +1,4 @@
-function alerta(){
-  var respuesta = confirm("Estas seguro de borrar a este usuario?");
-  if(respuesta){
-    alert("Usuario borrado.");
-  }
-}
+
 
 $(document).ready(function(){
 
@@ -39,22 +34,39 @@ $(document).ready(function(){
     $('.btn_cerrar_modal').click(function(){
         var id = $(this).attr('id');
         $('#modal'+id).modal('hide');
+        
+        $('.modal-backdrop').remove();
     })
 
     // funcion para editar usuario
     $('.enviarCambiosUsuario').click(function(e){
         e.preventDefault();
         if(confirm("Estas seguro de enviar los cambios?"))
-        {
+        {        
           // obtener el tipo de usuario con el atributo id del radio button
           var tipoChecado = $("input:checked").attr('id');
           var id = $(this).attr('id');
+
+          message = document.getElementById("message"+id);
+          message.innerHTML = "";
           
+          try{
+              if(typeof tipoChecado == 'undefined') throw "Select an option";
+          }
+          catch(err){
+              message.innerHTML = err;
+              return;
+          }
           console.log(tipoChecado);
-          
           console.log(id);
 
+          
           $.post('http://localhost:3000/modificar_usuarios', {id : id, tipoChecado : tipoChecado });
+
+          
+
+          // para "redireccionar" a la misma pagina, pero ya actualizada
+          window.location.replace("http://localhost:3000/modificar_usuarios");
         }
     });
 });
