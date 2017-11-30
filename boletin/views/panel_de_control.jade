@@ -1,0 +1,92 @@
+extends templates/estilos
+head
+  title Panel de Control
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  script(src='/javascripts/panel_de_control.js')
+  include templates/navUserAuth
+
+  style.
+    #AnchoTabla1{
+      width: 570px;
+    }
+    #AnchoTabla2{
+      width: 570px;
+      height: 189px;
+      overflow-y: auto;
+    }
+    #AnchoTabla3{
+      width: 570px;
+      height: 190px;
+      overflow-y: auto;
+    }
+    #destituir_Editor, #destituir_Autor{
+      color: black;
+    }
+
+body
+  div(class=['container'])
+    form
+      h2(class='text-center') 
+        b Panel de control para Administrador
+      br
+      div(class=['container'], id='AnchoTabla1')
+        table(class=['table', 'text-center', 'table-hover'])
+          caption(class='text-center') 
+            b Tabla de Usuarios para editar el nivel de Usuario en la Pagina
+          thead
+            tr
+              th(class='text-center' WIDTH='55') x
+              th(class='text-center' WIDTH='') Usuarios
+              th(WIDTH='101') Hacer Editor
+              th(WIDTH='98') Hacer Autor
+      div(class=['container'], id='AnchoTabla2')
+        table(class=['table', 'text-center', 'table-hover'])
+          tbody
+            tr
+              td(class='text-center' WIDTH='45')
+                button(type='submit', class=['btn', 'btn-danger', 'btn-xs'], id='eliminar_Usuario', onclick='alerta()')
+                  span(class='glyphicon glyphicon-trash')
+              td(class='text-center' WIDTH='200')  
+                p 1
+              td(class='text-center' WIDTH='74') 
+                button(type='submit', class=['btn', 'btn-primary', 'btn-xs'], id='crear_Editor', onclick='') Editor
+              td(class='text-center' WIDTH='74')
+                button(type='submit', class=['btn', 'btn-primary', 'btn-xs'], id='crear_Autor', onclick='') Autor
+            
+    br
+    br
+    div(class=['container'], id='AnchoTabla1')
+      form
+        table(clas=['table', 'text-center', 'table-hover'])
+          caption(class='text-center') 
+            b Tabla de Prestigio Editor/Autor
+          thead
+            tr
+              th(class='text-center' WIDTH='83') x
+              th(class='text-center' WIDTH='355') Usuario
+              th(class='text-center' WIDTH='74') Editor
+              th(class='text-center' WIDTH='74') Autor
+      div(class=['container'], id='AnchoTabla3')
+        table(class=['table', 'text-center', 'table-hover'])      
+          tbody
+            tr
+              td(class='text-center' WIDTH='45')
+                button(type='submit', class=['btn', 'btn-danger', 'btn-xs'], id='eliminar_Usuario', onclick='alerta()')
+                  span(class='glyphicon glyphicon-trash')
+              td(class='text-center' WIDTH='350')
+                p 6
+              td(class='text-center' WIDTH='74')
+                button(type='submit', class=['btn', 'btn-warning', 'btn-xs'], id='destituir_Editor', onclick='') Destituir
+              td(class='text-center' WIDTH='74')
+     
+            tr(class='text-center' WIDTH='45')
+              td
+                button(type='submit', class=['btn', 'btn-danger', 'btn-xs'], id='eliminar_Usuario', onclick='alerta()')
+                  span(class='glyphicon glyphicon-trash')
+              td(class='text-center' WIDTH='350') 
+                p 7
+              td(class='text-center' WIDTH='74')
+
+              td(class='text-center' WIDTH='74')
+                button(type='submit', class=['btn', 'btn-warning', 'btn-xs'], id='destituir_Autor', onclick='') Destituir

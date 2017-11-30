@@ -1,20 +1,19 @@
-function confirmar_borrar(){
-    var respuesta = confirm("Estas seguro de borrar el boletin?");
-    return respuesta;
+function alertaBoletin(){
+  var respuesta = confirm("Estas seguro de borrar el boletin?");
+  if(respuesta){
+    alert("El boletin se ha borrado");
+  }
+
 }
 
+<<<<<<< HEAD
 function alertaArticulo(){
-    var respuesta = confirm("Estas seguro de borrar el articulo?");
-    if(respuesta){
-      alert("El articulo se ha borrado");
-    }
+  var respuesta = confirm("Estas seguro de borrar el articulo?");
+  if(respuesta){
+    alert("El articulo se ha borrado");
+  }
 }
-
-function returnData(param)
-{
-    console.log(param);
-}
-
+=======
 $(function(){
 
     // funcion para borrar boletin
@@ -81,6 +80,25 @@ $(function(){
         }
     });
 
+
+    // funcion para editar articulo
+    $('.agregarArticulo').click(function(e){
+        e.preventDefault();
+        if(confirm("Estas seguro de enviar los cambios del articulo?"))
+        {
+          var elemento = $(this);
+          var id_articulo = elemento.attr('id');
+          var id_boletin = elemento.parent().attr('id');
+
+          console.log(id_articulo)
+          console.log(id_boletin)
+          $.post('http://localhost:3000/agregar_articulo',{id_articulo : id_articulo, id_boletin : id_boletin});
+        }
+
+        // para "redireccionar" a la misma pagina, pero ya actualizada
+        window.location.replace("http://localhost:3000/editar_boletin");
+    });
+
     $('.eliminar_articulo').click(function(e){
       e.preventDefault();
       if(confirm("Estás seguro eliminar el artículo?"))
@@ -90,6 +108,9 @@ $(function(){
 
           $.post('http://localhost:3000/eliminar_articulo',{ID : id_articulo});
         }
+
+        window.location.replace("http://localhost:3000/editar_boletin");
     });
 
 });
+>>>>>>> b887f7f5dcef7cc0ae2d1f4b0bb2e1e655d07a04

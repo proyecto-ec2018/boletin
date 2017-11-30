@@ -40,7 +40,7 @@ router.get('/editar_boletin',AuthMiddleware.isLogged, controllers.homecontroller
 
 router.post('/editar_boletin2',AuthMiddleware.isLogged, controllers.dbcontroller.postEditarBoletin)
 
-router.post('/agregar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postAgregarArticulo) 
+router.post('/agregar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postAgregarArticulo)
 router.post('/editar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postEditarArticulo)
 router.post('/eliminar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postEliminarArticulo)
 
