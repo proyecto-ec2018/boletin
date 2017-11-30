@@ -1,6 +1,8 @@
 extends estilos
 
 block content
+  head
+    script(src='../javascripts/descargas.js')
   include navUserAuth
   
   div(class="" id="" style="margin-bottom: 50px; background-color: darkslategray;")
@@ -20,7 +22,7 @@ block content
         
         div(class="row")
           div(class="col-md-4 col-md-offset-4" style="text-align: center;")
-            a(href="" class="lead")
+            //a(href="" class="lead")
               span(class="glyphicon glyphicon-book") 
               p Leer condiciones para envío
               
@@ -33,20 +35,23 @@ block content
             p(class="lead") En esta sección se encuentra la plantilla para la presentación de propuestas de artículos. Este tipo de plantilla corresponde a las hojas electrónicas con extensión .docx ...
           
           div(class="col-md-3 col-md-offset-1")
-            p(style="margin-top: 70px;")
-            a(href="#" class="")
-              p(class="lead") Descargar plantilla 
-                span(class="glyphicon glyphicon-download") 
+            div(class="container")
+              form(action="http://localhost:3000/descarga_docx" method="POST")
+                button(type='submit' class='btn btn-primary descarga')
+                  p
+                  p(class="lead") Descargar plantilla 
+                    span(class="glyphicon glyphicon-download")
           
         br
         br
         
         div(class="row" style="margin-bottom: 50px;")
           div(class="col-md-3 col-md-offset-1")
-            p(style="margin-top: 70px;")
-            a(href="#" class="")
-              p(class="lead") Descargar plantilla 
-                span(class="glyphicon glyphicon-download")
+            form(action="http://localhost:3000/descarga_tex" method="POST")
+                button(type='submit' class='btn btn-primary descarga')
+                  p
+                  p(class="lead") Descargar plantilla 
+                    span(class="glyphicon glyphicon-download")
 
           div(class="col-md-7" style="background-color: darkslategray; color: white;")
             h1(class="display-3") Plantilla para LaTeX

@@ -10,6 +10,34 @@ block content
     
   include templates/navUserAuth
   div(class='container')
+
+    // modal para el boton de agregar articulo
+
+    each boletin in boletines
+
+      - idLibre = "libre" + boletin.id_boletin
+      - idBoletin = boletin.id_boletin
+      - idBoletinModal = 'modal' + boletin.id_boletin
+
+      // Comienzo del modal para la edicion de articulos
+      div(class="modal fade" id=idLibre)
+        div(class="modal-dialog" role='document')
+          div(class='modal-content')
+
+            form(action='http://localhost:3000/editar_boletin' method='post' name='' id='')
+              div(class='modal-header')
+                button(type='button' class='close' data-dismiss='modal' aria-hidden='true')
+                h2(class='modal-title text-center')='Añadir artículo'
+
+              div(class='modal-body')
+                each articulo in articulosLibres
+                  - idArticulo = articulo.id
+                  p=articulo.titulo
+                
+                  div(class='form-group' id=idBoletin)
+                    button(class='btn btn-primary agregarArticulo' type='submit' data-dismiss="modal" id=idArticulo)='Añadir'            
+
+    h1 Edición de boletines
     table(class='table table-bordered' id='tbl_boletines')
       thead
         tr
@@ -25,6 +53,7 @@ block content
           - i++;
           - idModal = boletin.id_boletin;
           - dt = "#" + boletin.id_boletin;
+          - dtLibres = "#libre" + boletin.id_boletin;
           - input_id = 'input_id' + idModal;
           - input_name = 'input_name' + idModal;
           - input_text = 'input_text' + idModal;
@@ -36,7 +65,7 @@ block content
             td(id='nombre_boletin')= nombre
               br
             
-              button(data-target=dt type='button' class='btn btn-primary btn-xs editar_boletin' data-toggle='modal')='Editar'
+              button(data-target=dt type='button' class='btn btn-primary btn-xs editar_boletin' data-toggle='modal' )='Editar'
               // Inicio del modal para la edición del boletín
               div(class='modal fade' id=idModal)
                 div(class='modal-dialog' role='document')
@@ -61,7 +90,7 @@ block content
                       // Footer de la ventana //-
                       div(class='modal-footer')
                         button(class='btn btn-primary enviarEdicionBoletin' id=idModal type='submit')='Enviar'
-              button(type='button' class='btn btn-success btn-xs' id=agregar)='Agregar artículo'
+              button(data-target=dtLibres type='button' class='btn btn-success btn-xs' data-toggle='modal' id=agregar)='Agregar artículo'
             td
               each x in articulos
                 - id = x.id;
@@ -71,6 +100,7 @@ block content
                 
                 if(x.boletin_asoc == boletin.id_boletin)
                   p='' + x.titulo
+                    br
                     button(type='button' class='btn btn-primary btn-xs' data-toggle="modal" data-target='#'+x.titulo id='editar_a')='Editar'
                     button(class='btn btn-danger btn-xs eliminar_articulo' type='submit' /*onclick='alertaArticulo()'*/ id=x.id)='Eliminar'
 

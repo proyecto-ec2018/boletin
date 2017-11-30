@@ -1,0 +1,99 @@
+extends templates/estilos
+
+block content
+  head
+    link(rel='stylesheet', href='/stylesheets/modificarUsuarios.css')
+    script(src='/javascripts/modificarUsuarios.js')
+    
+    
+  if message.length > 0
+    div(class="alert alert-success" role="alert" style="margin-bottom:0px;")=message
+    
+  include templates/navUserAuth
+
+  body
+
+    each usuario in usuarios
+
+      - dataTarget = '#' + usuario.id
+      - nombre = usuario.userName
+      - modalID = "modal" + usuario.id
+      - tipoUsuario = usuario.tipo
+      - messageID = "message" + usuario.id
+      - if(tipoUsuario==1) tipoUsuario = "Usuario registrado"
+      - if(tipoUsuario==2) tipoUsuario = "Autor de contenido"
+      - if(tipoUsuario==3) tipoUsuario = "Editor"
+      - if(tipoUsuario==4) tipoUsuario = "Administrador"
+
+      // Inicio del modal para la edición del usuario
+      div(class='modal fade modal-open' id=modalID data-backdrop='static')
+        div(class='modal-dialog' role='document')
+          div(class='modal-content')
+            
+            form(action='http://localhost:3000/modificar_usuarios' method='post' name='form' id=usuario.id)
+              // Header de la ventana //-
+              div(class='modal-header')
+                button(type='button' class='close btn_cerrar_modal' data-dismiss='modal' aria-hidden='true' id=usuario.id) &times;
+                h2(class='modal-title text-center')=nombre
+              
+              // Cuerpo de la ventana //-
+              div(class='modal-body')
+                div(class='form-group')
+                  input(type='hidden' class='form-control posicion_input' name='id' )
+                div(class='form-group')
+                  label(for=input_name)='Estado'
+
+                  div(class="radio")
+                    label
+                      input(type="radio" name="optradio" id='1')
+                      | Usuario registrado
+                  div(class="radio")
+                    label
+                      input(type="radio" name="optradio" id='2')
+                      | Autor de Contenido
+                  
+                  div(class="radio")
+                    label
+                      input(type="radio" name="optradio" id='3')
+                      | Editor
+
+                  div(class="radio")
+                    label
+                      input(type="radio" name="optradio" id='4')
+                      | Administrador
+                  
+              // Footer de la ventana //
+              div(class='modal-footer')
+                p(id=messageID)
+                button(class='btn btn-primary enviarCambiosUsuario' type='submit' id=usuario.id)='Enviar cambios'
+    div(class='container')
+
+      h1 Manejo de usuarios
+      table(class='table table-bordered' id='tbl_usuarios')
+        thead
+          tr
+            th(WIDTH='30')
+            th(style='text-align:center;') Nombre del usuario
+            th(style='text-align:center;') Estado actual
+
+        tbody
+          each usuario in usuarios
+            - dataTarget = '#' + usuario.id
+            - nombre = usuario.userName
+            - modalID = "modal" + usuario.id
+            - tipoUsuario = usuario.tipo
+            - if(tipoUsuario==1) tipoUsuario = "Usuario registrado"
+            - if(tipoUsuario==2) tipoUsuario = "Autor de contenido"
+            - if(tipoUsuario==3) tipoUsuario = "Editor"
+            - if(tipoUsuario==4) tipoUsuario = "Administrador"
+
+            tr
+              td
+                button(type='submit' class='btn btn-danger btn-xs btn_eliminar') &times;
+              td(id=usuario.id class='nombreUsuario')= usuario.userName
+              td(id='tipoUsuario')= tipoUsuario
+                br
+              
+                button(data-target=dataTarget type='button' class='btn btn-primary btn-xs editar_usuario' data-toggle='modal' id=usuario.id)='Editar'
+
+                

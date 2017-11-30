@@ -7,6 +7,8 @@ var bodyParser = require('body-parser')
 
 /* GET home page. */
 router.get('/', controllers.homecontroller.index)
+router.post('/', controllers.homecontroller.postFavorito)
+
 router.get('/guia_autores', controllers.homecontroller.mostrarGuia)
 router.get('/registro', controllers.homecontroller.showSignUpForm)
 router.post('/newuser',controllers.dbcontroller.postRegistrarUsuario)
@@ -17,6 +19,14 @@ router.post('/auth-login',passport.authenticate('local',{
   failureRedirect : '/login',
   failureFlash : true
 }))
+
+router.post('/download',controllers.dbcontroller.plantillaDOC)
+
+router.post('/descarga_docx',controllers.dbcontroller.postDescargarDocumentoDocx)
+router.get('/descarga_docx',controllers.homecontroller.descargarDocumentoDocx)
+
+router.post('/descarga_tex',controllers.dbcontroller.postDescargarDocumentoTex)
+router.get('/descarga_tex',controllers.homecontroller.descargarDocumentoTex)
 
 router.get('/auth-logout',AuthMiddleware.isLogged, controllers.homecontroller.logout)
 router.get('/userNotAvailable', controllers.dbcontroller.verifyUserName)
@@ -30,6 +40,7 @@ router.get('/editar_boletin',AuthMiddleware.isLogged, controllers.homecontroller
 
 router.post('/editar_boletin2',AuthMiddleware.isLogged, controllers.dbcontroller.postEditarBoletin)
 
+router.post('/agregar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postAgregarArticulo)
 router.post('/editar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postEditarArticulo)
 router.post('/eliminar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postEliminarArticulo)
 
@@ -37,6 +48,10 @@ router.post('/eliminar_boletin',AuthMiddleware.isLogged, controllers.dbcontrolle
 
 router.get('/upload-files',controllers.homecontroller.getUploadFile)
 router.post('/upload-files',controllers.dbcontroller.postUploadFile)
+
+router.get('/modificar_usuarios', AuthMiddleware.isLogged, controllers.homecontroller.modificarUsuarios)
+router.post('/modificar_usuarios', AuthMiddleware.isLogged, controllers.dbcontroller.postModificarUsuarios)
+router.post('/eliminar_usuario', AuthMiddleware.isLogged, controllers.dbcontroller.eliminarUsuario)
 
 router.get('/a_a', controllers.homecontroller.getActualizarArticulo);
 router.post('/a_a', controllers.homecontroller.postActualizarArticulo);

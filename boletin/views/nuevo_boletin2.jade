@@ -16,7 +16,7 @@ block content
         label(for='descripcion')='Descripción para el boletín'
         textarea(id='descripcion' rows='5' class='form-control' placeholder='Descripción' required)
       
-      table(class='table table-bordered')
+      table(class='table table-bordered' id='tabla_contenido')
         thead
           tr
             th
@@ -28,7 +28,7 @@ block content
             if(x.boletin_asoc == 0)
               tr
                 td
-                  input(class='form-check-input' type='checkbox' value=x.id name='checkbox')
+                  input(class='form-check-input' type='checkbox' id=x.id value=x.id name='selector[]')
                 td=x.titulo
                 td=x.autor
       button(type='submit' class='btn btn-primary crear_boletin')='Crear boletín'

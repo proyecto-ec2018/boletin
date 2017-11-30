@@ -25,7 +25,8 @@ module.exports = function(passport){
           if(md5(password) == user.password){
             return done(null,{
               nombre : user.userName,
-              tipo : user.tipo
+              tipo : user.tipo,
+              id : user.id
             })
           }
         }
