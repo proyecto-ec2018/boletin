@@ -109,6 +109,8 @@ $(function(){
 
           $.post('http://localhost:3000/eliminar_articulo',{ID : id_articulo});
         }
+
+        window.location.replace("http://localhost:3000/editar_boletin");
     });
 
 });
