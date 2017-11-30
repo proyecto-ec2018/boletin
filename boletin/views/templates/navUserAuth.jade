@@ -30,11 +30,12 @@ div(class='' id='' style='background-color: darkslategray;')
                   span(class="caret")
                 ul(class="dropdown-menu" style='background-color:darkslategray; color:white;')
                   li
-                    a(href="http://localhost:3000/mi-usuario" style='background-color:darkslategray; color:white;')= 'Mi perfil'
-                      span(class='glyphicon-user')
-                  li
                     a(href="http://localhost:3000/auth-logout" style='background-color:darkslategray; color:white;')= 'Cerrar Sesion '
                       span(class='glyphicon glyphicon-log-out')
+                  li
+                    a(href="http://localhost:3000/mi-usuario" style='background-color:darkslategray; color:white;')= 'Mi perfil'
+                      span(class='glyphicon glyphicon-user')
+                      
                   if user.tipo>=2
                     a(href="http://localhost:3000/upload-files" style='background-color:darkslategray; color:white;')= 'Enviar propuesta '
                       span(class='glyphicon glyphicon-upload')

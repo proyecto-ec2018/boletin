@@ -297,10 +297,14 @@ module.exports = {
   },
 
     getMiPerfil : function(req,res,next){
-      res.render('editar_perfil')
+      if(req.isAuthenticated && req.user.tipo >= 1){
+          res.render('editar_perfil',{
+          title : 'Mi perfil',
+          user : req.user,
+          isAuthenticated : req.isAuthenticated
+        })
+      }else{
+        res.redirect('/')
+      }
     }
-
-
-
-
 }

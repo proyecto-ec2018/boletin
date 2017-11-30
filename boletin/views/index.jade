@@ -32,6 +32,9 @@ block content
   -var total_favoritos = articulos.length
   
   div(class="container thumb-section")
+    each x in favoritos_copia
+      p='ID: '+x.id_articulo
+      p='CUANTOS: '+x.COUNT
     div(class="row")
       div(class="col-md-4")
         /// PRIMER THUMB
