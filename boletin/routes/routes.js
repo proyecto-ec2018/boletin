@@ -56,6 +56,6 @@ router.post('/eliminar_usuario', AuthMiddleware.isLogged, controllers.dbcontroll
 router.get('/a_a', controllers.homecontroller.getActualizarArticulo);
 router.post('/a_a', controllers.homecontroller.postActualizarArticulo);
 
-router.get('/mi-usuario', controllers.homecontroller.getMiPerfil)
+router.get('/mi-usuario', AuthMiddleware.isLogged,controllers.homecontroller.getMiPerfil)
 
 module.exports = router;
