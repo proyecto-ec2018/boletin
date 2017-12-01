@@ -1,19 +1,20 @@
-function alertaBoletin(){
-  var respuesta = confirm("Estas seguro de borrar el boletin?");
-  if(respuesta){
-    alert("El boletin se ha borrado");
-  }
-
+function confirmar_borrar(){
+    var respuesta = confirm("Estas seguro de borrar el boletin?");
+    return respuesta;
 }
 
-<<<<<<< HEAD
 function alertaArticulo(){
-  var respuesta = confirm("Estas seguro de borrar el articulo?");
-  if(respuesta){
-    alert("El articulo se ha borrado");
-  }
+    var respuesta = confirm("Estas seguro de borrar el articulo?");
+    if(respuesta){
+      alert("El articulo se ha borrado");
+    }
 }
-=======
+
+function returnData(param)
+{
+    console.log(param);
+}
+
 $(function(){
 
     // funcion para borrar boletin
@@ -61,8 +62,21 @@ $(function(){
           console.log("este es el nombre " + nombre_boletin);
           console.log(descripcion);
 
-          $.post('http://localhost:3000/editar_boletin2', {ID : id, nombre : nombre_boletin, desc : descripcion });
+          //$.post('http://localhost:3000/editar_boletin2', {ID : id, nombre : nombre_boletin, desc : descripcion });
         }
+      
+        $.ajax({  
+          url:'http://localhost:3000/editar_boletin2',
+          type:'POST',
+          data: {
+            ID : id,
+            nombre : nombre_boletin,
+            desc : descripcion
+          },
+          success:function(response){
+            window.location.replace("http://localhost:3000/editar_boletin");
+          }
+        });
     });
 
     // funcion para editar articulo
@@ -73,11 +87,27 @@ $(function(){
           var elemento = $(this);
           var id_articulo = elemento.attr('id');
 
-          var nombre = elemento.parent().parent().find('#input_name_'+id_articulo).val();
-          var descripcion = elemento.parent().parent().find('#input_text_'+id_articulo).val();
+          var nombre = elemento.parent().parent().find('#input_name_'+'articulo'+id_articulo).val();
+          var descripcion = elemento.parent().parent().find('#input_text_'+'articulo'+id_articulo).val();
 
-          $.post('http://localhost:3000/editar_articulo',{ID : id_articulo, nombre : nombre, descripcion : descripcion});
+          console.log(nombre);
+          console.log(descripcion);
+
+          //$.post('http://localhost:3000/editar_articulo',{ID : id_articulo, nombre : nombre, descripcion : descripcion});
         }
+      
+      $.ajax({  
+        url:'http://localhost:3000/editar_articulo',
+        type:'POST',
+        data: {
+          ID : id_articulo,
+          nombre : nombre,
+          descripcion : descripcion
+        },
+        success:function(response){
+          window.location.replace("http://localhost:3000/editar_boletin");
+        }
+      });
     });
 
 
@@ -113,4 +143,3 @@ $(function(){
     });
 
 });
->>>>>>> b887f7f5dcef7cc0ae2d1f4b0bb2e1e655d07a04
