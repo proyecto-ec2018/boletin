@@ -62,8 +62,21 @@ $(function(){
           console.log("este es el nombre " + nombre_boletin);
           console.log(descripcion);
 
-          $.post('http://localhost:3000/editar_boletin2', {ID : id, nombre : nombre_boletin, desc : descripcion });
+          //$.post('http://localhost:3000/editar_boletin2', {ID : id, nombre : nombre_boletin, desc : descripcion });
         }
+      
+        $.ajax({  
+          url:'http://localhost:3000/editar_boletin2',
+          type:'POST',
+          data: {
+            ID : id,
+            nombre : nombre_boletin,
+            desc : descripcion
+          },
+          success:function(response){
+            window.location.replace("http://localhost:3000/editar_boletin");
+          }
+        });
     });
 
     // funcion para editar articulo
@@ -80,8 +93,21 @@ $(function(){
           console.log(nombre);
           console.log(descripcion);
 
-          $.post('http://localhost:3000/editar_articulo',{ID : id_articulo, nombre : nombre, descripcion : descripcion});
+          //$.post('http://localhost:3000/editar_articulo',{ID : id_articulo, nombre : nombre, descripcion : descripcion});
         }
+      
+      $.ajax({  
+        url:'http://localhost:3000/editar_articulo',
+        type:'POST',
+        data: {
+          ID : id_articulo,
+          nombre : nombre,
+          descripcion : descripcion
+        },
+        success:function(response){
+          window.location.replace("http://localhost:3000/editar_boletin");
+        }
+      });
     });
 
 
