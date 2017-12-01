@@ -15,6 +15,43 @@ block content
 
     each boletin in boletines
 
+      - nombre = boletin.nombre_boletin;
+      - i++;
+      - idModal = boletin.id_boletin;
+      - dt = "#" + boletin.id_boletin;
+      - dtLibres = "#libre" + boletin.id_boletin;
+      - input_id = 'input_id' + idModal;
+      - input_name = 'input_name' + idModal;
+      - input_text = 'input_text' + idModal;
+      - form_id = 'form_' + idModal;
+
+      div(class='modal fade' id=idModal)
+                div(class='modal-dialog' role='document')
+                  div(class='modal-content')
+                    
+                    form(action='http://localhost:3000/editar_boletin' method='post' name='form' id=form_id)
+                      // Header de la ventana //-
+                      div(class='modal-header')
+                        button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
+                        h2(class='modal-title text-center')=nombre
+                      
+                      // Cuerpo de la ventana //-
+                      div(class='modal-body')
+                        div(class='form-group')
+                          input(type='hidden' class='form-control posicion_input' id=input_id name='id' value=idModal)
+                        div(class='form-group')
+                          label(for=input_name)='Nuevo título'
+                          input(type='text' class='form-control posicion_input' id=input_name placeholder='Cambiar nombre del boletín' name='nombre' required)
+                        div(class='form-group')
+                          label(for=input_text)='Nueva descripción'
+                          textarea(class='form-control' rows='5' id=input_text placeholder='Cambiar descripción del boletín' name='descripcion' required)
+                      // Footer de la ventana //-
+                      div(class='modal-footer')
+                        button(class='btn btn-primary enviarEdicionBoletin' id=idModal type='submit')='Enviar'
+
+
+    each boletin in boletines
+
       - idLibre = "libre" + boletin.id_boletin
       - idBoletin = boletin.id_boletin
       - idBoletinModal = 'modal' + boletin.id_boletin
@@ -36,6 +73,35 @@ block content
                 
                   div(class='form-group' id=idBoletin)
                     button(class='btn btn-primary agregarArticulo' type='submit' data-dismiss="modal" id=idArticulo)='Añadir'            
+    
+    each x in articulos
+
+      - id = 'articulo' + x.id;
+      - input_name_ = 'input_name_' + id;
+      - input_text_ = 'input_text_' + id;
+      - dtArticulo = '#articulo' + x.id;
+
+      // Comienzo del modal para la edicion de articulos
+      div(class="modal fade" id=id)
+        div(class="modal-dialog" role='document')
+          div(class='modal-content')
+
+            form(action='http://localhost:3000/editar_boletin' method='post' name='' id='')
+              div(class='modal-header')
+                button(type='button' class='close' data-dismiss='modal' aria-hidden='true')
+                h2(class='modal-title text-center')='Edición del artículo ' + x.titulo
+
+              div(class='modal-body')
+                div(class='form-group')
+                  label(for='nombre_articulo')='Nuevo nombre del artículo'
+                  input(type='text' class='form-control posicion_input' id=input_name_ placeholder='Nuevo nombre del articulo')
+
+                div(class='form-group')
+                  label(for='descripcion_articulo')='Nueva descripción'
+                  textarea(class='form-control' rows='5' id=input_text_ placeholder='Nueva descripcion')
+
+              div(class='modal-footer')
+                button(class='btn btn-primary editar_articulo' type='submit' data-dismiss="modal" id=x.id)='Enviar'
 
     h1 Edición de boletines
     table(class='table table-bordered' id='tbl_boletines')
@@ -64,64 +130,22 @@ block content
             td(id='id_boletin')= boletin.id_boletin
             td(id='nombre_boletin')= nombre
               br
-            
+              
               button(data-target=dt type='button' class='btn btn-primary btn-xs editar_boletin' data-toggle='modal' )='Editar'
               // Inicio del modal para la edición del boletín
-              div(class='modal fade' id=idModal)
-                div(class='modal-dialog' role='document')
-                  div(class='modal-content')
-                    
-                    form(action='http://localhost:3000/editar_boletin' method='post' name='form' id=form_id)
-                      // Header de la ventana //-
-                      div(class='modal-header')
-                        button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
-                        h2(class='modal-title text-center')=nombre
-                      
-                      // Cuerpo de la ventana //-
-                      div(class='modal-body')
-                        div(class='form-group')
-                          input(type='hidden' class='form-control posicion_input' id=input_id name='id' value=idModal)
-                        div(class='form-group')
-                          label(for=input_name)='Nuevo título'
-                          input(type='text' class='form-control posicion_input' id=input_name placeholder='Cambiar nombre del boletín' name='nombre' required)
-                        div(class='form-group')
-                          label(for=input_text)='Nueva descripción'
-                          textarea(class='form-control' rows='5' id=input_text placeholder='Cambiar descripción del boletín' name='descripcion' required)
-                      // Footer de la ventana //-
-                      div(class='modal-footer')
-                        button(class='btn btn-primary enviarEdicionBoletin' id=idModal type='submit')='Enviar'
+              
+              
               button(data-target=dtLibres type='button' class='btn btn-success btn-xs' data-toggle='modal' id=agregar)='Agregar artículo'
             td
               each x in articulos
-                - id = x.id;
+                - id = 'articulo' + x.id;
                 - input_name_ = 'input_name_' + id;
                 - input_text_ = 'input_text_' + id;
+                - dtArticulo = '#articulo' + x.id;
                 
                 
                 if(x.boletin_asoc == boletin.id_boletin)
                   p='' + x.titulo
                     br
-                    button(type='button' class='btn btn-primary btn-xs' data-toggle="modal" data-target='#'+x.titulo id='editar_a')='Editar'
+                    button(type='button' class='btn btn-primary btn-xs' data-toggle="modal" data-target=dtArticulo id='editar_a')='Editar'
                     button(class='btn btn-danger btn-xs eliminar_articulo' type='submit' /*onclick='alertaArticulo()'*/ id=x.id)='Eliminar'
-
-                    // Comienzo del modal para la edicion de articulos
-                    div(class="modal fade" id=x.titulo)
-                      div(class="modal-dialog" role='document')
-                        div(class='modal-content')
-
-                          form(action='http://localhost:3000/editar_boletin' method='post' name='' id='')
-                            div(class='modal-header')
-                              button(type='button' class='close' data-dismiss='modal' aria-hidden='true')
-                              h2(class='modal-title text-center')='Edición del artículo ' + x.titulo
-
-                            div(class='modal-body')
-                              div(class='form-group')
-                                label(for='nombre_articulo')='Nuevo nombre del artículo'
-                                input(type='text' class='form-control posicion_input' id=input_name_ placeholder='Nuevo nombre del articulo')
-
-                              div(class='form-group')
-                                label(for='descripcion_articulo')='Nueva descripción'
-                                textarea(class='form-control' rows='5' id=input_text_ placeholder='Nueva descripcion')
-
-                            div(class='modal-footer')
-                              button(class='btn btn-primary editar_articulo' type='submit' data-dismiss="modal" id=x.id)='Enviar'
