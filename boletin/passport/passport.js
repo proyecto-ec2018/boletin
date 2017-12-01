@@ -26,7 +26,8 @@ module.exports = function(passport){
             return done(null,{
               nombre : user.userName,
               tipo : user.tipo,
-              id : user.id
+              id : user.id,
+              email : user.email
             })
           }
         }

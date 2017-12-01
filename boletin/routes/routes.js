@@ -59,4 +59,6 @@ router.post('/a_a', controllers.homecontroller.postActualizarArticulo);
 router.get('/mi-usuario', AuthMiddleware.isLogged,controllers.homecontroller.getMiPerfil)
 router.post('/mi-usuario', AuthMiddleware.isLogged,controllers.homecontroller.postMiPerfil)
 
+router.get('/mi-usuario-ndisp', AuthMiddleware.isLogged ,controllers.homecontroller.usuarioNoDisponible )
+
 module.exports = router;

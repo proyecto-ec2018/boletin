@@ -15,7 +15,6 @@ module.exports = {
       se redirige a '/userNotAvailable'
   */
   postRegistrarUsuario : function(req,res,next){
-    console.log(req.body)
     var usuario= {
       userName : req.body.usrName,
       email : req.body.email,

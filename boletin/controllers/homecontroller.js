@@ -1,4 +1,5 @@
 var mysql = require('mysql')
+var md5 = require('md5')
 module.exports = {
   //Funciones del controlador
 
@@ -309,7 +310,43 @@ module.exports = {
     },
 
     postMiPerfil : function(req,res,next){
-      console.log(req.body)
-      return res.redirect('mi-usuario')
+
+      var usuarioNuevo= {
+        userName : req.body.usrName,
+        email : req.body.email,
+        password : req.body.usrPass
+      }
+
+      var usuarioViejo={
+        userName : req.user.nombre
+      }
+
+      usuarioNuevo.password = md5(usuarioNuevo.password)
+      var config = require('.././database/config')
+      var db = mysql.createConnection(config)
+      db.connect();
+      var sql = db.query('SELECT * FROM usuarios WHERE username = ?', usuarioNuevo.userName ,function(err,rows,fields){
+        if (err) throw err
+        if(rows.length > 0 ){
+          return res.redirect('/mi-usuario-ndisp')
+        }else{
+          db.query('UPDATE usuarios SET userName="' + usuarioNuevo.userName +'", email="'+ usuarioNuevo.email + '",password="'+ usuarioNuevo.password + '" WHERE username = ?', usuarioViejo.userName, function(err){
+            if(err) throw err
+            db.end()
+          })
+          req.user.nombre= usuarioNuevo.userName
+          req.user.email = usuarioNuevo.email
+          return res.redirect('/')
+        }
+
+      })
+    },
+
+    usuarioNoDisponible : function(req,res,next){
+      req.flash('userNotAvailable','Este usuario no esta disponible. Intenta uno nuevo.')
+      return res.render('editar_perfil', { userNotAvailable: req.flash('userNotAvailable'),
+        isAuthenticated : req.isAuthenticated,
+        user : req.user
+      })
     }
 }

@@ -1,7 +1,10 @@
 include templates/estilos
 
 block content
+  
   include templates/navUserAuth
+  if userNotAvailable
+    div(class='alert alert-danger' role='alert')=userNotAvailable
   body
     .container
       h1 Editar Perfil
@@ -15,40 +18,46 @@ block content
 
             h6 Cambiar foto
 
-            input.form-control(type='file')
+            input.form-control(type='file' name="imagen")
 
         .col-md-9.personal-info
           h3 Informacion personal
 
-          form.form-horizontal(role='form' method="POST" action="http://localhost:3000/mi-usuario" )
-            label.col-lg-3.control-label Email:
+          form.form-horizontal(role='form' method="POST" action="http://localhost:3000/mi-usuario" name='form')
+            .accounttype
+            
+            .form-group(align='center')
+              label(for='email') Nombre de usuario:
 
-            .col-lg-8
-              input.form-control(type='text' placeholder='Cambiar correo...' name='correo')
+              input#texto.form-control(type='text', name='usrName', placeholder='Cambiar usuario...', required='')
 
-            label.col-md-3.control-label Nombre de usuario:
+            .form-group(align='center')
+              label(for='email') Correo electronico:
 
-            .col-md-8
-              input.form-control(type='text' placeholder='Cambiar usuario...' name="username")
+              input#email.form-control(type='email', name='email', placeholder='correo@ejemplo.com', required='')
 
-            label.col-md-3.control-label Contrase&ntilde;a:
+            .form-group(align='center')
+              label(for='email') Contrase&ntilde;a:
 
-            .col-md-8
-              input.form-control(type='password' placeholder='Contraseña nueva...' name="password")
+              input#pass1.form-control(type='password', onkeyup='validar(this)', name='usrPass', placeholder='Mayor a 6 caracteres', required='')
 
-            label.col-md-3.control-label Confirmar contrase&ntilde;a:
+            .form-group(align='center')
+              label Confirmar contrase&ntilde;a:
 
-            .col-md-8
-              input.form-control(type='password' placeholder="Confirmar contraseña..." name="verifiedPassword")
 
-            label.col-md-3.control-label
+              input#pass2.form-control(type='password', onkeyup='validar(this)', name='usrPassVer', required='')
 
-            .col-md-8
-              input.btn.btn-primary( value='Guardar Cambios' type='submit' )
+
+              span#state.glyphicon.glyphicon-alert.pull-right
+
+            div(align='center')
+              
+              input.btn.btn-primary( class="btn btn-default" value='Guardar Cambios' type='submit' )
 
               span
 
               input.btn.btn-default(value='Cancelar', type='reset')
+    script(src='javascripts/editar_perfil.js')
 
     script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
 
