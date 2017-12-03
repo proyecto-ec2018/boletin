@@ -1,0 +1,18 @@
+PENDIENTES>>
+
+	vistas>
+		
+		Rechazar propuesta con su campo de texto para decirle al usuario el por que.
+	
+	formas>
+		
+	
+	
+
+NOTAS>
+
+	-Al  querer publicar un boletin en el campo de autor de la tabla de articulos sale el ID en lugar del nombre del autor
+	
+	-Falta ponerle los campos de texto y subir archivo al boton de agregar articulo, en "Editar Boletin"
+	
+	-Contador de "likes" en los tres articulos mas favoritos del inicio
