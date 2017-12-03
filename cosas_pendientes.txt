@@ -2,7 +2,7 @@ PENDIENTES>>
 
 	vistas>
 		
-		Rechazar propuesta con su campo de texto para decirle al usuario el por que.
+		
 	
 	formas>
 		
