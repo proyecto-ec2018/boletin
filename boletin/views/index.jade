@@ -12,9 +12,6 @@ block content
     div(class="container")
       h1(class="display-3" style='color:white;')='Bienvenido al sitio'
       p(class="lead" style='color:white; padding-bottom:50px;')='En el siguiente sitio podrás encontrar información sobre diversos temas. Propósito del sitio explicado brevemente. Tratar de fijar una altura máxima para esta cosa pues varía según el contenido.'
-      
-      //p(class="lead" style='color:white;')
-        a(class="btn btn-primary btn-lg" href="#" role="button")='Conocer más'
   
   // La cosa mas asquerosa que se puede hacer pero funciona
   -var articulos = []
@@ -33,11 +30,11 @@ block content
   
   div(class="container thumb-section")
     div(class="row")
-      div(class="col-md-4")
-        /// PRIMER THUMB
-        if total_favoritos > 0
+      if total_favoritos > 0
+        div(class="col-md-4")
+          /// PRIMER THUMB
           div(class="thumbnail")
-            img(src="images/fear.jpg" style='width : 230px; height : 200px;')
+            //img(src="images/fear.jpg" style='width : 230px; height : 200px;')
             div(class="caption")
               h3(style="text-align:center;")=articulos[0].titulo
               p=articulos[0].descripcion
@@ -62,7 +59,7 @@ block content
       if total_favoritos > 1
         div(class="col-md-4")
           div(class="thumbnail")
-            img(src="images/fear.jpg" style='width : 230px; height : 200px;')
+            //img(src="images/fear.jpg" style='width : 230px; height : 200px;')
             div(class="caption")
               h3(style="text-align:center;")=articulos[1].titulo
               p=articulos[1].descripcion
@@ -87,7 +84,7 @@ block content
       if total_favoritos > 2
         div(class="col-md-4")
           div(class="thumbnail")
-            img(src="images/fear.jpg" style='width : 230px; height : 200px;')
+            //img(src="images/fear.jpg" style='width : 230px; height : 200px;')
             div(class="caption")
               h3(style="text-align:center;")=articulos[2].titulo
               p=articulos[2].descripcion

@@ -82,18 +82,19 @@ block content
             - nombre = usuario.userName
             - modalID = "modal" + usuario.id
             - tipoUsuario = usuario.tipo
-            - if(tipoUsuario==1) tipoUsuario = "Usuario registrado"
-            - if(tipoUsuario==2) tipoUsuario = "Autor de contenido"
-            - if(tipoUsuario==3) tipoUsuario = "Editor"
-            - if(tipoUsuario==4) tipoUsuario = "Administrador"
+            if(usuario.id != user.id)
+              - if(tipoUsuario==1) tipoUsuario = "Usuario registrado"
+              - if(tipoUsuario==2) tipoUsuario = "Autor de contenido"
+              - if(tipoUsuario==3) tipoUsuario = "Editor"
+              - if(tipoUsuario==4) tipoUsuario = "Administrador"
 
-            tr
-              td
-                button(type='submit' class='btn btn-danger btn-xs btn_eliminar') &times;
-              td(id=usuario.id class='nombreUsuario')= usuario.userName
-              td(id='tipoUsuario')= tipoUsuario
-                br
-              
-                button(data-target=dataTarget type='button' class='btn btn-primary btn-xs editar_usuario' data-toggle='modal' id=usuario.id)='Editar'
+              tr
+                td
+                  button(type='submit' class='btn btn-danger btn-xs btn_eliminar') &times;
+                td(id=usuario.id class='nombreUsuario')= usuario.userName
+                td(id='tipoUsuario')= tipoUsuario
+                  br
+
+                  button(data-target=dataTarget type='button' class='btn btn-primary btn-xs editar_usuario' data-toggle='modal' id=usuario.id)='Editar'
 
                 

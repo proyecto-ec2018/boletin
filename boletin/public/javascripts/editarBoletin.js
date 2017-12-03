@@ -44,8 +44,7 @@ $(function(){
     // funcion para editar boletin
     $('.enviarEdicionBoletin').click(function(e){
         e.preventDefault();
-        if(confirm("Estas seguro de enviar los cambios?"))
-        {
+        if(confirm("Estas seguro de enviar los cambios?")){
           var elemento = $(this);
           //var id = elemento.parent().parent().parent().parent().attr("id");
           var id = elemento.attr('id');
@@ -55,28 +54,29 @@ $(function(){
 
 
           var arregloDatos = $('#'+form_id);
-
-          console.log(arregloDatos  );
-          console.log(typeof(id));
-          console.log(elemento);
-          console.log("este es el nombre " + nombre_boletin);
-          console.log(descripcion);
+          $.ajax({  
+            url:'http://localhost:3000/editar_boletin2',
+            type:'POST',
+            data: {
+              ID : id,
+              nombre : nombre_boletin,
+              desc : descripcion
+            },
+            success:function(response){
+              window.location.replace("http://localhost:3000/editar_boletin");
+            }
+          });
+          //console.log(arregloDatos  );
+          //console.log(typeof(id));
+          //console.log(elemento);
+          //console.log("este es el nombre " + nombre_boletin);
+          //console.log(descripcion);
 
           //$.post('http://localhost:3000/editar_boletin2', {ID : id, nombre : nombre_boletin, desc : descripcion });
+        }else{
+          console.log('cancelar');
         }
       
-        $.ajax({  
-          url:'http://localhost:3000/editar_boletin2',
-          type:'POST',
-          data: {
-            ID : id,
-            nombre : nombre_boletin,
-            desc : descripcion
-          },
-          success:function(response){
-            window.location.replace("http://localhost:3000/editar_boletin");
-          }
-        });
     });
 
     // funcion para editar articulo
@@ -89,32 +89,32 @@ $(function(){
 
           var nombre = elemento.parent().parent().find('#input_name_'+'articulo'+id_articulo).val();
           var descripcion = elemento.parent().parent().find('#input_text_'+'articulo'+id_articulo).val();
-
-          console.log(nombre);
-          console.log(descripcion);
-
-          //$.post('http://localhost:3000/editar_articulo',{ID : id_articulo, nombre : nombre, descripcion : descripcion});
+          
+          $.ajax({  
+            url:'http://localhost:3000/editar_articulo',
+            type:'POST',
+            data: {
+              ID : id_articulo,
+              nombre : nombre,
+              descripcion : descripcion
+            },
+            success:function(response){
+              window.location.replace("http://localhost:3000/editar_boletin");
+            }
+          });
+          
+          //console.log(nombre);
+          //console.log(descripcion);
+        }else{
+          console.log('cancelar');
         }
-      
-      $.ajax({  
-        url:'http://localhost:3000/editar_articulo',
-        type:'POST',
-        data: {
-          ID : id_articulo,
-          nombre : nombre,
-          descripcion : descripcion
-        },
-        success:function(response){
-          window.location.replace("http://localhost:3000/editar_boletin");
-        }
-      });
     });
 
 
     // funcion para editar articulo
     $('.agregarArticulo').click(function(e){
         e.preventDefault();
-        if(confirm("Estas seguro de enviar los cambios del articulo?"))
+        if(confirm("Estás seguro de enviar los cambios del articulo?"))
         {
           var elemento = $(this);
           var id_articulo = elemento.attr('id');
@@ -122,24 +122,69 @@ $(function(){
 
           console.log(id_articulo)
           console.log(id_boletin)
-          $.post('http://localhost:3000/agregar_articulo',{id_articulo : id_articulo, id_boletin : id_boletin});
+          //$.post('http://localhost:3000/agregar_articulo',{id_articulo : id_articulo, id_boletin : id_boletin});
+          $.ajax({  
+            url:'http://localhost:3000/agregar_articulo',
+            type:'POST',
+            data: {
+              id_articulo : id_articulo,
+              id_boletin : id_boletin
+            },
+            success:function(response){
+              window.location.replace("http://localhost:3000/editar_boletin");
+            }
+          });
+        }else{
+          //window.location.replace("http://localhost:3000/editar_boletin");
+          console.log('cancelar');
         }
 
         // para "redireccionar" a la misma pagina, pero ya actualizada
-        window.location.replace("http://localhost:3000/editar_boletin");
+        //window.location.replace("http://localhost:3000/editar_boletin");
     });
 
     $('.eliminar_articulo').click(function(e){
       e.preventDefault();
-      if(confirm("Estás seguro eliminar el artículo?"))
-        {
-          var elemento = $(this);
-          var id_articulo = elemento.attr('id');
-
-          $.post('http://localhost:3000/eliminar_articulo',{ID : id_articulo});
-        }
-
-        window.location.replace("http://localhost:3000/editar_boletin");
+      if(confirm("Estás seguro eliminar el artículo?")){
+        var elemento = $(this);
+        var id_articulo = elemento.attr('id');
+        
+        $.ajax({  
+          url:'http://localhost:3000/eliminar_articulo',
+          type:'POST',
+          data: {
+            ID : id_articulo
+          },
+          success:function(response){
+            window.location.replace("http://localhost:3000/editar_boletin");
+          }
+        });
+        
+      }else{
+        //window.location.replace("http://localhost:3000/editar_boletin");
+        console.log('cancelar');
+      }
     });
+  
+    $('.desvincular_articulo').click(function(e){
+      e.preventDefault();
+      if(confirm("Estás de desvincular el artículo del boletín?")){
+        var elemento = $(this);
+        var id_articulo = elemento.attr('id');
 
+        $.ajax({  
+          url:'http://localhost:3000/desvincular_articulo',
+          type:'POST',
+          data: {
+            ID : id_articulo
+          },
+          success:function(response){
+            window.location.replace("http://localhost:3000/editar_boletin");
+          }
+        });
+      }else{
+        //window.location.replace("http://localhost:3000/editar_boletin");
+        console.log('cancelar');
+      }
+    });
 });

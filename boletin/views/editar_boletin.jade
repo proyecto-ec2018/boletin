@@ -61,7 +61,7 @@ block content
         div(class="modal-dialog" role='document')
           div(class='modal-content')
 
-            form(action='http://localhost:3000/editar_boletin' method='post' name='' id='')
+            form(action='http://localhost:3000/editar_boletin' method='post' name='' id=idBoletin)
               div(class='modal-header')
                 button(type='button' class='close' data-dismiss='modal' aria-hidden='true')
                 h2(class='modal-title text-center')='Añadir artículo'
@@ -71,8 +71,8 @@ block content
                   - idArticulo = articulo.id
                   p=articulo.titulo
                 
-                  div(class='form-group' id=idBoletin)
-                    button(class='btn btn-primary agregarArticulo' type='submit' data-dismiss="modal" id=idArticulo)='Añadir'            
+                  div(class='form-group' id=idBoletin name=idBoletin)
+                    button(class='btn btn-primary agregarArticulo' type='submit' data-dismiss="modal" id=idArticulo name=idArticulo)='Añadir'            
     
     each x in articulos
 
@@ -148,4 +148,5 @@ block content
                   p='' + x.titulo
                     br
                     button(type='button' class='btn btn-primary btn-xs' data-toggle="modal" data-target=dtArticulo id='editar_a')='Editar'
+                    button(class='btn btn-warning btn-xs desvincular_articulo' type='submit' /*onclick='alertaArticulo()'*/ id=x.id)='Desvincular'
                     button(class='btn btn-danger btn-xs eliminar_articulo' type='submit' /*onclick='alertaArticulo()'*/ id=x.id)='Eliminar'

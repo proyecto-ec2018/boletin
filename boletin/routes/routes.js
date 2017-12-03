@@ -43,6 +43,7 @@ router.post('/editar_boletin2',AuthMiddleware.isLogged, controllers.dbcontroller
 router.post('/agregar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postAgregarArticulo)
 router.post('/editar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postEditarArticulo)
 router.post('/eliminar_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postEliminarArticulo)
+router.post('/desvincular_articulo',AuthMiddleware.isLogged, controllers.dbcontroller.postDesvincularArticulo)
 
 router.post('/eliminar_boletin',AuthMiddleware.isLogged, controllers.dbcontroller.eliminarBoletin)
 

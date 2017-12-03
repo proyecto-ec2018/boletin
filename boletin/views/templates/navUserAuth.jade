@@ -28,27 +28,29 @@ div(class='' id='' style='background-color: darkslategray;')
               li(class="dropdown" style='color: white;')
                 a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color:white')= user.nombre + ' '
                   span(class="caret")
-                ul(class="dropdown-menu" style='background-color:darkslategray; color:white;')
+                ul(class="dropdown-menu" style='background-color:darkslategray; color:white; padding:20px;')
                   li
-                    a(href="http://localhost:3000/auth-logout" style='background-color:darkslategray; color:white;')= 'Cerrar Sesion '
+                    a(href="http://localhost:3000/auth-logout" style='background-color:darkslategray; color:white; text-align:center;')= 'Cerrar Sesion '
                       span(class='glyphicon glyphicon-log-out')
                   li
-                    a(href="http://localhost:3000/mi-usuario" style='background-color:darkslategray; color:white;')= 'Mi perfil'
+                    a(href="http://localhost:3000/mi-usuario" style='background-color:darkslategray; color:white; text-align:center;')= 'Mi perfil'
                       span(class='glyphicon glyphicon-user')
-                      
-                  if user.tipo>=2
-                    a(href="http://localhost:3000/upload-files" style='background-color:darkslategray; color:white;')= 'Enviar propuesta '
-                      span(class='glyphicon glyphicon-upload')
-                  if user.tipo>=3
-                    li
-                      a(href="http://localhost:3000/nuevo-boletin" style='background-color:darkslategray; color:white;')= 'Nuevo boletin '
+                  li
+                    if user.tipo>=2
+                      a(href="http://localhost:3000/upload-files" style='background-color:darkslategray; color:white; text-align:center;')= 'Enviar propuesta '
+                        span(class='glyphicon glyphicon-upload')
+                  li
+                    if user.tipo>=3
+                      a(href="http://localhost:3000/nuevo-boletin" style='background-color:darkslategray; color:white; text-align:center;')= 'Nuevo boletin '
                         span(class='glyphicon glyphicon-book')
                     //li
                       a(href="http://localhost:3000/eliminar_boletin" style='background-color:darkslategray; color:white;')= 'Eliminar boletín '
                         span(class='glyphicon glyphicon-book')
-                    li
-                      a(href="http://localhost:3000/editar_boletin" style='background-color:darkslategray; color:white;')= 'Editar boletin '
+                  li
+                    if user.tipo > 3
+                      a(href="http://localhost:3000/editar_boletin" style='background-color:darkslategray; color:white; text-align:center;')= 'Editar boletin '
                         span(class='glyphicon glyphicon-book')
-                    li
-                      a(href="http://localhost:3000/modificar_usuarios" style='background-color:darkslategray; color:white;')= 'Modificar usuarios '
+                  li
+                    if user.tipo > 3
+                      a(href="http://localhost:3000/modificar_usuarios" style='background-color:darkslategray; color:white; text-align:center;')= 'Modificar usuarios '
                         span(class='glyphicon glyphicon-user')

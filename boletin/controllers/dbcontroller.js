@@ -233,7 +233,7 @@ module.exports = {
     }
 
     form.parse(req,function(err,fields,files){
-      articulo.autor = req.user.nombre
+      articulo.autor = '' + req.user.id
 
       articulo.titulo=fields.titulo
       articulo.descripcion=fields.descripcion
@@ -322,14 +322,36 @@ module.exports = {
     var db = mysql.createConnection(config)
     db.connect();
 
-    //db.query('DELETE FROM articulos WHERE id = ' + id, function(err, rows, fields){
-    var query = 'UPDATE articulos SET boletin_asoc = 0 WHERE id = ' + id;
-    db.query(query,function(err,rows,fields){
+    db.query('DELETE FROM articulos WHERE id = ' + id,function(err,rows, fields){
       if(err) throw err;
-
+      
+      db.query('DELETE FROM favoritos WHERE id_articulo = ' + id,function(err,rows, fields){
+        if(err) throw err;
+      })
+      
+      db.end();
+    })
+    
+    
+    req.flash('edicion_articulo','Se ha actualizado el articulo');
+    res.redirect('/')
+  },
+  
+  postDesvincularArticulo : function(req, res, next){
+    var id = req.body.ID;
+    
+    var config = require('.././database/config')
+    var db = mysql.createConnection(config)
+    db.connect();
+    
+    db.query('UPDATE articulos SET boletin_asoc = 0 WHERE id = ' + id, function(err,rows,fields){
+      if(err) throw err;
+      
       db.end();
     });
-
+    
+    req.flash('edicion_articulo','Se ha actualizado el articulo');
+    res.redirect('/')
   },
 
   plantillaDOC : function(req,res){
