@@ -127,7 +127,7 @@ block content
                           h4(class="panel-title")
                             //a(href="#")
                               span(class="glyphicon glyphicon-download-alt")
-                            a(data-toggle="collapse" href='#'+y.titulo)=' ' + y.titulo
+                            a(data-toggle="collapse" href='#'+y.id+'a')=' ' + y.titulo
                             if isAuthenticated
                               if !y.esFavorito
                                 form(href="/" method="POST")
@@ -143,7 +143,7 @@ block content
                                     button(type="submit" class="btn btn-primary active favorito" id=y.id)
                                       span(style="color:yellow" class="glyphicon glyphicon-star")
 
-                        div(id=y.titulo class="panel-collapse collapse")
+                        div(id=y.id+'a' class="panel-collapse collapse")
                           ul(class="list-group")
                             li(class="list-group-item")
                               h3='Descripción: '
