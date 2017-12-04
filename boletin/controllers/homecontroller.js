@@ -243,7 +243,6 @@ module.exports = {
   },
 
   getActualizarArticulo : function(req, res, next){
-    console.log('asd aa')
     res.render('asd')
   },
 
