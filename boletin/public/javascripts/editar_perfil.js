@@ -1,6 +1,11 @@
 function validar(form){
   var pass1 = $("#pass1").val();
   var pass2 = $("#pass2").val();
+  var nombreUsuario = $('#nombreUsuario').val();
+  var sonIguales = false;
+
+  console.log(nombreUsuario)
+  
   if(pass1.length <=6 || pass2 <=6 || pass1.length != pass2.length  ){
     var element= document.getElementById("state");
     element.style.color = "red";
@@ -13,6 +18,16 @@ function validar(form){
     element.style.color = "green";
     $("#state").attr("class", "glyphicon glyphicon-ok-sign pull-right");
     $("#but-registro").attr("class","btn btn-primary");
+    sonIguales = true;
+  }
+
+  if(nombreUsuario.length >= 6 && sonIguales)
+  {
     document.getElementById("but-registro").removeAttribute("disabled")
   }
+  else
+  {
+    document.getElementById("but-registro").setAttribute("disabled", "disabled")
+  }
+  
 }
