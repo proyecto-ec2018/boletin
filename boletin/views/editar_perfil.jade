@@ -29,7 +29,7 @@ block content
             .form-group(align='center')
               label(for='email') Nombre de usuario:
 
-              input#texto.form-control(type='text', name='usrName', placeholder='Cambiar usuario...', required='')
+              input#nombreUsuario.form-control(type='text', name='usrName', placeholder='Cambiar usuario, mayor a 5 caracteres...', required='' onkeyup='validar(this)')
 
             .form-group(align='center')
               label(for='email') Correo electronico:
@@ -52,7 +52,7 @@ block content
 
             div(align='center')
               
-              input.btn.btn-primary( class="btn btn-default" value='Guardar Cambios' type='submit' )
+              input.btn.btn-primary( id='but-registro' class="btn btn-default" value='Guardar Cambios' type='submit' )
 
               span
 
